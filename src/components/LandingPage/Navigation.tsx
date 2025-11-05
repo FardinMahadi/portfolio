@@ -481,17 +481,17 @@ export function Navigation() {
                   <Button
                     className="w-full bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white shadow-lg shadow-violet-500/30 min-h-[44px]"
                     onClick={() => {
-                      const contactItem = navItems.find(
-                        (item) => item.name === "Contact"
-                      );
-                      if (contactItem) {
-                        handleNavClick(contactItem);
-                      }
+                      const link = document.createElement("a");
+                      link.href = "/cv.pdf";
+                      link.download = "Mahadi Hasan Fardin.pdf";
+                      document.body.appendChild(link);
+                      link.click();
+                      document.body.removeChild(link);
                     }}
-                    aria-label="Navigate to contact section"
+                    aria-label="Download CV as PDF"
                   >
                     <Terminal className="w-4 h-4 mr-2" />
-                    Hire Me
+                    Download CV
                   </Button>
                 </motion.div>
 

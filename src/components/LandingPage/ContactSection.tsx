@@ -156,9 +156,7 @@ export function ContactSection() {
             >
               {">"}_
             </span>
-            <h2 className="text-green-400 text-3xl font-bold">
-              Let&apos;s Collaborate
-            </h2>
+            <h2 className="text-green-400 text-3xl font-bold">Get In Touch</h2>
           </div>
           <p className="text-slate-400 max-w-2xl mx-auto text-lg">
             Have a project in mind or want to discuss opportunities? I&apos;m

@@ -53,7 +53,7 @@ export function BlogIndexPage() {
             <span className="text-blue-400 font-mono" aria-hidden="true">
               {"</"}
             </span>
-            <h1 className="text-blue-400 text-4xl font-bold">All Blog Posts</h1>
+            <h1 className="text-blue-400 text-4xl font-bold">Articles</h1>
             <span className="text-blue-400 font-mono" aria-hidden="true">
               {">"}
             </span>

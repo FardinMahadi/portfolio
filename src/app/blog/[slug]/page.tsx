@@ -17,12 +17,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!post) {
     return {
-      title: "Post Not Found",
+      title: "Article Not Found",
       description: "The blog post you're looking for doesn't exist.",
     };
   }
 
-  return generateSEOMetadata({
+  const metadata = generateSEOMetadata({
     title: post.title,
     description: post.excerpt,
     keywords: [post.category, "programming", "web development", "learning"],
@@ -30,6 +30,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ogImage: `${siteUrl}/og-image.png`,
     ogType: "article",
   });
+
+  // Override title to bypass template (remove "| FardinMahadi" suffix)
+  return {
+    ...metadata,
+    title: {
+      absolute: post.title,
+    },
+    openGraph: {
+      ...metadata.openGraph,
+      title: post.title,
+    },
+    twitter: {
+      ...metadata.twitter,
+      title: post.title,
+    },
+  };
 }
 
 export default async function BlogPost({ params }: Props) {

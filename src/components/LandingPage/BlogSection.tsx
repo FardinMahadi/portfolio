@@ -54,7 +54,7 @@ export function BlogSection() {
               {"</"}
             </span>
             <h2 className="text-blue-400 text-3xl font-bold">
-              Blog & Thoughts
+              Latest Articles
             </h2>
             <span className="text-blue-400 font-mono" aria-hidden="true">
               {">"}

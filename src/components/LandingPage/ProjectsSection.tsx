@@ -93,9 +93,7 @@ export function ProjectsSection() {
         >
           <div className="flex items-center gap-3 mb-6">
             <Terminal className="w-6 h-6 text-violet-400" aria-hidden="true" />
-            <h2 className="text-violet-400 text-3xl font-bold">
-              Featured Projects
-            </h2>
+            <h2 className="text-violet-400 text-3xl font-bold">Projects</h2>
           </div>
           <p className="text-slate-400 max-w-2xl text-lg">
             A collection of projects showcasing my expertise in full-stack

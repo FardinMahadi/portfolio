@@ -114,7 +114,7 @@ export function AboutSection() {
             <span className="text-cyan-400 font-mono" aria-hidden="true">
               {"<"}
             </span>
-            <h2 className="text-cyan-400 text-3xl font-bold">About</h2>
+            <h2 className="text-cyan-400 text-3xl font-bold">About Me</h2>
             <span className="text-cyan-400 font-mono" aria-hidden="true">
               {"/>"}
             </span>

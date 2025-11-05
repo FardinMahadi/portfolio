@@ -20,8 +20,7 @@ const siteName = "FardinMahadi - MERN Stack Developer Portfolio";
 
 export const metadata: Metadata = {
   title: {
-    default:
-      "FardinMahadi - MERN Stack Developer | Full Stack Web Developer Portfolio",
+    default: "Mahadi Hasan Fardin - Full Stack Developer Portfolio",
     template: "%s | FardinMahadi",
   },
   description:
@@ -82,7 +81,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName,
-    title: "FardinMahadi - MERN Stack Developer | Full Stack Web Developer",
+    title: "Mahadi Hasan Fardin - Full Stack Developer Portfolio",
     description:
       "Professional portfolio showcasing MERN stack development expertise. Specializing in React, Next.js, Node.js, MongoDB, and TypeScript. Explore innovative web applications and modern development solutions.",
     images: [
@@ -98,7 +97,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "FardinMahadi - MERN Stack Developer | Full Stack Web Developer",
+    title: "Mahadi Hasan Fardin - Full Stack Developer Portfolio",
     description:
       "Professional MERN stack developer portfolio featuring React, Next.js, Node.js, MongoDB, and TypeScript projects. Available for hire.",
     creator: "@FardinMahadi",

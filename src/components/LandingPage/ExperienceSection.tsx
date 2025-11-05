@@ -91,13 +91,17 @@ export function ExperienceSection() {
           className="mb-12"
         >
           <div className="flex items-center gap-3 mb-6">
-            <Briefcase className="w-6 h-6 text-theme-secondary" aria-hidden="true" />
+            <Briefcase
+              className="w-6 h-6 text-theme-secondary"
+              aria-hidden="true"
+            />
             <h2 className="text-theme-secondary text-3xl font-bold">
               Work Experience
             </h2>
           </div>
           <p className="text-slate-400 max-w-2xl text-lg">
-            Professional journey and work experience in web development
+            A timeline of my professional journey, showcasing my growth and
+            contributions in web development and software engineering.
           </p>
         </motion.header>
 

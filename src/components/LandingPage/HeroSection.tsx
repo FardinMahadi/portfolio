@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import { ChevronDown } from "lucide-react";
+import { MagneticButton } from "../effects/MagneticButton";
 
 export function HeroSection() {
   const [displayedText, setDisplayedText] = useState("");
@@ -32,7 +33,7 @@ export function HeroSection() {
       {/* Floating orbs */}
       <motion.div
         className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full blur-3xl opacity-20"
-        style={{ backgroundColor: 'var(--color-primary)' }}
+        style={{ backgroundColor: "var(--color-primary)" }}
         animate={{
           x: [0, 50, 0],
           y: [0, 30, 0],
@@ -45,7 +46,7 @@ export function HeroSection() {
       />
       <motion.div
         className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-20"
-        style={{ backgroundColor: 'var(--color-accent)' }}
+        style={{ backgroundColor: "var(--color-accent)" }}
         animate={{
           x: [0, -30, 0],
           y: [0, 50, 0],
@@ -127,47 +128,52 @@ export function HeroSection() {
           className="space-y-6"
         >
           <p className="text-slate-300 max-w-2xl mx-auto text-lg">
-            Building interactive web experiences with MERN & beyond.
+            Full Stack Developer specializing in React, Next.js, and Node.js.
+            Building modern web applications with clean code and best practices.
           </p>
 
           <div className="flex gap-4 justify-center items-center flex-wrap">
-            <Button
-              size="lg"
-              className="text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 min-h-[44px]"
-              style={{
-                background: `linear-gradient(to right, var(--color-primary), var(--color-secondary))`,
-                boxShadow: `0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 20px -5px var(--color-primary)`,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = `linear-gradient(to right, var(--color-primary), var(--color-secondary))`;
-                e.currentTarget.style.filter = 'brightness(1.1)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = `linear-gradient(to right, var(--color-primary), var(--color-secondary))`;
-                e.currentTarget.style.filter = 'brightness(1)';
-              }}
-              onClick={() =>
-                document
-                  .getElementById("projects")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              aria-label="Navigate to projects section"
-            >
-              View Projects
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-slate-600 text-slate-200 hover:bg-slate-800/50 transition-all duration-300 min-h-[44px] hover:border-theme-accent hover:text-theme-accent"
-              onClick={() =>
-                document
-                  .getElementById("contact")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              aria-label="Navigate to contact section"
-            >
-              Get In Touch
-            </Button>
+            <MagneticButton magneticStrength={0.2}>
+              <Button
+                size="lg"
+                className="text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 min-h-[44px]"
+                style={{
+                  background: `linear-gradient(to right, var(--color-primary), var(--color-secondary))`,
+                  boxShadow: `0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 20px -5px var(--color-primary)`,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = `linear-gradient(to right, var(--color-primary), var(--color-secondary))`;
+                  e.currentTarget.style.filter = "brightness(1.1)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = `linear-gradient(to right, var(--color-primary), var(--color-secondary))`;
+                  e.currentTarget.style.filter = "brightness(1)";
+                }}
+                onClick={() =>
+                  document
+                    .getElementById("projects")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                aria-label="Navigate to projects section"
+              >
+                View Projects
+              </Button>
+            </MagneticButton>
+            <MagneticButton magneticStrength={0.2}>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-slate-600 text-slate-200 hover:bg-slate-800/50 transition-all duration-300 min-h-[44px] hover:border-theme-accent hover:text-theme-accent"
+                onClick={() =>
+                  document
+                    .getElementById("contact")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                aria-label="Navigate to contact section"
+              >
+                Get In Touch
+              </Button>
+            </MagneticButton>
           </div>
         </motion.div>
 

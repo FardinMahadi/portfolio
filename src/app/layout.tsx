@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Suspense } from "react";
 import { Analytics } from "./analytics";
 import { TargetCursor } from "@/components/effects/TargetCursor";
+import { ScrollProgressIndicator } from "@/components/effects/ScrollProgressIndicator";
 import { ColorPaletteProvider } from "@/contexts/ColorPaletteContext";
 import "./globals.css";
 
@@ -353,6 +354,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ColorPaletteProvider>
+          <ScrollProgressIndicator />
           <TargetCursor targetSelector="a, button, [role='button'], [class*='cursor-pointer']" />
           {children}
           <Suspense fallback={null}>

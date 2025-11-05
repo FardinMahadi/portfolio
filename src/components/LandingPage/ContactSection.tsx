@@ -168,8 +168,9 @@ export function ContactSection() {
             <h2 className="text-green-400 text-3xl font-bold">Get In Touch</h2>
           </div>
           <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-            Have a project in mind or want to discuss opportunities? I&apos;m
-            always open to new challenges and collaborations.
+            Have a project idea or want to collaborate? I&apos;m always open 
+            to discussing new opportunities, freelance work, and exciting 
+            challenges in web development.
           </p>
         </motion.header>
 

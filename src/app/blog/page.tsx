@@ -8,10 +8,17 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://fardinmahadi.vercel.app";
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: "Blog",
+  title: "Blog Articles",
   description:
-    "Read articles about web development, programming tips, and insights on making coding fun and accessible. Learn from practical examples and personal experiences.",
-  keywords: ["blog", "programming", "web development", "learning", "tutorials"],
+    "Read articles about web development, programming tips, career insights, and learning resources. Learn from practical examples and personal experiences in full-stack development.",
+  keywords: [
+    "blog",
+    "programming",
+    "web development",
+    "learning",
+    "tutorials",
+    "articles",
+  ],
   canonical: `${siteUrl}/blog`,
 });
 

@@ -7,6 +7,7 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { generateArticleSchema } from "@/lib/seo";
 import { blogPosts } from "@/lib/blogData";
+import { GlassmorphismPanel } from "../effects/GlassmorphismPanel";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://fardinmahadi.vercel.app";
@@ -15,16 +16,22 @@ export function BlogSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
+  // Limit to 4 most recent blog posts
+  const displayedPosts = blogPosts.slice(0, 4);
+
   return (
     <section
       id="blog"
       className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0a0e1a] to-[#111827] relative overflow-hidden"
     >
       {/* Background accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-3xl" />
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl opacity-10"
+        style={{ backgroundColor: "var(--color-secondary)" }}
+      />
 
       <div ref={ref} className="max-w-7xl mx-auto relative z-10">
-        {blogPosts.map((post, index) => {
+        {displayedPosts.map((post, index) => {
           const articleSchema = generateArticleSchema(
             post.title,
             post.excerpt,
@@ -61,13 +68,13 @@ export function BlogSection() {
             </span>
           </div>
           <p className="text-slate-400 max-w-2xl text-lg">
-            Sharing insights on web development, best practices, and lessons
-            learned from building production applications.
+            Discover articles about web development, programming tips, career
+            insights, and practical lessons from real-world projects.
           </p>
         </motion.header>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {blogPosts.map((post, index) => (
+          {displayedPosts.map((post, index) => (
             <motion.article
               key={post.title}
               initial={{ opacity: 0, y: 30 }}
@@ -81,55 +88,60 @@ export function BlogSection() {
                 className="block h-full"
                 aria-label={`Read article: ${post.title}`}
               >
-                <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-lg border border-slate-700/50 p-6 backdrop-blur-sm hover:border-blue-500/50 transition-all duration-300 h-full flex flex-col cursor-pointer">
-                  {/* Category badge */}
-                  <header className="flex items-center justify-between mb-4">
-                    <span className="px-3 py-1 text-xs font-mono bg-blue-500/10 text-blue-400 rounded-full border border-blue-500/20">
-                      {post.category}
-                    </span>
-                    <div className="flex items-center gap-4 text-slate-500 text-xs">
-                      <time
-                        dateTime={post.date}
-                        className="flex items-center gap-1"
-                      >
-                        <Calendar className="w-3 h-3" aria-hidden="true" />
-                        <span>{post.date}</span>
-                      </time>
-                      <div
-                        className="flex items-center gap-1"
-                        aria-label={`Reading time: ${post.readTime}`}
-                      >
-                        <Clock className="w-3 h-3" aria-hidden="true" />
-                        <span>{post.readTime}</span>
+                <GlassmorphismPanel
+                  className="h-full flex flex-col p-6"
+                  hover={true}
+                >
+                  <div className="h-full flex flex-col cursor-pointer">
+                    {/* Category badge */}
+                    <header className="flex items-center justify-between mb-4">
+                      <span className="px-3 py-1 text-xs font-mono bg-theme-primary/10 text-theme-primary rounded-full border border-theme-primary/20">
+                        {post.category}
+                      </span>
+                      <div className="flex items-center gap-4 text-slate-500 text-xs">
+                        <time
+                          dateTime={post.date}
+                          className="flex items-center gap-1"
+                        >
+                          <Calendar className="w-3 h-3" aria-hidden="true" />
+                          <span>{post.date}</span>
+                        </time>
+                        <div
+                          className="flex items-center gap-1"
+                          aria-label={`Reading time: ${post.readTime}`}
+                        >
+                          <Clock className="w-3 h-3" aria-hidden="true" />
+                          <span>{post.readTime}</span>
+                        </div>
                       </div>
+                    </header>
+
+                    {/* Content */}
+                    <div className="flex-1 space-y-3 mb-4">
+                      <h3 className="text-slate-100 group-hover:text-theme-primary transition-colors duration-300 font-mono text-xl">
+                        {post.title}
+                      </h3>
+                      <p className="text-slate-400 text-sm leading-relaxed">
+                        {post.excerpt}
+                      </p>
                     </div>
-                  </header>
 
-                  {/* Content */}
-                  <div className="flex-1 space-y-3 mb-4">
-                    <h3 className="text-slate-100 group-hover:text-blue-400 transition-colors duration-300 font-mono text-xl">
-                      {post.title}
-                    </h3>
-                    <p className="text-slate-400 text-sm leading-relaxed">
-                      {post.excerpt}
-                    </p>
-                  </div>
-
-                  {/* Read more */}
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-between text-slate-400 hover:text-blue-400 hover:bg-blue-500/5 transition-all duration-300 group/btn min-h-[44px]"
-                    asChild
-                  >
-                    <Link
-                      href={post.slug ? `/blog/${post.slug}` : "#"}
-                      aria-label={`Read article: ${post.title}`}
+                    {/* Read more */}
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-between text-slate-400 hover:text-theme-primary hover:bg-theme-primary/5 transition-all duration-300 group/btn min-h-[44px]"
+                      asChild
                     >
-                      <span>Read article</span>
-                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
-                    </Link>
-                  </Button>
-                </div>
+                      <Link
+                        href={post.slug ? `/blog/${post.slug}` : "#"}
+                        aria-label={`Read article: ${post.title}`}
+                      >
+                        <span>Read article</span>
+                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                      </Link>
+                    </Button>
+                  </div>
+                </GlassmorphismPanel>
               </Link>
             </motion.article>
           ))}
@@ -145,7 +157,7 @@ export function BlogSection() {
           <Button
             variant="outline"
             size="lg"
-            className="border-slate-600 text-slate-300 hover:bg-blue-500/10 hover:border-blue-500 hover:text-blue-400 transition-all duration-300"
+            className="border-slate-600 text-slate-300 hover:bg-theme-primary/10 hover:border-theme-primary hover:text-theme-primary transition-all duration-300"
             asChild
           >
             <Link href="/blog" aria-label="View all blog articles">

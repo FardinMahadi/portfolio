@@ -3,6 +3,8 @@ import { useRef } from "react";
 import { TechStackProps } from "../types/TechStackProps";
 import Image from "next/image";
 import { generateProfessionalServiceSchema } from "@/lib/seo";
+import { AnimatedStatsCounter } from "../effects/AnimatedStatsCounter";
+import { GlassmorphismPanel } from "../effects/GlassmorphismPanel";
 
 const techStack: TechStackProps[] = [
   {
@@ -127,18 +129,41 @@ export function AboutSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="space-y-4"
             >
-              <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 p-6 rounded-lg border border-slate-700/50 backdrop-blur-sm">
+              <GlassmorphismPanel className="p-6">
                 <p className="text-slate-300 leading-relaxed">
-                  I&apos;m a full-stack developer passionate about creating
-                  seamless web experiences. With expertise in the MERN stack and
-                  modern frameworks like Next.js, I transform ideas into robust,
-                  scalable applications.
+                  I&apos;m a Full Stack Developer passionate about creating
+                  seamless web experiences. With expertise in the MERN stack
+                  (MongoDB, Express, React, Node.js) and modern frameworks like
+                  Next.js, I transform ideas into robust, scalable applications.
                 </p>
                 <p className="text-slate-300 leading-relaxed mt-4">
                   My approach combines clean code architecture with cutting-edge
                   technologies, ensuring every project is performant,
-                  maintainable, and user-focused.
+                  maintainable, and user-focused. I focus on writing quality
+                  code that solves real-world problems.
                 </p>
+              </GlassmorphismPanel>
+
+              {/* Stats Section */}
+              <div className="grid grid-cols-3 gap-4">
+                <AnimatedStatsCounter
+                  end={50}
+                  suffix="+"
+                  label="Projects"
+                  className="col-span-1"
+                />
+                <AnimatedStatsCounter
+                  end={3}
+                  suffix="+"
+                  label="Years"
+                  className="col-span-1"
+                />
+                <AnimatedStatsCounter
+                  end={100}
+                  suffix="%"
+                  label="Satisfaction"
+                  className="col-span-1"
+                />
               </div>
 
               <div className="flex items-center gap-3 px-4 py-2 bg-slate-900/50 rounded border border-slate-700/50 w-fit">

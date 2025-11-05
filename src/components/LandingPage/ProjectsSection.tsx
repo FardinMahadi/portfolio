@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { ProjectsProps } from "./../types/ProjectsProps";
 import { generateItemListSchema } from "@/lib/seo";
+import { GlassmorphismPanel } from "../effects/GlassmorphismPanel";
 
 const projects: ProjectsProps[] = [
   {
@@ -92,12 +93,16 @@ export function ProjectsSection() {
           className="mb-12"
         >
           <div className="flex items-center gap-3 mb-6">
-            <Terminal className="w-6 h-6 text-theme-accent" aria-hidden="true" />
+            <Terminal
+              className="w-6 h-6 text-theme-accent"
+              aria-hidden="true"
+            />
             <h2 className="text-theme-accent text-3xl font-bold">Projects</h2>
           </div>
           <p className="text-slate-400 max-w-2xl text-lg">
-            A collection of projects showcasing my expertise in full-stack
-            development, from concept to deployment.
+            A curated collection of my best work, showcasing full-stack
+            development projects from concept to deployment. Each project
+            demonstrates technical skills and problem-solving abilities.
           </p>
         </motion.header>
 
@@ -112,99 +117,101 @@ export function ProjectsSection() {
               className="group relative"
             >
               {/* Card */}
-              <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-lg border border-slate-700/50 overflow-hidden backdrop-blur-sm hover:border-violet-500/50 transition-all duration-300">
-                {/* Terminal header */}
-                <header
-                  className="bg-slate-900/80 px-4 py-2 border-b border-slate-700/50 flex items-center gap-2"
-                  role="presentation"
-                >
-                  <div className="flex gap-1.5" aria-hidden="true">
-                    <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                    <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                  </div>
-                  <div className="ml-2 text-slate-500 text-xs font-mono">
-                    ~/{project.title.toLowerCase().replace(/\s+/g, "-")}
-                  </div>
-                </header>
-
-                {/* Image */}
-                <figure className="relative h-48 overflow-hidden bg-slate-900">
-                  <ImageWithFallback
-                    src={project.image}
-                    alt={`${project.title} project screenshot - ${project.description}`}
-                    width={project.width}
-                    height={project.height}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    quality={85}
-                    loading="lazy"
-                  />
-                  <div
-                    className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent opacity-60"
-                    aria-hidden="true"
-                  />
-                </figure>
-
-                {/* Content */}
-                <div className="p-6 space-y-4">
-                  <header>
-                    <h3 className="text-slate-100 mb-2 font-mono text-xl">
-                      {project.title}
-                    </h3>
-                    <p className="text-slate-400 text-sm">
-                      {project.description}
-                    </p>
+              <GlassmorphismPanel className="overflow-hidden" hover={true}>
+                <div className="rounded-lg overflow-hidden">
+                  {/* Terminal header */}
+                  <header
+                    className="bg-slate-900/80 px-4 py-2 border-b border-slate-700/50 flex items-center gap-2"
+                    role="presentation"
+                  >
+                    <div className="flex gap-1.5" aria-hidden="true">
+                      <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                      <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                      <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                    </div>
+                    <div className="ml-2 text-slate-500 text-xs font-mono">
+                      ~/{project.title.toLowerCase().replace(/\s+/g, "-")}
+                    </div>
                   </header>
 
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2" role="list">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-1 text-xs font-mono bg-slate-800/50 text-cyan-400 rounded border border-slate-700/50"
-                        role="listitem"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  {/* Image */}
+                  <figure className="relative h-48 overflow-hidden bg-slate-900">
+                    <ImageWithFallback
+                      src={project.image}
+                      alt={`${project.title} project screenshot - ${project.description}`}
+                      width={project.width}
+                      height={project.height}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      quality={85}
+                      loading="lazy"
+                    />
+                    <div
+                      className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent opacity-60"
+                      aria-hidden="true"
+                    />
+                  </figure>
 
-                  {/* Actions */}
-                  <div className="flex gap-3 pt-2">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="flex-1 border-slate-600 text-slate-300 hover:bg-cyan-500/10 hover:border-cyan-500 hover:text-cyan-400 transition-all duration-300"
-                      asChild
-                    >
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                  {/* Content */}
+                  <div className="p-6 space-y-4">
+                    <header>
+                      <h3 className="text-slate-100 mb-2 font-mono text-xl">
+                        {project.title}
+                      </h3>
+                      <p className="text-slate-400 text-sm">
+                        {project.description}
+                      </p>
+                    </header>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2" role="list">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-1 text-xs font-mono bg-slate-800/50 text-cyan-400 rounded border border-slate-700/50"
+                          role="listitem"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Actions */}
+                    <div className="flex gap-3 pt-2">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="flex-1 border-slate-600 text-slate-300 hover:bg-cyan-500/10 hover:border-cyan-500 hover:text-cyan-400 transition-all duration-300"
+                        asChild
                       >
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        Live
-                      </a>
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="flex-1 border-slate-600 text-slate-300 hover:bg-violet-500/10 hover:border-violet-500 hover:text-violet-400 transition-all duration-300"
-                      asChild
-                    >
-                      <a
-                        href={project.codeUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ExternalLink className="w-4 h-4 mr-2" />
+                          Live
+                        </a>
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="flex-1 border-slate-600 text-slate-300 hover:bg-violet-500/10 hover:border-violet-500 hover:text-violet-400 transition-all duration-300"
+                        asChild
                       >
-                        <Github className="w-4 h-4 mr-2" />
-                        Code
-                      </a>
-                    </Button>
+                        <a
+                          href={project.codeUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Github className="w-4 h-4 mr-2" />
+                          Code
+                        </a>
+                      </Button>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </GlassmorphismPanel>
 
               {/* Glow effect */}
               <div

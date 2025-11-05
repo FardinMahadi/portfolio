@@ -2,6 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { TechStackProps } from "../types/TechStackProps";
 import Image from "next/image";
+import { generateProfessionalServiceSchema } from "@/lib/seo";
 
 const techStack: TechStackProps[] = [
   {
@@ -82,6 +83,12 @@ export function AboutSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
+  const professionalServiceSchema = generateProfessionalServiceSchema(
+    "Full Stack Web Development",
+    "MERN stack development services including React, Next.js, Node.js, MongoDB, and TypeScript. Specializing in building scalable web applications and modern user interfaces.",
+    "Worldwide"
+  );
+
   return (
     <section
       id="about"
@@ -92,19 +99,29 @@ export function AboutSection() {
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
 
       <div ref={ref} className="max-w-6xl mx-auto relative z-10">
-        <motion.div
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(professionalServiceSchema),
+          }}
+        />
+        <motion.header
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
           <div className="flex items-center gap-3 mb-6">
-            <span className="text-cyan-400 font-mono">{"<"}</span>
-            <h2 className="text-cyan-400">About</h2>
-            <span className="text-cyan-400 font-mono">{"/>"}</span>
+            <span className="text-cyan-400 font-mono" aria-hidden="true">
+              {"<"}
+            </span>
+            <h2 className="text-cyan-400 text-3xl font-bold">About</h2>
+            <span className="text-cyan-400 font-mono" aria-hidden="true">
+              {"/>"}
+            </span>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div
+            <motion.article
               initial={{ opacity: 0, x: -30 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -130,14 +147,16 @@ export function AboutSection() {
                   Available for new projects
                 </span>
               </div>
-            </motion.div>
+            </motion.article>
 
-            <motion.div
+            <motion.aside
               initial={{ opacity: 0, x: 30 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <h3 className="text-slate-200 mb-6 font-mono">Tech Stack</h3>
+              <h3 className="text-slate-200 mb-6 font-mono text-xl">
+                Tech Stack
+              </h3>
               <div className="grid grid-cols-3 sm:grid-cols-4 gap-4">
                 {techStack.map((tech, index) => (
                   <motion.div
@@ -152,10 +171,12 @@ export function AboutSection() {
                       <div className="text-3xl mb-2">
                         <Image
                           src={tech.icon.link}
-                          alt={`${tech.name} icon`}
+                          alt={`${tech.name} technology icon - Frontend and backend development tool`}
                           height={tech.icon.height}
                           width={tech.icon.width}
                           loading="lazy"
+                          sizes="(max-width: 640px) 80px, 40px"
+                          quality={90}
                         />
                       </div>
                       <div className="text-xs text-slate-400 text-center font-mono">
@@ -170,9 +191,9 @@ export function AboutSection() {
                   </motion.div>
                 ))}
               </div>
-            </motion.div>
+            </motion.aside>
           </div>
-        </motion.div>
+        </motion.header>
       </div>
     </section>
   );

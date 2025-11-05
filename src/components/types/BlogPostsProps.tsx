@@ -4,6 +4,7 @@ export interface BlogPostsProps {
   date: string;
   readTime: string;
   category: string;
-  slug?: string;
+  slug: string;
+  content: string;
   link?: string;
 }

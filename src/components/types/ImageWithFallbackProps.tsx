@@ -11,4 +11,5 @@ export interface ImageWithFallbackProps {
   priority?: boolean;
   quality?: number;
   sizes?: string;
+  loading?: "lazy" | "eager";
 }

@@ -143,21 +143,28 @@ export function ContactSection() {
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl" />
 
       <div ref={ref} className="max-w-4xl mx-auto relative z-10">
-        <motion.div
+        <motion.header
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
           <div className="flex items-center justify-center gap-3 mb-6">
-            <span className="text-green-400 font-mono text-xl">{">"}_</span>
-            <h2 className="text-green-400">Let&apos;s Collaborate</h2>
+            <span
+              className="text-green-400 font-mono text-xl"
+              aria-hidden="true"
+            >
+              {">"}_
+            </span>
+            <h2 className="text-green-400 text-3xl font-bold">
+              Let&apos;s Collaborate
+            </h2>
           </div>
-          <p className="text-slate-400 max-w-2xl mx-auto">
+          <p className="text-slate-400 max-w-2xl mx-auto text-lg">
             Have a project in mind or want to discuss opportunities? I&apos;m
             always open to new challenges and collaborations.
           </p>
-        </motion.div>
+        </motion.header>
 
         <div className="grid md:grid-cols-2 gap-12">
           {/* Contact Form */}
@@ -166,11 +173,18 @@ export function ContactSection() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-6"
+              aria-label="Contact form"
+            >
               {/* Terminal-style form header */}
-              <div className="bg-slate-900/50 rounded-t-lg border border-slate-700/50 px-4 py-2">
+              <div
+                className="bg-slate-900/50 rounded-t-lg border border-slate-700/50 px-4 py-2"
+                role="presentation"
+              >
                 <div className="flex items-center gap-2">
-                  <div className="flex gap-1.5">
+                  <div className="flex gap-1.5" aria-hidden="true">
                     <div className="w-3 h-3 rounded-full bg-red-500/80" />
                     <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                     <div className="w-3 h-3 rounded-full bg-green-500/80" />
@@ -353,8 +367,10 @@ export function ContactSection() {
             className="space-y-8"
           >
             {/* Social links */}
-            <div>
-              <h3 className="text-slate-200 mb-6 font-mono">Connect With Me</h3>
+            <aside>
+              <h3 className="text-slate-200 mb-6 font-mono text-xl">
+                Connect With Me
+              </h3>
               <div className="space-y-4">
                 {socialLinks.map((social, index) => (
                   <motion.a
@@ -387,7 +403,7 @@ export function ContactSection() {
                   </motion.a>
                 ))}
               </div>
-            </div>
+            </aside>
 
             {/* Command prompt style info */}
             <motion.div
@@ -402,18 +418,20 @@ export function ContactSection() {
                   <span className="text-slate-400">cat status.txt</span>
                 </div>
                 <div className="pl-4 space-y-1">
-                  <div className="text-slate-500">
-                    <span className="text-cyan-400">Location:</span> Remote /
-                    Dhaka / Cumilla
-                  </div>
-                  <div className="text-slate-500">
-                    <span className="text-violet-400">Availability:</span> Open
-                    to opportunities
-                  </div>
-                  <div className="text-slate-500">
-                    <span className="text-pink-400">Response Time:</span> {"<"}{" "}
-                    24 hours
-                  </div>
+                  <address className="text-slate-500 not-italic">
+                    <div>
+                      <span className="text-cyan-400">Location:</span> Remote /
+                      Dhaka / Cumilla
+                    </div>
+                    <div>
+                      <span className="text-violet-400">Availability:</span>{" "}
+                      Open to opportunities
+                    </div>
+                    <div>
+                      <span className="text-pink-400">Response Time:</span>{" "}
+                      {"<"} 24 hours
+                    </div>
+                  </address>
                 </div>
                 <div className="flex gap-2 mt-4">
                   <span className="text-green-400">$</span>

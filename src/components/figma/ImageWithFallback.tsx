@@ -10,18 +10,26 @@ export function ImageWithFallback({
   alt = "",
   width,
   height,
+  loading,
   fill,
   style,
   className,
   fallbackSrc = ERROR_IMG_SRC,
   showRetry = false,
-  priority,
-  quality,
+  priority = false,
+  quality = 85,
   sizes,
   ...rest
 }: ImageWithFallbackProps) {
   const [didError, setDidError] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
+
+  // Default sizes based on common responsive breakpoints
+  const defaultSizes =
+    sizes || "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw";
+
+  // Determine loading strategy - lazy by default unless priority is true
+  const loadingStrategy = loading || (priority ? "eager" : "lazy");
 
   const handleError = () => {
     setDidError(true);
@@ -78,7 +86,10 @@ export function ImageWithFallback({
       onError={handleError}
       priority={priority}
       quality={quality}
-      sizes={sizes}
+      sizes={defaultSizes}
+      loading={loadingStrategy}
+      placeholder="blur"
+      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
       {...rest}
     />
   );

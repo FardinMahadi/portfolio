@@ -4,6 +4,7 @@ import { ExternalLink, Github, Terminal } from "lucide-react";
 import { Button } from "../ui/button";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { ProjectsProps } from "./../types/ProjectsProps";
+import { generateItemListSchema } from "@/lib/seo";
 
 const projects: ProjectsProps[] = [
   {
@@ -60,6 +61,15 @@ export function ProjectsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
+  const itemListSchema = generateItemListSchema(
+    projects.map((project) => ({
+      name: project.title,
+      description: project.description,
+      url: project.liveUrl !== "#" ? project.liveUrl : undefined,
+      image: project.image,
+    }))
+  );
+
   return (
     <section
       id="projects"
@@ -69,25 +79,33 @@ export function ProjectsSection() {
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjAyKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-40" />
 
       <div ref={ref} className="max-w-7xl mx-auto relative z-10">
-        <motion.div
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(itemListSchema),
+          }}
+        />
+        <motion.header
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
           <div className="flex items-center gap-3 mb-6">
-            <Terminal className="w-6 h-6 text-violet-400" />
-            <h2 className="text-violet-400">Featured Projects</h2>
+            <Terminal className="w-6 h-6 text-violet-400" aria-hidden="true" />
+            <h2 className="text-violet-400 text-3xl font-bold">
+              Featured Projects
+            </h2>
           </div>
-          <p className="text-slate-400 max-w-2xl">
+          <p className="text-slate-400 max-w-2xl text-lg">
             A collection of projects showcasing my expertise in full-stack
             development, from concept to deployment.
           </p>
-        </motion.div>
+        </motion.header>
 
         <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, index) => (
-            <motion.div
+            <motion.article
               key={project.title}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -98,8 +116,11 @@ export function ProjectsSection() {
               {/* Card */}
               <div className="bg-gradient-to-br from-slate-900/90 to-slate-800/90 rounded-lg border border-slate-700/50 overflow-hidden backdrop-blur-sm hover:border-cyan-500/50 transition-all duration-300">
                 {/* Terminal header */}
-                <div className="bg-slate-900/80 px-4 py-2 border-b border-slate-700/50 flex items-center gap-2">
-                  <div className="flex gap-1.5">
+                <header
+                  className="bg-slate-900/80 px-4 py-2 border-b border-slate-700/50 flex items-center gap-2"
+                  role="presentation"
+                >
+                  <div className="flex gap-1.5" aria-hidden="true">
                     <div className="w-3 h-3 rounded-full bg-red-500/80" />
                     <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                     <div className="w-3 h-3 rounded-full bg-green-500/80" />
@@ -107,37 +128,44 @@ export function ProjectsSection() {
                   <div className="ml-2 text-slate-500 text-xs font-mono">
                     ~/{project.title.toLowerCase().replace(/\s+/g, "-")}
                   </div>
-                </div>
+                </header>
 
                 {/* Image */}
-                <div className="relative h-48 overflow-hidden bg-slate-900">
+                <figure className="relative h-48 overflow-hidden bg-slate-900">
                   <ImageWithFallback
                     src={project.image}
-                    alt={project.title}
+                    alt={`${project.title} project screenshot - ${project.description}`}
                     width={project.width}
                     height={project.height}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    quality={85}
+                    loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent opacity-60" />
-                </div>
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent opacity-60"
+                    aria-hidden="true"
+                  />
+                </figure>
 
                 {/* Content */}
                 <div className="p-6 space-y-4">
-                  <div>
-                    <h3 className="text-slate-100 mb-2 font-mono">
+                  <header>
+                    <h3 className="text-slate-100 mb-2 font-mono text-xl">
                       {project.title}
                     </h3>
                     <p className="text-slate-400 text-sm">
                       {project.description}
                     </p>
-                  </div>
+                  </header>
 
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2" role="list">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
                         className="px-2 py-1 text-xs font-mono bg-slate-800/50 text-cyan-400 rounded border border-slate-700/50"
+                        role="listitem"
                       >
                         {tag}
                       </span>
@@ -181,8 +209,11 @@ export function ProjectsSection() {
               </div>
 
               {/* Glow effect */}
-              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-cyan-500/20 to-violet-500/20 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </motion.div>
+              <div
+                className="absolute inset-0 -z-10 bg-gradient-to-br from-cyan-500/20 to-violet-500/20 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                aria-hidden="true"
+              />
+            </motion.article>
           ))}
         </div>
       </div>

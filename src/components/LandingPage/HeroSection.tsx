@@ -60,20 +60,26 @@ export function HeroSection() {
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Code editor window */}
-        <motion.div
+        <motion.header
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="mb-8"
         >
           {/* Window chrome */}
-          <div className="bg-[#1e293b] rounded-t-lg border border-slate-700 p-3 flex items-center gap-2">
-            <div className="flex gap-1.5">
+          <div
+            className="bg-[#1e293b] rounded-t-lg border border-slate-700 p-3 flex items-center gap-2"
+            role="presentation"
+          >
+            <div className="flex gap-1.5" aria-hidden="true">
               <div className="w-3 h-3 rounded-full bg-red-500" />
               <div className="w-3 h-3 rounded-full bg-yellow-500" />
               <div className="w-3 h-3 rounded-full bg-green-500" />
             </div>
-            <div className="ml-4 text-slate-400 text-sm font-mono">
+            <div
+              className="ml-4 text-slate-400 text-sm font-mono"
+              aria-label="File path"
+            >
               ~/portfolio/dev.ts
             </div>
           </div>
@@ -81,24 +87,36 @@ export function HeroSection() {
           {/* Code content */}
           <div className="bg-[#0f172a] rounded-b-lg border-x border-b border-slate-700 p-8 text-left">
             <div className="flex gap-4">
-              <div className="text-slate-600 select-none font-mono text-sm">
+              <div
+                className="text-slate-600 select-none font-mono text-sm"
+                aria-hidden="true"
+              >
                 1
               </div>
               <div className="flex-1">
                 <h1 className="font-mono text-2xl sm:text-3xl md:text-4xl lg:text-5xl md:text-center">
-                  <span className="text-purple-400">const</span>{" "}
+                  <span className="text-purple-400" aria-hidden="true">
+                    const
+                  </span>{" "}
                   <span className="text-cyan-400">dev</span>{" "}
-                  <span className="text-pink-400">=</span>{" "}
+                  <span className="text-pink-400" aria-hidden="true">
+                    =
+                  </span>{" "}
                   <span className="text-green-400">
                     &apos;{displayedText}
-                    <span className="animate-pulse">|</span>&apos;
+                    <span className="animate-pulse" aria-hidden="true">
+                      |
+                    </span>
+                    &apos;
                   </span>
-                  <span className="text-slate-400">;</span>
+                  <span className="text-slate-400" aria-hidden="true">
+                    ;
+                  </span>
                 </h1>
               </div>
             </div>
           </div>
-        </motion.div>
+        </motion.header>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -106,7 +124,7 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="space-y-6"
         >
-          <p className="text-slate-300 max-w-2xl mx-auto">
+          <p className="text-slate-300 max-w-2xl mx-auto text-lg">
             Building interactive web experiences with MERN & beyond.
           </p>
 

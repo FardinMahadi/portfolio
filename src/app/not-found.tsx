@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Home, ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
+
+// Note: Metadata export is not supported in client components
+// Metadata will be handled by the layout or through other means
 
 export default function NotFound() {
   return (

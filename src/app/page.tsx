@@ -3,6 +3,7 @@ import { AboutSection } from "@/components/LandingPage/AboutSection";
 import { BlogSection } from "@/components/LandingPage/BlogSection";
 import { ContactSection } from "@/components/LandingPage/ContactSection";
 import { CursorEffect } from "@/components/LandingPage/CursorEffect";
+import { ExperienceSection } from "@/components/LandingPage/ExperienceSection";
 import { Footer } from "@/components/LandingPage/Footer";
 import { HeroSection } from "@/components/LandingPage/HeroSection";
 import { Navigation } from "@/components/LandingPage/Navigation";
@@ -43,10 +44,13 @@ export default function Home() {
           Skip to main content
         </a>
         <CursorEffect />
-        <Navigation />
-        <main id="main-content">
+        <header role="banner">
+          <Navigation />
+        </header>
+        <main id="main-content" role="main">
           <HeroSection />
           <AboutSection />
+          <ExperienceSection />
           <ProjectsSection />
           <BlogSection />
           <ContactSection />

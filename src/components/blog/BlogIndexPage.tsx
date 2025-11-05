@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { generateArticleSchema } from "@/lib/seo";
 import { blogPosts } from "@/lib/blogData";
@@ -11,14 +11,14 @@ import { blogPosts } from "@/lib/blogData";
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://fardinmahadi.vercel.app";
 
-export function BlogSection() {
+export function BlogIndexPage() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
     <section
-      id="blog"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#111827] to-[#0a0e1a] relative overflow-hidden"
+      id="blog-index"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0a0e1a] to-[#111827] relative overflow-hidden min-h-screen"
     >
       {/* Background accent */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-3xl" />
@@ -47,26 +47,24 @@ export function BlogSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="mb-12 text-center"
         >
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center justify-center gap-3 mb-6">
             <span className="text-blue-400 font-mono" aria-hidden="true">
               {"</"}
             </span>
-            <h2 className="text-blue-400 text-3xl font-bold">
-              Blog & Thoughts
-            </h2>
+            <h1 className="text-blue-400 text-4xl font-bold">All Blog Posts</h1>
             <span className="text-blue-400 font-mono" aria-hidden="true">
               {">"}
             </span>
           </div>
-          <p className="text-slate-400 max-w-2xl text-lg">
-            Sharing insights on web development, best practices, and lessons
-            learned from building production applications.
+          <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+            Dive deeper into my thoughts on web development, programming
+            strategies, and the joy of coding.
           </p>
         </motion.header>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {blogPosts.map((post, index) => (
             <motion.article
               key={post.title}
@@ -77,7 +75,7 @@ export function BlogSection() {
               className="group"
             >
               <Link
-                href={post.slug ? `/blog/${post.slug}` : "#"}
+                href={`/blog/${post.slug}`}
                 className="block h-full"
                 aria-label={`Read article: ${post.title}`}
               >
@@ -122,7 +120,7 @@ export function BlogSection() {
                     asChild
                   >
                     <Link
-                      href={post.slug ? `/blog/${post.slug}` : "#"}
+                      href={`/blog/${post.slug}`}
                       aria-label={`Read article: ${post.title}`}
                     >
                       <span>Read article</span>
@@ -134,26 +132,6 @@ export function BlogSection() {
             </motion.article>
           ))}
         </div>
-
-        {/* View all button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-12 text-center"
-        >
-          <Button
-            variant="outline"
-            size="lg"
-            className="border-slate-600 text-slate-300 hover:bg-blue-500/10 hover:border-blue-500 hover:text-blue-400 transition-all duration-300"
-            asChild
-          >
-            <Link href="/blog" aria-label="View all blog articles">
-              View All Articles
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Link>
-          </Button>
-        </motion.div>
       </div>
     </section>
   );

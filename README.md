@@ -47,7 +47,7 @@ A futuristic, VS Code-inspired portfolio website for MERN stack developer **Maha
 1. **Clone the repository**
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/FardinMahadi/portfolio.git
    cd portfolio
    ```
 
@@ -224,9 +224,16 @@ In `components/BlogSection.tsx`, add to the posts array:
 }
 ```
 
+## 📚 Documentation
+
+- **[Style Guide](./doc/STYLE_GUIDE.md)** - Comprehensive coding style, patterns, and conventions
+- **[AI Training Guide](./doc/AI_TRAINING_GUIDE.md)** - Quick reference for AI assistants
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
+
+When contributing, please follow the [Style Guide](./doc/STYLE_GUIDE.md) to maintain consistency.
 
 ## 📄 License
 

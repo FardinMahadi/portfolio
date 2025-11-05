@@ -63,19 +63,16 @@ export function Navigation() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <motion.div
+            <motion.button
               whileHover={{ scale: 1.05 }}
               className="flex items-center gap-2 cursor-pointer group"
               onClick={() => scrollToSection("#home")}
+              aria-label="Navigate to home section"
             >
-              <div className="relative">
-                <Code2 className="w-6 h-6 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
-                <div className="absolute inset-0 bg-cyan-400 blur-lg opacity-0 group-hover:opacity-50 transition-opacity" />
-              </div>
               <span className="font-mono text-slate-100 group-hover:text-cyan-400 transition-colors">
                 {"<FardinMahadi />"}
               </span>
-            </motion.div>
+            </motion.button>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-1">
@@ -87,7 +84,9 @@ export function Navigation() {
                     onClick={() => scrollToSection(item.href)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="relative px-4 py-2 group"
+                    className="relative px-4 py-2 group min-h-[44px] min-w-[44px]"
+                    aria-label={`Navigate to ${item.name} section`}
+                    aria-current={isActive ? "page" : undefined}
                   >
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-mono text-slate-500 group-hover:text-cyan-400 transition-colors">
@@ -108,7 +107,7 @@ export function Navigation() {
                     {isActive && (
                       <motion.div
                         layoutId="activeTab"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-linear-to-r from-cyan-500 to-blue-500"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500 to-blue-500"
                         transition={{
                           type: "spring",
                           stiffness: 380,
@@ -128,7 +127,7 @@ export function Navigation() {
             <div className="hidden md:block">
               <Button
                 size="sm"
-                className="bg-linear-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white shadow-lg shadow-violet-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-violet-500/50"
+                className="bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white shadow-lg shadow-violet-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-violet-500/50 min-h-[44px]"
                 onClick={() => {
                   const link = document.createElement("a");
                   link.href = "/cv.pdf";
@@ -137,6 +136,7 @@ export function Navigation() {
                   link.click();
                   document.body.removeChild(link);
                 }}
+                aria-label="Download CV as PDF"
               >
                 <Terminal className="w-4 h-4 mr-2" />
                 Download CV
@@ -146,7 +146,10 @@ export function Navigation() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-slate-300 hover:text-cyan-400 transition-colors relative group"
+              className="md:hidden p-2 text-slate-300 hover:text-cyan-400 transition-colors relative group min-h-[44px] min-w-[44px] flex items-center justify-center"
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
             >
               <AnimatePresence mode="wait">
                 {isMobileMenuOpen ? (
@@ -193,11 +196,15 @@ export function Navigation() {
 
             {/* Menu Panel */}
             <motion.div
+              id="mobile-menu"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 right-0 bottom-0 w-64 bg-linear-to-br from-[#0a0e1a] to-[#111827] border-l border-slate-800 z-50 md:hidden overflow-y-auto"
+              className="fixed top-0 right-0 bottom-0 w-64 bg-gradient-to-br from-[#0a0e1a] to-[#111827] border-l border-slate-800 z-50 md:hidden overflow-y-auto"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation menu"
             >
               <div className="p-6">
                 {/* Mobile Menu Header */}
@@ -208,7 +215,8 @@ export function Navigation() {
                   </div>
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-2 text-slate-400 hover:text-cyan-400 transition-colors"
+                    className="p-2 text-slate-400 hover:text-cyan-400 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+                    aria-label="Close menu"
                   >
                     <X className="w-5 h-5" />
                   </button>
@@ -226,11 +234,13 @@ export function Navigation() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.1 }}
                         onClick={() => scrollToSection(item.href)}
-                        className={`w-full text-left p-4 rounded-lg border transition-all duration-300 ${
+                        className={`w-full text-left p-4 rounded-lg border transition-all duration-300 min-h-[44px] ${
                           isActive
                             ? "bg-cyan-500/10 border-cyan-500/50 text-cyan-400"
                             : "bg-slate-800/30 border-slate-700/50 text-slate-300 hover:bg-slate-800/50 hover:border-cyan-500/30"
                         }`}
+                        aria-label={`Navigate to ${item.name} section`}
+                        aria-current={isActive ? "page" : undefined}
                       >
                         <div className="flex items-center gap-3">
                           <span className="font-mono text-sm opacity-60">
@@ -251,8 +261,9 @@ export function Navigation() {
                   className="mt-8"
                 >
                   <Button
-                    className="w-full bg-linear-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white shadow-lg shadow-violet-500/30"
+                    className="w-full bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white shadow-lg shadow-violet-500/30 min-h-[44px]"
                     onClick={() => scrollToSection("#contact")}
+                    aria-label="Navigate to contact section"
                   >
                     <Terminal className="w-4 h-4 mr-2" />
                     Hire Me

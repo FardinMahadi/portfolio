@@ -1,6 +1,14 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Github, Linkedin, Mail, Send } from "lucide-react";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  Send,
+  CheckCircle2,
+  AlertCircle,
+  Loader2,
+} from "lucide-react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
@@ -41,11 +49,88 @@ export function ContactSection() {
     email: "",
     message: "",
   });
+  const [errors, setErrors] = useState<{
+    name?: string;
+    email?: string;
+    message?: string;
+  }>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
+  const [submitMessage, setSubmitMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validateForm = () => {
+    const newErrors: { name?: string; email?: string; message?: string } = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required";
+    } else if (formData.message.length > 5000) {
+      newErrors.message = "Message is too long (max 5000 characters)";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+    setSubmitMessage("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message");
+      }
+
+      setSubmitStatus("success");
+      setSubmitMessage(
+        data.message || "Thank you for your message! I'll get back to you soon."
+      );
+      setFormData({ name: "", email: "", message: "" });
+      setErrors({});
+
+      // Reset success message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus("idle");
+        setSubmitMessage("");
+      }, 5000);
+    } catch (error) {
+      setSubmitStatus("error");
+      setSubmitMessage(
+        error instanceof Error
+          ? error.message
+          : "Failed to send message. Please try again later."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -96,64 +181,165 @@ export function ContactSection() {
                 </div>
               </div>
 
-              <div className="bg-linear-to-br from-slate-800/50 to-slate-900/50 rounded-b-lg border-x border-b border-slate-700/50 p-6 space-y-4 backdrop-blur-sm">
+              <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-b-lg border-x border-b border-slate-700/50 p-6 space-y-4 backdrop-blur-sm">
                 <div>
-                  <label className="text-slate-300 text-sm font-mono mb-2 flex items-center gap-2">
+                  <label
+                    htmlFor="contact-name"
+                    className="text-slate-300 text-sm font-mono mb-2 flex items-center gap-2"
+                  >
                     <span className="text-purple-400">const</span>
                     <span className="text-cyan-400">name</span>
                     <span className="text-pink-400">=</span>
                   </label>
                   <Input
+                    id="contact-name"
                     type="text"
                     placeholder="Your Name"
                     value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                    className="bg-slate-900/50 border-slate-700 focus:border-cyan-500 text-slate-200 placeholder:text-slate-600"
+                    onChange={(e) => {
+                      setFormData({ ...formData, name: e.target.value });
+                      if (errors.name)
+                        setErrors({ ...errors, name: undefined });
+                    }}
+                    className={`bg-slate-900/50 border-slate-700 focus:border-cyan-500 text-slate-200 placeholder:text-slate-600 min-h-[44px] ${
+                      errors.name ? "border-red-500" : ""
+                    }`}
+                    aria-required="true"
+                    aria-label="Your name"
+                    aria-invalid={!!errors.name}
+                    aria-describedby={errors.name ? "name-error" : undefined}
                   />
+                  {errors.name && (
+                    <p
+                      id="name-error"
+                      className="mt-1 text-sm text-red-400"
+                      role="alert"
+                    >
+                      {errors.name}
+                    </p>
+                  )}
                 </div>
 
                 <div>
-                  <label className="text-slate-300 text-sm font-mono mb-2 flex items-center gap-2">
+                  <label
+                    htmlFor="contact-email"
+                    className="text-slate-300 text-sm font-mono mb-2 flex items-center gap-2"
+                  >
                     <span className="text-purple-400">const</span>
                     <span className="text-cyan-400">email</span>
                     <span className="text-pink-400">=</span>
                   </label>
                   <Input
+                    id="contact-email"
                     type="email"
                     placeholder="your.email@example.com"
                     value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    className="bg-slate-900/50 border-slate-700 focus:border-cyan-500 text-slate-200 placeholder:text-slate-600"
+                    onChange={(e) => {
+                      setFormData({ ...formData, email: e.target.value });
+                      if (errors.email)
+                        setErrors({ ...errors, email: undefined });
+                    }}
+                    className={`bg-slate-900/50 border-slate-700 focus:border-cyan-500 text-slate-200 placeholder:text-slate-600 min-h-[44px] ${
+                      errors.email ? "border-red-500" : ""
+                    }`}
+                    aria-required="true"
+                    aria-label="Your email address"
+                    aria-invalid={!!errors.email}
+                    aria-describedby={errors.email ? "email-error" : undefined}
                   />
+                  {errors.email && (
+                    <p
+                      id="email-error"
+                      className="mt-1 text-sm text-red-400"
+                      role="alert"
+                    >
+                      {errors.email}
+                    </p>
+                  )}
                 </div>
 
                 <div>
-                  <label className="text-slate-300 text-sm font-mono mb-2 flex items-center gap-2">
+                  <label
+                    htmlFor="contact-message"
+                    className="text-slate-300 text-sm font-mono mb-2 flex items-center gap-2"
+                  >
                     <span className="text-purple-400">const</span>
                     <span className="text-cyan-400">message</span>
                     <span className="text-pink-400">=</span>
                   </label>
                   <Textarea
+                    id="contact-message"
                     placeholder="Your message..."
                     rows={4}
                     value={formData.message}
-                    onChange={(e) =>
-                      setFormData({ ...formData, message: e.target.value })
+                    onChange={(e) => {
+                      setFormData({ ...formData, message: e.target.value });
+                      if (errors.message)
+                        setErrors({ ...errors, message: undefined });
+                    }}
+                    className={`bg-slate-900/50 border-slate-700 focus:border-cyan-500 text-slate-200 placeholder:text-slate-600 resize-none min-h-[44px] ${
+                      errors.message ? "border-red-500" : ""
+                    }`}
+                    aria-required="true"
+                    aria-label="Your message"
+                    aria-invalid={!!errors.message}
+                    aria-describedby={
+                      errors.message ? "message-error" : undefined
                     }
-                    className="bg-slate-900/50 border-slate-700 focus:border-cyan-500 text-slate-200 placeholder:text-slate-600 resize-none"
                   />
+                  {errors.message && (
+                    <p
+                      id="message-error"
+                      className="mt-1 text-sm text-red-400"
+                      role="alert"
+                    >
+                      {errors.message}
+                    </p>
+                  )}
                 </div>
+
+                {/* Status Messages */}
+                {submitStatus === "success" && submitMessage && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-center gap-2 p-3 bg-green-500/10 border border-green-500/50 rounded-lg text-green-400"
+                    role="alert"
+                  >
+                    <CheckCircle2 className="w-5 h-5" />
+                    <p className="text-sm">{submitMessage}</p>
+                  </motion.div>
+                )}
+
+                {submitStatus === "error" && submitMessage && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/50 rounded-lg text-red-400"
+                    role="alert"
+                  >
+                    <AlertCircle className="w-5 h-5" />
+                    <p className="text-sm">{submitMessage}</p>
+                  </motion.div>
+                )}
 
                 <Button
                   type="submit"
-                  className="w-full bg-linear-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white shadow-lg shadow-cyan-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/70"
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white shadow-lg shadow-cyan-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/70 min-h-[44px] disabled:opacity-50 disabled:cursor-not-allowed"
+                  aria-label="Submit contact form"
                 >
-                  <Send className="w-4 h-4 mr-2" />
-                  Send Message
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4 mr-2" />
+                      Send Message
+                    </>
+                  )}
                 </Button>
               </div>
             </form>
@@ -180,7 +366,8 @@ export function ContactSection() {
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
                     whileHover={{ x: 10 }}
-                    className="group flex items-center gap-4 p-4 bg-linear-to-br from-slate-800/50 to-slate-900/50 rounded-lg border border-slate-700/50 backdrop-blur-sm hover:border-cyan-500/50 transition-all duration-300"
+                    className="group flex items-center gap-4 p-4 bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-lg border border-slate-700/50 backdrop-blur-sm hover:border-cyan-500/50 transition-all duration-300 min-h-[44px]"
+                    aria-label={`Visit ${social.name} profile for ${social.username}`}
                   >
                     <div
                       className={`p-3 rounded-lg bg-slate-900/50 border border-slate-700/50 group-hover:border-cyan-500/50 transition-all duration-300 shadow-lg ${social.glow}`}

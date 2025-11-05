@@ -34,11 +34,11 @@ A futuristic, VS Code-inspired portfolio website for MERN stack developer **Maha
 
 ## 🔧 Tech Stack
 
-- **React** - UI library
+- **Next.js 15** - React framework with App Router
+- **React 19** - UI library
 - **TypeScript** - Type-safe JavaScript
-- **Tailwind CSS** - Utility-first CSS framework
-- **Motion (Framer Motion)** - Animation library
-- **Vite** - Build tool and dev server
+- **Tailwind CSS 4** - Utility-first CSS framework
+- **Framer Motion** - Animation library
 - **Shadcn/ui** - Re-usable component library
 - **Lucide React** - Icon library
 
@@ -72,7 +72,7 @@ A futuristic, VS Code-inspired portfolio website for MERN stack developer **Maha
    ```
 
 4. **Open your browser**
-   Navigate to `http://localhost:5173` (or the port shown in your terminal)
+   Navigate to `http://localhost:3000` (or the port shown in your terminal)
 
 ## 🏗️ Project Structure
 
@@ -144,7 +144,7 @@ yarn build
 pnpm build
 ```
 
-The build output will be in the `dist/` directory.
+The build output will be in the `.next/` directory.
 
 ### Deploy to Vercel
 

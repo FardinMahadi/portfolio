@@ -96,7 +96,7 @@ export function ProjectsSection() {
               className="group relative"
             >
               {/* Card */}
-              <div className="bg-linear-to-br from-slate-900/90 to-slate-800/90 rounded-lg border border-slate-700/50 overflow-hidden backdrop-blur-sm hover:border-cyan-500/50 transition-all duration-300">
+              <div className="bg-gradient-to-br from-slate-900/90 to-slate-800/90 rounded-lg border border-slate-700/50 overflow-hidden backdrop-blur-sm hover:border-cyan-500/50 transition-all duration-300">
                 {/* Terminal header */}
                 <div className="bg-slate-900/80 px-4 py-2 border-b border-slate-700/50 flex items-center gap-2">
                   <div className="flex gap-1.5">
@@ -118,7 +118,7 @@ export function ProjectsSection() {
                     height={project.height}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-slate-900 via-slate-900/20 to-transparent opacity-60" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent opacity-60" />
                 </div>
 
                 {/* Content */}
@@ -181,7 +181,7 @@ export function ProjectsSection() {
               </div>
 
               {/* Glow effect */}
-              <div className="absolute inset-0 -z-10 bg-linaer-to-br from-cyan-500/20 to-violet-500/20 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-cyan-500/20 to-violet-500/20 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </motion.div>
           ))}
         </div>

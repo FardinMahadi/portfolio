@@ -85,7 +85,7 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-[#0a0e1a] to-[#111827] relative overflow-hidden"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0a0e1a] to-[#111827] relative overflow-hidden"
     >
       {/* Background accents */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl" />
@@ -110,7 +110,7 @@ export function AboutSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="space-y-4"
             >
-              <div className="bg-linear-to-br from-slate-800/50 to-slate-900/50 p-6 rounded-lg border border-slate-700/50 backdrop-blur-sm">
+              <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 p-6 rounded-lg border border-slate-700/50 backdrop-blur-sm">
                 <p className="text-slate-300 leading-relaxed">
                   I&apos;m a full-stack developer passionate about creating
                   seamless web experiences. With expertise in the MERN stack and
@@ -148,13 +148,14 @@ export function AboutSection() {
                     whileHover={{ scale: 1.1, y: -5 }}
                     className="group relative"
                   >
-                    <div className="bg-linear-to-br from-slate-800/80 to-slate-900/80 p-4 rounded-lg border border-slate-700/50 backdrop-blur-sm flex flex-col items-center justify-center aspect-square hover:border-cyan-500/50 transition-all duration-300">
+                    <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 p-4 rounded-lg border border-slate-700/50 backdrop-blur-sm flex flex-col items-center justify-center aspect-square hover:border-cyan-500/50 transition-all duration-300">
                       <div className="text-3xl mb-2">
                         <Image
                           src={tech.icon.link}
-                          alt={tech.name}
+                          alt={`${tech.name} icon`}
                           height={tech.icon.height}
                           width={tech.icon.width}
+                          loading="lazy"
                         />
                       </div>
                       <div className="text-xs text-slate-400 text-center font-mono">
@@ -163,7 +164,7 @@ export function AboutSection() {
 
                       {/* Glow effect on hover */}
                       <div
-                        className={`absolute inset-0 rounded-lg bg-linear-to-br ${tech.color} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300`}
+                        className={`absolute inset-0 rounded-lg bg-gradient-to-br ${tech.color} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300`}
                       />
                     </div>
                   </motion.div>

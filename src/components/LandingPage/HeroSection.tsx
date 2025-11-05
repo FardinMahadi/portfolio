@@ -5,7 +5,7 @@ import { ChevronDown } from "lucide-react";
 
 export function HeroSection() {
   const [displayedText, setDisplayedText] = useState("");
-  const fullText = "const dev = 'FardinMahadi';";
+  const fullText = "FardinMahadi";
 
   useEffect(() => {
     let index = 0;
@@ -27,7 +27,7 @@ export function HeroSection() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Animated background gradient */}
-      <div className="absolute inset-0 bg-linear-to-br from-[#0a0e1a] via-[#111827] to-[#1e1b4b] opacity-90" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0e1a] via-[#111827] to-[#1e1b4b] opacity-90" />
 
       {/* Floating orbs */}
       <motion.div
@@ -113,24 +113,26 @@ export function HeroSection() {
           <div className="flex gap-4 justify-center items-center flex-wrap">
             <Button
               size="lg"
-              className="bg-linear-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white shadow-lg shadow-cyan-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/70 hover:scale-105"
+              className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white shadow-lg shadow-cyan-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/70 hover:scale-105 min-h-[44px]"
               onClick={() =>
                 document
                   .getElementById("projects")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
+              aria-label="Navigate to projects section"
             >
               View Projects
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-slate-600 text-slate-200 hover:bg-slate-800/50 hover:border-violet-500 hover:text-violet-400 transition-all duration-300"
+              className="border-slate-600 text-slate-200 hover:bg-slate-800/50 hover:border-violet-500 hover:text-violet-400 transition-all duration-300 min-h-[44px]"
               onClick={() =>
                 document
                   .getElementById("contact")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
+              aria-label="Navigate to contact section"
             >
               Get In Touch
             </Button>

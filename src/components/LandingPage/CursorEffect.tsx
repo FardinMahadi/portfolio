@@ -7,6 +7,7 @@ export function CursorEffect() {
   const [isClicking, setIsClicking] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [particles, setParticles] = useState<ParticleProps[]>([]);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const particleIdRef = useRef(0);
 
   const cursorX = useMotionValue(-100);
@@ -16,7 +17,22 @@ export function CursorEffect() {
   const cursorXSpring = useSpring(cursorX, springConfig);
   const cursorYSpring = useSpring(cursorY, springConfig);
 
+  // Detect touch device and reduced motion preference
   useEffect(() => {
+    const checkTouchDevice = () => {
+      setIsTouchDevice(
+        "ontouchstart" in window ||
+          navigator.maxTouchPoints > 0 ||
+          // @ts-expect-error - for older browsers (IE/Edge legacy)
+          navigator.msMaxTouchPoints > 0
+      );
+    };
+    checkTouchDevice();
+  }, []);
+
+  useEffect(() => {
+    // Don't initialize cursor on touch devices
+    if (isTouchDevice) return;
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
@@ -62,7 +78,7 @@ export function CursorEffect() {
       window.removeEventListener("mouseup", handleMouseUp);
       window.removeEventListener("mouseleave", hideCursor);
     };
-  }, [cursorX, cursorY]);
+  }, [cursorX, cursorY, isTouchDevice]);
 
   // Clean up old particles
   useEffect(() => {
@@ -73,6 +89,9 @@ export function CursorEffect() {
       return () => clearTimeout(timer);
     }
   }, [particles]);
+
+  // Don't render cursor on touch devices
+  if (isTouchDevice) return null;
 
   return (
     <>
@@ -98,7 +117,7 @@ export function CursorEffect() {
             ease: "easeOut",
           }}
         >
-          <div className="w-3 h-3 bg-linear-to-br from-cyan-100 to-violet-100 rounded-full blur-sm" />
+          <div className="w-3 h-3 bg-gradient-to-br from-cyan-100 to-violet-100 rounded-full blur-sm" />
         </motion.div>
       ))}
 
@@ -155,7 +174,7 @@ export function CursorEffect() {
                 damping: 15,
               }}
             >
-              <div className="w-2 h-2 bg-linear-to-r from-cyan-400 to-blue-400 rounded-full" />
+              <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full" />
               <div className="absolute inset-0 bg-cyan-400 rounded-full blur-sm opacity-60" />
             </motion.div>
           </div>

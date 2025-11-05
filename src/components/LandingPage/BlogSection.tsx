@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
 import { BlogPostsProps } from "../types/BlogPostsProps";
+import Link from "next/link";
 
 const blogPosts: BlogPostsProps[] = [
   {
@@ -12,6 +13,7 @@ const blogPosts: BlogPostsProps[] = [
     date: "Oct 15, 2024",
     readTime: "8 min read",
     category: "Backend",
+    slug: "building-scalable-apis-nodejs-express",
   },
   {
     title: "State Management in React: Context vs Redux",
@@ -20,6 +22,7 @@ const blogPosts: BlogPostsProps[] = [
     date: "Sep 28, 2024",
     readTime: "12 min read",
     category: "React",
+    slug: "state-management-react-context-redux",
   },
   {
     title: "TypeScript Tips for Better Code Quality",
@@ -28,6 +31,7 @@ const blogPosts: BlogPostsProps[] = [
     date: "Sep 10, 2024",
     readTime: "6 min read",
     category: "TypeScript",
+    slug: "typescript-tips-better-code-quality",
   },
   {
     title: "Optimizing Next.js for Production",
@@ -36,6 +40,7 @@ const blogPosts: BlogPostsProps[] = [
     date: "Aug 22, 2024",
     readTime: "10 min read",
     category: "Next.js",
+    slug: "optimizing-nextjs-production",
   },
 ];
 
@@ -46,7 +51,7 @@ export function BlogSection() {
   return (
     <section
       id="blog"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-[#111827] to-[#0a0e1a] relative overflow-hidden"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#111827] to-[#0a0e1a] relative overflow-hidden"
     >
       {/* Background accent */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-3xl" />
@@ -77,9 +82,10 @@ export function BlogSection() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
-              className="group cursor-pointer"
+              className="group"
             >
-              <div className="bg-linear-to-br from-slate-800/50 to-slate-900/50 rounded-lg border border-slate-700/50 p-6 backdrop-blur-sm hover:border-blue-500/50 transition-all duration-300 h-full flex flex-col">
+              <Link href={post.slug ? `/blog/${post.slug}` : "#"} className="block h-full" aria-label={`Read article: ${post.title}`}>
+                <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-lg border border-slate-700/50 p-6 backdrop-blur-sm hover:border-blue-500/50 transition-all duration-300 h-full flex flex-col cursor-pointer">
                 {/* Category badge */}
                 <div className="flex items-center justify-between mb-4">
                   <span className="px-3 py-1 text-xs font-mono bg-blue-500/10 text-blue-400 rounded-full border border-blue-500/20">
@@ -110,12 +116,16 @@ export function BlogSection() {
                 {/* Read more */}
                 <Button
                   variant="ghost"
-                  className="w-full justify-between text-slate-400 hover:text-blue-400 hover:bg-blue-500/5 transition-all duration-300 group/btn"
+                  className="w-full justify-between text-slate-400 hover:text-blue-400 hover:bg-blue-500/5 transition-all duration-300 group/btn min-h-[44px]"
+                  asChild
                 >
-                  <span>Read article</span>
-                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                  <Link href={post.slug ? `/blog/${post.slug}` : "#"} aria-label={`Read article: ${post.title}`}>
+                    <span>Read article</span>
+                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                  </Link>
                 </Button>
               </div>
+              </Link>
             </motion.article>
           ))}
         </div>

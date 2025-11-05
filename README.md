@@ -17,7 +17,7 @@ A futuristic, VS Code-inspired portfolio website for MERN stack developer **Maha
 
 ### 🎭 Interactive Elements
 
-- **Custom Cursor Effect** - Rotating gradient ring with particle trails and interactive states
+- **Target Cursor** - Interactive cursor with corner brackets that expand on hover
 - **Typing Animation Hero** - Dynamic code-style text animation in the hero section
 - **Animated Navigation** - Sticky header with active section tracking and smooth scrolling
 - **Terminal-Style Project Cards** - Showcase projects with developer-themed design
@@ -81,7 +81,7 @@ A futuristic, VS Code-inspired portfolio website for MERN stack developer **Maha
 ├── components/
 │   ├── HeroSection.tsx        # Hero section with typing animation
 │   ├── Navigation.tsx         # Sticky navigation with active tracking
-│   ├── CursorEffect.tsx       # Custom cursor with particle effects
+│   ├── TargetCursor.tsx       # Interactive cursor with corner brackets
 │   ├── AboutSection.tsx       # About section component
 │   ├── ProjectsSection.tsx    # Projects showcase component
 │   ├── BlogSection.tsx        # Blog/articles section
@@ -168,15 +168,15 @@ netlify deploy --prod
 
 ## 🎯 Key Features Explained
 
-### Custom Cursor Effect
+### Target Cursor
 
 The cursor features:
 
-- Rotating gradient ring animation
-- Particle trail system
-- Interactive hover states (scales up, shows code brackets)
-- Click ripple effects
-- Smooth spring animations
+- Rotating corner brackets that expand on hover
+- Interactive hover states that form borders around clickable elements
+- Smooth GSAP animations
+- Click animations (scale feedback)
+- Parallax effects when moving over targets
 
 ### Typing Animation
 

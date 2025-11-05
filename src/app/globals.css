@@ -85,6 +85,15 @@
   --violet: #8b5cf6;
   --charcoal: #0a0e1a;
   --deep-navy: #111827;
+
+  /* Dynamic color palette variables */
+  --color-primary: var(--color-primary, #06b6d4);
+  --color-secondary: var(--color-secondary, #3b82f6);
+  --color-accent: var(--color-accent, #8b5cf6);
+  --color-background: var(--color-background, #0a0e1a);
+  --color-surface: var(--color-surface, #111827);
+  --color-text: var(--color-text, #e4e7f0);
+  --color-border: var(--color-border, #1f2937);
 }
 
 @theme inline {
@@ -246,5 +255,89 @@ html {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Theme-aware utility classes */
+@layer utilities {
+  /* Text colors */
+  .text-theme-primary {
+    color: var(--color-primary);
+  }
+  .text-theme-secondary {
+    color: var(--color-secondary);
+  }
+  .text-theme-accent {
+    color: var(--color-accent);
+  }
+  .text-theme-text {
+    color: var(--color-text);
+  }
+
+  /* Background colors */
+  .bg-theme-primary {
+    background-color: var(--color-primary);
+  }
+  .bg-theme-secondary {
+    background-color: var(--color-secondary);
+  }
+  .bg-theme-accent {
+    background-color: var(--color-accent);
+  }
+  .bg-theme-background {
+    background-color: var(--color-background);
+  }
+  .bg-theme-surface {
+    background-color: var(--color-surface);
+  }
+
+  /* Border colors */
+  .border-theme-primary {
+    border-color: var(--color-primary);
+  }
+  .border-theme-secondary {
+    border-color: var(--color-secondary);
+  }
+  .border-theme-accent {
+    border-color: var(--color-accent);
+  }
+  .border-theme-border {
+    border-color: var(--color-border);
+  }
+
+  /* Gradient backgrounds */
+  .bg-gradient-theme-primary {
+    background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+  }
+  .bg-gradient-theme-accent {
+    background: linear-gradient(to right, var(--color-primary), var(--color-accent));
+  }
+
+  /* Hover states */
+  .hover\:text-theme-primary:hover {
+    color: var(--color-primary);
+  }
+  .hover\:text-theme-secondary:hover {
+    color: var(--color-secondary);
+  }
+  .hover\:text-theme-accent:hover {
+    color: var(--color-accent);
+  }
+  .hover\:bg-theme-primary:hover {
+    background-color: var(--color-primary);
+  }
+  .hover\:border-theme-primary:hover {
+    border-color: var(--color-primary);
+  }
+  .hover\:border-theme-accent:hover {
+    border-color: var(--color-accent);
+  }
+
+  /* Shadow with theme colors */
+  .shadow-theme-primary {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 0 1px var(--color-primary);
+  }
+  .shadow-theme-primary\/50 {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 20px -5px var(--color-primary);
   }
 }

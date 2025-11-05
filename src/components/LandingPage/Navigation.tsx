@@ -7,6 +7,7 @@ import { Code2, Menu, X, Terminal, ChevronDown } from "lucide-react";
 import { Button } from "../ui/button";
 import { AnimatePresence, motion } from "framer-motion";
 import { NavItemsProps } from "../types/NavItemsProps";
+import { ColorPaletteSwitcher } from "../ui/ColorPaletteSwitcher";
 
 const navItems: NavItemsProps[] = [
   { name: "Home", href: "/", icon: "~/", isRoute: true },
@@ -108,9 +109,18 @@ export function Navigation() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-[#0a0e1a]/80 backdrop-blur-xl border-b border-slate-800/50 shadow-lg shadow-cyan-500/5"
+            ? "backdrop-blur-xl border-b border-slate-800/50 shadow-lg"
             : "bg-transparent"
         }`}
+        style={
+          isScrolled
+            ? {
+                backgroundColor: "var(--color-background)",
+                opacity: "0.8",
+                boxShadow: `0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 0 1px var(--color-primary)`,
+              }
+            : {}
+        }
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -121,7 +131,7 @@ export function Navigation() {
             >
               <Link
                 href="/"
-                className="font-mono text-slate-100 group-hover:text-cyan-400 transition-colors"
+                className="font-mono text-slate-100 transition-colors group-hover:text-theme-primary"
                 aria-label="Navigate to home"
               >
                 {"<FardinMahadi />"}
@@ -142,7 +152,9 @@ export function Navigation() {
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                           className={`relative px-4 py-2 cursor-pointer min-h-[44px] flex items-center ${
-                            itemIsActive ? "text-cyan-400" : "text-slate-300"
+                            itemIsActive
+                              ? "text-theme-primary"
+                              : "text-slate-300"
                           }`}
                           aria-label={`Navigate to ${item.name}`}
                           onMouseEnter={() =>
@@ -151,10 +163,10 @@ export function Navigation() {
                           onMouseLeave={() => setOpenSubmenu(null)}
                         >
                           <div className="flex items-center gap-2">
-                            <span className="text-xs font-mono text-slate-500 group-hover/item:text-cyan-400 transition-colors">
+                            <span className="text-xs font-mono text-slate-500 transition-colors group-hover/item:text-theme-primary">
                               {item.icon}
                             </span>
-                            <span className="text-sm transition-colors group-hover/item:text-cyan-400">
+                            <span className="text-sm transition-colors group-hover/item:text-theme-primary">
                               {item.name}
                             </span>
                             {hasSubItems && (
@@ -166,7 +178,10 @@ export function Navigation() {
                           {itemIsActive && (
                             <motion.div
                               layoutId="activeTab"
-                              className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500 to-blue-500"
+                              className="absolute bottom-0 left-0 right-0 h-0.5"
+                              style={{
+                                background: `linear-gradient(to right, var(--color-primary), var(--color-secondary))`,
+                              }}
                               transition={{
                                 type: "spring",
                                 stiffness: 380,
@@ -176,7 +191,13 @@ export function Navigation() {
                           )}
 
                           {/* Hover glow */}
-                          <div className="absolute inset-0 bg-cyan-500/5 rounded-lg opacity-0 group-hover/item:opacity-100 transition-opacity" />
+                          <div
+                            className="absolute inset-0 rounded-lg opacity-0 group-hover/item:opacity-100 transition-opacity"
+                            style={{
+                              backgroundColor: "var(--color-primary)",
+                              opacity: "0.05",
+                            }}
+                          />
                         </motion.div>
                       </Link>
                     ) : (
@@ -186,14 +207,14 @@ export function Navigation() {
                         whileTap={{ scale: 0.95 }}
                         className={`relative px-4 py-2 min-h-[44px] flex items-center ${
                           itemIsActive
-                            ? "text-cyan-400"
-                            : "text-slate-300 group-hover/item:text-cyan-400"
+                            ? "text-theme-primary"
+                            : "text-slate-300 group-hover/item:text-theme-primary"
                         }`}
                         aria-label={`Navigate to ${item.name} section`}
                         aria-current={itemIsActive ? "page" : undefined}
                       >
                         <div className="flex items-center gap-2">
-                          <span className="text-xs font-mono text-slate-500 group-hover/item:text-cyan-400 transition-colors">
+                          <span className="text-xs font-mono text-slate-500 transition-colors group-hover/item:text-theme-primary">
                             {item.icon}
                           </span>
                           <span className="text-sm transition-colors">
@@ -205,7 +226,10 @@ export function Navigation() {
                         {itemIsActive && (
                           <motion.div
                             layoutId="activeTab"
-                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500 to-blue-500"
+                            className="absolute bottom-0 left-0 right-0 h-0.5"
+                            style={{
+                              background: `linear-gradient(to right, var(--color-primary), var(--color-secondary))`,
+                            }}
                             transition={{
                               type: "spring",
                               stiffness: 380,
@@ -215,7 +239,13 @@ export function Navigation() {
                         )}
 
                         {/* Hover glow */}
-                        <div className="absolute inset-0 bg-cyan-500/5 rounded-lg opacity-0 group-hover/item:opacity-100 transition-opacity" />
+                        <div
+                          className="absolute inset-0 rounded-lg opacity-0 group-hover/item:opacity-100 transition-opacity"
+                          style={{
+                            backgroundColor: "var(--color-primary)",
+                            opacity: "0.05",
+                          }}
+                        />
                       </motion.button>
                     )}
 
@@ -236,7 +266,7 @@ export function Navigation() {
                               <Link
                                 key={subItem.name}
                                 href={subItem.href}
-                                className="block px-4 py-3 text-sm text-slate-300 hover:bg-slate-800/50 hover:text-cyan-400 transition-colors"
+                                className="block px-4 py-3 text-sm text-slate-300 hover:bg-slate-800/50 transition-colors hover:text-theme-primary"
                               >
                                 {subItem.icon && (
                                   <span className="mr-2 font-mono text-xs opacity-60">
@@ -255,8 +285,9 @@ export function Navigation() {
               })}
             </div>
 
-            {/* CTA Button - Desktop */}
-            <div className="hidden md:block">
+            {/* CTA Button & Color Switcher - Desktop */}
+            <div className="hidden md:flex items-center gap-2">
+              <ColorPaletteSwitcher />
               <Button
                 size="sm"
                 className="bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white shadow-lg shadow-violet-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-violet-500/50 min-h-[44px]"
@@ -278,7 +309,7 @@ export function Navigation() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-slate-300 hover:text-cyan-400 transition-colors relative group min-h-[44px] min-w-[44px] flex items-center justify-center"
+              className="md:hidden p-2 text-slate-300 transition-colors relative group min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-theme-primary"
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
@@ -306,7 +337,13 @@ export function Navigation() {
                   </motion.div>
                 )}
               </AnimatePresence>
-              <div className="absolute inset-0 bg-cyan-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div
+                className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                style={{
+                  backgroundColor: "var(--color-primary)",
+                  opacity: "0.1",
+                }}
+              />
             </button>
           </div>
         </div>
@@ -342,12 +379,12 @@ export function Navigation() {
                 {/* Mobile Menu Header */}
                 <div className="flex items-center justify-between mb-8">
                   <div className="flex items-center gap-2">
-                    <Code2 className="w-5 h-5 text-cyan-400" />
+                    <Code2 className="w-5 h-5 text-theme-primary" />
                     <span className="font-mono text-slate-100">Menu</span>
                   </div>
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-2 text-slate-400 hover:text-cyan-400 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+                    className="p-2 text-slate-400 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-theme-primary"
                     aria-label="Close menu"
                   >
                     <X className="w-5 h-5" />
@@ -460,7 +497,7 @@ export function Navigation() {
                             onClick={() =>
                               setOpenSubmenu(isSubmenuOpen ? null : item.name)
                             }
-                            className="w-full text-left px-4 py-2 text-xs text-slate-500 hover:text-cyan-400 transition-colors"
+                            className="w-full text-left px-4 py-2 text-xs text-slate-500 transition-colors hover:text-theme-primary"
                             aria-label={`Toggle ${item.name} submenu`}
                           >
                             {isSubmenuOpen ? "Hide" : "Show"} categories
@@ -476,8 +513,11 @@ export function Navigation() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="mt-8"
+                  className="mt-8 space-y-3"
                 >
+                  <div className="flex justify-center">
+                    <ColorPaletteSwitcher />
+                  </div>
                   <Button
                     className="w-full bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white shadow-lg shadow-violet-500/30 min-h-[44px]"
                     onClick={() => {

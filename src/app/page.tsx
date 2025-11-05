@@ -2,7 +2,6 @@
 import { AboutSection } from "@/components/LandingPage/AboutSection";
 import { BlogSection } from "@/components/LandingPage/BlogSection";
 import { ContactSection } from "@/components/LandingPage/ContactSection";
-import { CursorEffect } from "@/components/LandingPage/CursorEffect";
 import { ExperienceSection } from "@/components/LandingPage/ExperienceSection";
 import { Footer } from "@/components/LandingPage/Footer";
 import { HeroSection } from "@/components/LandingPage/HeroSection";
@@ -43,7 +42,6 @@ export default function Home() {
         >
           Skip to main content
         </a>
-        <CursorEffect />
         <header role="banner">
           <Navigation />
         </header>

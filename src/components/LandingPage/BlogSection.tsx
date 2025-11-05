@@ -13,12 +13,12 @@ const siteUrl =
 
 export function BlogSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
     <section
       id="blog"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#111827] to-[#0a0e1a] relative overflow-hidden"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0a0e1a] to-[#111827] relative overflow-hidden"
     >
       {/* Background accent */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-3xl" />
@@ -50,13 +50,13 @@ export function BlogSection() {
           className="mb-12"
         >
           <div className="flex items-center gap-3 mb-6">
-            <span className="text-blue-400 font-mono" aria-hidden="true">
+            <span className="text-theme-secondary font-mono" aria-hidden="true">
               {"</"}
             </span>
-            <h2 className="text-blue-400 text-3xl font-bold">
+            <h2 className="text-theme-secondary text-3xl font-bold">
               Latest Articles
             </h2>
-            <span className="text-blue-400 font-mono" aria-hidden="true">
+            <span className="text-theme-secondary font-mono" aria-hidden="true">
               {">"}
             </span>
           </div>

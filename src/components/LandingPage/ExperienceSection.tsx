@@ -30,7 +30,7 @@ const experiences: ExperienceProps[] = [
       "Framer Motion",
       "Git",
     ],
-    companyUrl: "https://acsduyouthsummit2025.org/",
+    companyUrl: "https://www.devgenit.com/",
   },
 ];
 
@@ -71,13 +71,13 @@ export function ExperienceSection() {
   return (
     <section
       id="experience"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#111827] to-[#0a0e1a] relative overflow-hidden"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0a0e1a] to-[#111827] relative overflow-hidden"
     >
       {/* Background accents */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
 
-      <div ref={ref} className="max-w-6xl mx-auto relative z-10">
+      <div ref={ref} className="max-w-7xl mx-auto relative z-10">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -91,8 +91,10 @@ export function ExperienceSection() {
           className="mb-12"
         >
           <div className="flex items-center gap-3 mb-6">
-            <Briefcase className="w-6 h-6 text-blue-400" aria-hidden="true" />
-            <h2 className="text-blue-400 text-3xl font-bold">Experience</h2>
+            <Briefcase className="w-6 h-6 text-theme-secondary" aria-hidden="true" />
+            <h2 className="text-theme-secondary text-3xl font-bold">
+              Work Experience
+            </h2>
           </div>
           <p className="text-slate-400 max-w-2xl text-lg">
             Professional journey and work experience in web development
@@ -111,7 +113,8 @@ export function ExperienceSection() {
               {/* Timeline line */}
               <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/50 via-cyan-500/30 to-transparent hidden md:block" />
 
-              <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-lg border border-slate-700/50 backdrop-blur-sm hover:border-blue-500/50 transition-all duration-300 p-6 md:pl-12 relative">
+              {/* Content card */}
+              <div className="relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-lg backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 p-6 md:pl-12 group">
                 {/* Timeline dot */}
                 <div className="absolute left-6 top-8 w-3 h-3 rounded-full bg-blue-400 border-2 border-slate-900 hidden md:block" />
 
@@ -203,7 +206,7 @@ export function ExperienceSection() {
                               role="listitem"
                             >
                               <span
-                                className="text-blue-400 mt-1.5 flex-shrink-0"
+                                className="text-blue-400 mt-1.5 shrink-0"
                                 aria-hidden="true"
                               >
                                 ▹

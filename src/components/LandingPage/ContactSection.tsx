@@ -4,6 +4,7 @@ import {
   Github,
   Linkedin,
   Mail,
+  MessageCircle,
   Send,
   CheckCircle2,
   AlertCircle,
@@ -38,6 +39,14 @@ const socialLinks: SocialLinksProps[] = [
     url: "mailto:mahadihasanfardin2015@gmail.com",
     color: "hover:text-cyan-400",
     glow: "group-hover:shadow-cyan-500/50",
+  },
+  {
+    name: "Discord",
+    username: "fardinmahadi",
+    icon: MessageCircle,
+    url: "https://discord.com/users/fardinmahadi",
+    color: "hover:text-indigo-400",
+    glow: "group-hover:shadow-indigo-500/50",
   },
 ];
 
@@ -136,7 +145,7 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-[#0a0e1a] relative overflow-hidden"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0a0e1a] to-[#111827] relative overflow-hidden"
     >
       {/* Background effects */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
@@ -380,18 +389,18 @@ export function ContactSection() {
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
                     whileHover={{ x: 10 }}
-                    className="group flex items-center gap-4 p-4 bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-lg border border-slate-700/50 backdrop-blur-sm hover:border-cyan-500/50 transition-all duration-300 min-h-[44px]"
+                    className="group flex items-center gap-4 p-4 bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-lg border border-slate-700/50 backdrop-blur-sm hover:border-green-500/50 transition-all duration-300 min-h-[44px]"
                     aria-label={`Visit ${social.name} profile for ${social.username}`}
                   >
                     <div
-                      className={`p-3 rounded-lg bg-slate-900/50 border border-slate-700/50 group-hover:border-cyan-500/50 transition-all duration-300 shadow-lg ${social.glow}`}
+                      className={`p-3 rounded-lg bg-slate-900/50 border border-slate-700/50 group-hover:border-green-500/50 transition-all duration-300 shadow-lg ${social.glow}`}
                     >
                       <social.icon
                         className={`w-5 h-5 text-slate-400 ${social.color} transition-colors duration-300`}
                       />
                     </div>
                     <div className="flex-1">
-                      <div className="text-slate-200 group-hover:text-cyan-400 transition-colors duration-300">
+                      <div className="text-slate-200 group-hover:text-green-400 transition-colors duration-300">
                         {social.name}
                       </div>
                       <div className="text-slate-500 text-sm font-mono">

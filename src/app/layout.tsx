@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Suspense } from "react";
 import { Analytics } from "./analytics";
+import { TargetCursor } from "@/components/effects/TargetCursor";
+import { ColorPaletteProvider } from "@/contexts/ColorPaletteContext";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -350,10 +352,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
-        <Suspense fallback={null}>
-          <Analytics />
-        </Suspense>
+        <ColorPaletteProvider>
+          <TargetCursor targetSelector="a, button, [role='button'], [class*='cursor-pointer']" />
+          {children}
+          <Suspense fallback={null}>
+            <Analytics />
+          </Suspense>
+        </ColorPaletteProvider>
       </body>
     </html>
   );

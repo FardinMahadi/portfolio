@@ -98,7 +98,7 @@ export function AboutSection() {
       <div className="absolute top-0 right-0 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
 
-      <div ref={ref} className="max-w-6xl mx-auto relative z-10">
+      <div ref={ref} className="max-w-7xl mx-auto relative z-10">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -111,11 +111,11 @@ export function AboutSection() {
           transition={{ duration: 0.6 }}
         >
           <div className="flex items-center gap-3 mb-6">
-            <span className="text-cyan-400 font-mono" aria-hidden="true">
+            <span className="text-theme-primary font-mono" aria-hidden="true">
               {"<"}
             </span>
-            <h2 className="text-cyan-400 text-3xl font-bold">About Me</h2>
-            <span className="text-cyan-400 font-mono" aria-hidden="true">
+            <h2 className="text-theme-primary text-3xl font-bold">About Me</h2>
+            <span className="text-theme-primary font-mono" aria-hidden="true">
               {"/>"}
             </span>
           </div>
@@ -167,7 +167,7 @@ export function AboutSection() {
                     whileHover={{ scale: 1.1, y: -5 }}
                     className="group relative"
                   >
-                    <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 p-4 rounded-lg border border-slate-700/50 backdrop-blur-sm flex flex-col items-center justify-center aspect-square hover:border-cyan-500/50 transition-all duration-300">
+                    <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 p-4 rounded-lg border border-slate-700/50 backdrop-blur-sm flex flex-col items-center justify-center aspect-square transition-all duration-300 hover:border-theme-primary/50">
                       <div className="text-3xl mb-2">
                         <Image
                           src={tech.icon.link}

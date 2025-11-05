@@ -59,7 +59,7 @@ const projects: ProjectsProps[] = [
 
 export function ProjectsSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   const itemListSchema = generateItemListSchema(
     projects.map((project) => ({
@@ -73,7 +73,7 @@ export function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-[#0a0e1a] relative overflow-hidden"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0a0e1a] to-[#111827] relative overflow-hidden"
     >
       {/* Subtle grid background */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjAyKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-40" />
@@ -92,8 +92,8 @@ export function ProjectsSection() {
           className="mb-12"
         >
           <div className="flex items-center gap-3 mb-6">
-            <Terminal className="w-6 h-6 text-violet-400" aria-hidden="true" />
-            <h2 className="text-violet-400 text-3xl font-bold">Projects</h2>
+            <Terminal className="w-6 h-6 text-theme-accent" aria-hidden="true" />
+            <h2 className="text-theme-accent text-3xl font-bold">Projects</h2>
           </div>
           <p className="text-slate-400 max-w-2xl text-lg">
             A collection of projects showcasing my expertise in full-stack
@@ -108,11 +108,11 @@ export function ProjectsSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -8 }}
+              whileHover={{ y: -5 }}
               className="group relative"
             >
               {/* Card */}
-              <div className="bg-gradient-to-br from-slate-900/90 to-slate-800/90 rounded-lg border border-slate-700/50 overflow-hidden backdrop-blur-sm hover:border-cyan-500/50 transition-all duration-300">
+              <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-lg border border-slate-700/50 overflow-hidden backdrop-blur-sm hover:border-violet-500/50 transition-all duration-300">
                 {/* Terminal header */}
                 <header
                   className="bg-slate-900/80 px-4 py-2 border-b border-slate-700/50 flex items-center gap-2"
@@ -135,7 +135,7 @@ export function ProjectsSection() {
                     alt={`${project.title} project screenshot - ${project.description}`}
                     width={project.width}
                     height={project.height}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     quality={85}
                     loading="lazy"
@@ -208,7 +208,7 @@ export function ProjectsSection() {
 
               {/* Glow effect */}
               <div
-                className="absolute inset-0 -z-10 bg-gradient-to-br from-cyan-500/20 to-violet-500/20 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                className="absolute inset-0 -z-10 bg-gradient-to-br from-cyan-500/20 to-violet-500/20 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 aria-hidden="true"
               />
             </motion.article>

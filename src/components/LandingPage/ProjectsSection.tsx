@@ -9,58 +9,32 @@ import { GlassmorphismPanel } from "../effects/GlassmorphismPanel";
 
 const projects: ProjectsProps[] = [
   {
-    title: "E-Commerce Platform",
+    title: "Lern Beta Platform",
     description:
-      "Full-stack shopping platform with real-time inventory, payment integration, and admin dashboard.",
-    tags: ["React", "Node.js", "MongoDB", "Stripe"],
-    image:
-      "https://images.unsplash.com/photo-1759752394397-3c745feb24e0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlLWNvbW1lcmNlJTIwaW50ZXJmYWNlfGVufDF8fHx8MTc2MTA1MDI2NXww&ixlib=rb-4.1.0&q=80&w=1080",
-    width: 1080,
-    height: 720,
-    liveUrl: "#",
-    codeUrl: "#",
+      "Personal project: an AI-powered learning platform landing page focused on delivering quality education access for all.",
+    tags: ["Next.js", "Tailwind CSS", "Vercel", "AI"],
+    image: "/Projects/Lern/image.png",
+    width: 1600,
+    height: 900,
+    liveUrl: "https://lern-beta.vercel.app/",
+    codeUrl:
+      "https://github.com/FardinMahadi/Lern-AI-Powered-Study-Assistant-Uni-project-showcase",
   },
   {
-    title: "Analytics Dashboard",
+    title: "ACS Youth Summit Website",
     description:
-      "Data visualization dashboard with real-time metrics, custom charts, and export functionality.",
-    tags: ["Next.js", "TypeScript", "PostgreSQL", "D3.js"],
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXNoYm9hcmQlMjBhbmFseXRpY3N8ZW58MXx8fHwxNzYxMDQxNDk4fDA&ixlib=rb-4.1.0&q=80&w=1080",
-    width: 1080,
-    height: 720,
-    liveUrl: "#",
-    codeUrl: "#",
-  },
-  {
-    title: "Task Management App",
-    description:
-      "Collaborative task manager with drag-and-drop, real-time updates, and team workspaces.",
-    tags: ["React", "Express", "Socket.io", "TailwindCSS"],
-    image:
-      "https://images.unsplash.com/photo-1603985585179-3d71c35a537c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudCUyMHdvcmtzcGFjZXxlbnwxfHx8fDE3NjEwMjEyNzJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-    width: 1080,
-    height: 720,
-    liveUrl: "#",
-    codeUrl: "#",
-  },
-  {
-    title: "Mobile Banking UI",
-    description:
-      "Modern banking interface with transaction history, card management, and biometric authentication.",
-    tags: ["React Native", "TypeScript", "Node.js", "JWT"],
-    image:
-      "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBkZXNpZ258ZW58MXx8fHwxNzYwOTg0NzQ4fDA&ixlib=rb-4.1.0&q=80&w=1080",
-    width: 1080,
-    height: 720,
-    liveUrl: "#",
-    codeUrl: "#",
+      "Built at DevGenit as the core frontend engineer, delivering the official ACS Bangladesh Youth Summit conference platform with schedules, submissions, and partner showcases.",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+    image: "/Projects/ACS/image.png",
+    width: 1600,
+    height: 900,
+    liveUrl: "https://acsduyouthsummit2025.org/",
   },
 ];
 
 export function ProjectsSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   const itemListSchema = generateItemListSchema(
     projects.map((project) => ({
@@ -74,7 +48,7 @@ export function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0a0e1a] to-[#111827] relative overflow-hidden"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0a0e1a] to-[#111827] relative overflow-hidden scroll-mt-28 md:scroll-mt-32"
     >
       {/* Subtle grid background */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjAyKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-40" />
@@ -177,38 +151,44 @@ export function ProjectsSection() {
                     </div>
 
                     {/* Actions */}
-                    <div className="flex gap-3 pt-2">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="flex-1 border-slate-600 text-slate-300 hover:bg-cyan-500/10 hover:border-cyan-500 hover:text-cyan-400 transition-all duration-300"
-                        asChild
-                      >
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          Live
-                        </a>
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="flex-1 border-slate-600 text-slate-300 hover:bg-violet-500/10 hover:border-violet-500 hover:text-violet-400 transition-all duration-300"
-                        asChild
-                      >
-                        <a
-                          href={project.codeUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Github className="w-4 h-4 mr-2" />
-                          Code
-                        </a>
-                      </Button>
-                    </div>
+                    {(project.liveUrl || project.codeUrl) && (
+                      <div className="flex gap-3 pt-2">
+                        {project.liveUrl && project.liveUrl !== "#" && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="flex-1 border-slate-600 text-slate-300 hover:bg-cyan-500/10 hover:border-cyan-500 hover:text-cyan-400 transition-all duration-300"
+                            asChild
+                          >
+                            <a
+                              href={project.liveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <ExternalLink className="w-4 h-4 mr-2" />
+                              Live
+                            </a>
+                          </Button>
+                        )}
+                        {project.codeUrl && project.codeUrl !== "#" && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="flex-1 border-slate-600 text-slate-300 hover:bg-violet-500/10 hover:border-violet-500 hover:text-violet-400 transition-all duration-300"
+                            asChild
+                          >
+                            <a
+                              href={project.codeUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <Github className="w-4 h-4 mr-2" />
+                              Code
+                            </a>
+                          </Button>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               </GlassmorphismPanel>

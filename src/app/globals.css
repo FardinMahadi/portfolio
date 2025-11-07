@@ -144,7 +144,11 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    font-family:
+      "Inter",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
       sans-serif;
   }
 
@@ -307,10 +311,18 @@ html {
 
   /* Gradient backgrounds */
   .bg-gradient-theme-primary {
-    background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+    background: linear-gradient(
+      to right,
+      var(--color-primary),
+      var(--color-secondary)
+    );
   }
   .bg-gradient-theme-accent {
-    background: linear-gradient(to right, var(--color-primary), var(--color-accent));
+    background: linear-gradient(
+      to right,
+      var(--color-primary),
+      var(--color-accent)
+    );
   }
 
   /* Hover states */
@@ -335,10 +347,16 @@ html {
 
   /* Shadow with theme colors */
   .shadow-theme-primary {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 0 1px var(--color-primary);
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05),
+      0 0 0 1px var(--color-primary);
   }
   .shadow-theme-primary\/50 {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 20px -5px var(--color-primary);
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05),
+      0 0 20px -5px var(--color-primary);
   }
 
   /* Hide scrollbar */
@@ -349,4 +367,98 @@ html {
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+}
+
+/* Themed scrollbar styling */
+html,
+body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) rgba(148, 163, 184, 0.2);
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.55),
+      rgba(17, 24, 39, 0.2)
+    )
+    border-box;
+  border-radius: 9999px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  backdrop-filter: blur(6px);
+  box-shadow: inset 0 0 20px rgba(15, 23, 42, 0.25);
+}
+
+html::-webkit-scrollbar-track:vertical,
+body::-webkit-scrollbar-track:vertical {
+  background: linear-gradient(
+      to bottom,
+      rgba(15, 23, 42, 0.65),
+      rgba(15, 23, 42, 0.25)
+    )
+    border-box;
+  border-radius: 9999px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  backdrop-filter: blur(6px);
+  box-shadow:
+    inset 0 6px 16px rgba(15, 23, 42, 0.32),
+    inset 0 -6px 16px rgba(17, 24, 39, 0.25);
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.25),
+      rgba(148, 163, 184, 0.1)
+    )
+    border-box;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(148, 163, 184, 0.25);
+  box-shadow:
+    inset 0 2px 6px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 6px rgba(15, 23, 42, 0.25),
+    0 6px 18px rgba(6, 182, 212, 0.25);
+}
+
+html::-webkit-scrollbar-thumb:vertical,
+body::-webkit-scrollbar-thumb:vertical {
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.28),
+      rgba(148, 163, 184, 0.12)
+    )
+    border-box;
+  border-radius: 9999px;
+  box-shadow:
+    inset 0 3px 8px rgba(255, 255, 255, 0.28),
+    inset 0 -3px 8px rgba(15, 23, 42, 0.28),
+    0 6px 18px rgba(6, 182, 212, 0.25);
+}
+
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.32),
+      rgba(148, 163, 184, 0.18)
+    )
+    border-box;
+  border: 1.5px solid rgba(148, 163, 184, 0.35);
+  box-shadow:
+    inset 0 3px 9px rgba(255, 255, 255, 0.35),
+    inset 0 -3px 9px rgba(15, 23, 42, 0.32),
+    0 8px 20px rgba(6, 182, 212, 0.3);
+}
+
+html::-webkit-scrollbar-corner,
+body::-webkit-scrollbar-corner {
+  background: transparent;
 }

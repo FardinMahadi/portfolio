@@ -54,7 +54,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
     ),
     li: ({ ...props }) => (
       <li className="flex items-start gap-3 text-slate-300" {...props}>
-        <span className="text-blue-400 mt-1.5 shrink-0" aria-hidden="true">
+        <span className="text-theme-primary mt-1.5 shrink-0" aria-hidden="true">
           ▹
         </span>
         <span className="leading-relaxed flex-1">{props.children}</span>

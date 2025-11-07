@@ -44,9 +44,11 @@ export function CategoryFilter({
       {/* Scrollable container */}
       <div
         ref={scrollContainerRef}
-        className="flex gap-3 scrollbar-hide pb-2 scroll-smooth"
+        className="flex gap-3 overflow-x-auto md:overflow-visible scrollbar-hide pb-2 scroll-smooth -mx-6 px-6 md:mx-0 md:px-0 snap-x md:snap-none"
         style={{
           scrollbarWidth: "none",
+          scrollPaddingInlineStart: "1.5rem",
+          scrollPaddingInlineEnd: "1.5rem",
         }}
       >
         {categories.map((category) => {
@@ -61,20 +63,11 @@ export function CategoryFilter({
               onClick={() =>
                 onCategoryChange(category === "All" ? null : category)
               }
-              className={`px-4 py-2 rounded-full text-sm font-mono whitespace-nowrap transition-all duration-300 min-h-[44px] flex items-center justify-center relative ${
+              className={`px-4 py-2 rounded-full text-sm font-mono whitespace-nowrap transition-all duration-200 min-h-[44px] flex items-center justify-center relative snap-start ${
                 isSelected
-                  ? "text-white"
+                  ? "bg-theme-primary text-[#0a0e1a] border border-theme-primary"
                   : "text-slate-300 bg-slate-800/50 border border-slate-700/50 hover:bg-slate-700/50 hover:border-slate-600/50"
               }`}
-              style={
-                isSelected
-                  ? {
-                      background: `linear-gradient(to right, var(--color-primary), var(--color-secondary))`,
-                      borderColor: "var(--color-primary)",
-                      boxShadow: `0 0 20px -5px var(--color-primary), 0 4px 12px -2px var(--color-primary), 0 0 0 1px var(--color-primary), inset 0 0 20px -10px var(--color-primary)`,
-                    }
-                  : {}
-              }
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               aria-label={`Filter by ${category}`}

@@ -41,9 +41,9 @@ export function ColorPaletteSwitcher() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              className="absolute right-0 top-full mt-2 bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-lg shadow-xl overflow-hidden min-w-[200px] z-50 backdrop-blur-sm"
+              className="absolute right-0 bottom-full mb-2 md:bottom-auto md:top-full md:mt-2 bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-lg shadow-xl min-w-[200px] z-50 backdrop-blur-sm"
             >
-              <div className="p-2 space-y-1">
+              <div className="p-2 space-y-1 max-h-[50vh] overflow-y-auto">
                 {Object.entries(availablePalettes).map(([key, palette]) => {
                   const isSelected = currentPalette.name === palette.name;
                   return (

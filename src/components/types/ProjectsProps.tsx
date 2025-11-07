@@ -5,6 +5,6 @@ export interface ProjectsProps {
   image: string;
   width: number;
   height: number;
-  liveUrl: string;
-  codeUrl: string;
+  liveUrl?: string;
+  codeUrl?: string;
 }

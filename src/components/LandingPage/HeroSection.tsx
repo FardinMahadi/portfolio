@@ -97,7 +97,7 @@ export function HeroSection() {
                 1
               </div>
               <div className="flex-1">
-                <h1 className="font-mono text-2xl sm:text-3xl md:text-4xl lg:text-5xl md:text-center">
+                <h1 className="font-mono text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center">
                   <span className="text-purple-400" aria-hidden="true">
                     const
                   </span>{" "}

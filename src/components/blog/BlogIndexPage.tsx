@@ -14,7 +14,7 @@ const siteUrl =
 
 export function BlogIndexPage() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   // Filter blog posts based on selected category
@@ -26,7 +26,7 @@ export function BlogIndexPage() {
   return (
     <section
       id="blog-index"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0a0e1a] to-[#111827] relative overflow-hidden min-h-screen"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0a0e1a] to-[#111827] relative overflow-hidden min-h-screen scroll-mt-28 md:scroll-mt-32"
     >
       {/* Background accent */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-3xl" />
@@ -152,7 +152,7 @@ export function BlogIndexPage() {
 
                     {/* Content */}
                     <div className="flex-1 space-y-3 mb-4">
-                      <h3 className="text-slate-100 group-hover:text-theme-primary transition-colors duration-300 font-mono text-xl">
+                      <h3 className="text-slate-100 group-hover:text-theme-primary transition-colors duration-300 font-semibold text-xl tracking-tight">
                         {post.title}
                       </h3>
                       <p className="text-slate-400 text-sm leading-relaxed">

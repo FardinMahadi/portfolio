@@ -20,6 +20,9 @@ export function TargetCursor({
   const dotRef = useRef<HTMLDivElement>(null);
 
   const isMobile = useMemo(() => {
+    // Check if we're in browser environment
+    if (typeof window === "undefined") return false;
+
     const hasTouchScreen =
       "ontouchstart" in window || navigator.maxTouchPoints > 0;
     const isSmallScreen = window.innerWidth <= 768;

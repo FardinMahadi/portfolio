@@ -14,13 +14,13 @@ const navItems: NavItemsProps[] = [
   { name: "About", href: "#about", icon: "</>" },
   { name: "Experience", href: "#experience", icon: "{}" },
   { name: "Projects", href: "#projects", icon: "[]" },
+  { name: "Contact", href: "#contact", icon: ">_" },
   {
     name: "Blog",
     href: "/blog",
     icon: "//",
     isRoute: true,
   },
-  { name: "Contact", href: "#contact", icon: ">_" },
 ];
 
 export function Navigation() {
@@ -139,7 +139,7 @@ export function Navigation() {
             </motion.div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-1">
+            <div className="hidden lg:flex items-center gap-1">
               {navItems.map((item) => {
                 const itemIsActive = isActive(item);
                 const hasSubItems = item.subItems && item.subItems.length > 0;
@@ -258,7 +258,7 @@ export function Navigation() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.2 }}
-                            className="absolute top-full left-0 mt-2 bg-gradient-to-br from-[#0a0e1a] to-[#111827] border border-slate-800 rounded-lg shadow-xl overflow-hidden min-w-[200px]"
+                            className="absolute top-full left-0 mt-2 bg-gradient-to-br from-[#0a0e1a] to-[#111827] border border-slate-800 rounded-lg shadow-xl min-w-[200px]"
                             onMouseEnter={() => setOpenSubmenu(item.name)}
                             onMouseLeave={() => setOpenSubmenu(null)}
                           >
@@ -286,7 +286,7 @@ export function Navigation() {
             </div>
 
             {/* CTA Button & Color Switcher - Desktop */}
-            <div className="hidden md:flex items-center gap-2">
+            <div className="hidden lg:flex items-center gap-2">
               <ColorPaletteSwitcher />
               <Button
                 size="sm"
@@ -306,10 +306,10 @@ export function Navigation() {
               </Button>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile / Tablet Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-slate-300 transition-colors relative group min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-theme-primary"
+              className="lg:hidden p-2 text-slate-300 transition-colors relative group min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-theme-primary"
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
@@ -359,7 +359,7 @@ export function Navigation() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
             />
 
@@ -370,7 +370,7 @@ export function Navigation() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 right-0 bottom-0 w-64 bg-gradient-to-br from-[#0a0e1a] to-[#111827] border-l border-slate-800 z-50 md:hidden overflow-y-auto"
+              className="fixed top-0 right-0 bottom-0 w-64 bg-gradient-to-br from-[#0a0e1a] to-[#111827] border-l border-slate-800 z-50 lg:hidden"
               role="dialog"
               aria-modal="true"
               aria-label="Navigation menu"
@@ -467,7 +467,7 @@ export function Navigation() {
                                 animate={{ opacity: 1, height: "auto" }}
                                 exit={{ opacity: 0, height: 0 }}
                                 transition={{ duration: 0.2 }}
-                                className="ml-4 mt-2 space-y-1 overflow-hidden"
+                                className="ml-4 mt-2 space-y-1"
                               >
                                 {item.subItems?.map((subItem) => (
                                   <Link

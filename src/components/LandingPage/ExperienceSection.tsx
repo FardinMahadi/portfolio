@@ -36,7 +36,7 @@ const experiences: ExperienceProps[] = [
 
 export function ExperienceSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   // Generate structured data for experience/work history
   const workHistorySchema = {

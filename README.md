@@ -17,20 +17,34 @@ A futuristic, VS Code-inspired portfolio website for MERN stack developer **Maha
 
 ### 🎭 Interactive Elements
 
-- **Target Cursor** - Interactive cursor with corner brackets that expand on hover
+- **Target Cursor** - Interactive cursor with corner brackets that expand on hover (desktop only)
 - **Typing Animation Hero** - Dynamic code-style text animation in the hero section
 - **Animated Navigation** - Sticky header with active section tracking and smooth scrolling
 - **Terminal-Style Project Cards** - Showcase projects with developer-themed design
-- **Command-Line Contact Form** - Terminal-inspired contact section
+- **Command-Line Contact Form** - Terminal-inspired contact section with email integration
 - **Motion-Driven Interactions** - Smooth transitions and animations throughout
+- **Scroll Progress Indicator** - Visual progress bar showing scroll position
+- **Magnetic Buttons** - Interactive buttons that subtly follow cursor movement
+- **Glassmorphism Panels** - Frosted glass effect panels with backdrop blur
+- **Animated Stats Counter** - Numbers that animate when scrolled into view
 
 ### 🛠️ Tech Stack Components
 
 - **Animated Tech Icons** - Interactive display of technical skills
-- **Blog Section** - Space for articles and technical writing
+- **Blog Section** - Latest articles with category filtering
 - **Project Showcase** - Highlight your best work with detailed project cards
-- **About Section** - Professional introduction and background
+- **About Section** - Professional introduction with animated stats
+- **Work Experience Timeline** - Chronological display of professional journey
+- **Contact Form** - Email-integrated contact form with Resend
+- **Social Links** - GitHub, LinkedIn, Email, and Discord integration
 - **Footer** - Social links and additional information
+
+### 🎨 Theme & Customization
+
+- **Multiple Color Palettes** - Switch between 6 different color themes
+- **Theme-Aware Components** - All components adapt to selected color palette
+- **Persistent Theme Selection** - Theme preference saved in localStorage
+- **Dynamic CSS Variables** - Smooth theme transitions
 
 ## 🔧 Tech Stack
 
@@ -39,8 +53,10 @@ A futuristic, VS Code-inspired portfolio website for MERN stack developer **Maha
 - **TypeScript** - Type-safe JavaScript
 - **Tailwind CSS 4** - Utility-first CSS framework
 - **Framer Motion** - Animation library
+- **GSAP** - Advanced cursor animations
 - **Shadcn/ui** - Re-usable component library
 - **Lucide React** - Icon library
+- **Resend** - Email service integration
 
 ## 📦 Installation
 
@@ -97,12 +113,23 @@ A futuristic, VS Code-inspired portfolio website for MERN stack developer **Maha
 
 ### Color Palette
 
-The color scheme is defined in `styles/globals.css`. Key colors:
+The portfolio supports multiple color palettes that can be switched via the palette switcher in the navigation:
 
-- **Background**: `#0a0e1a` (deep navy)
-- **Primary Accent**: Cyan (`#06b6d4`)
-- **Secondary Accent**: Blue (`#3b82f6`)
-- **Tertiary Accent**: Violet (`#8b5cf6`)
+- **Cyan Blue** (Default) - Cyan, electric blue, and violet accents
+- **Purple Dream** - Purple, fuchsia, and violet tones
+- **Emerald Forest** - Green, emerald, and cyan accents
+- **Sunset Orange** - Orange, amber, and warm tones
+- **Crimson Red** - Red, pink, and vibrant accents
+- **Ocean Blue** - Blue, cyan, and oceanic tones
+
+Palettes are defined in `src/lib/colorPalettes.ts` and managed via `src/contexts/ColorPaletteContext.tsx`.
+
+### Customizing Colors
+
+Edit `src/lib/colorPalettes.ts` to add or modify color palettes. Each palette includes:
+
+- Primary, Secondary, and Accent colors
+- Background, Surface, Text, and Border colors
 
 ### Typography
 
@@ -212,22 +239,65 @@ In `components/ProjectsSection.tsx`, add to the projects array:
 
 ### Adding a Blog Post
 
-In `components/BlogSection.tsx`, add to the posts array:
+Blog posts are stored in `src/data/blogPosts.json`. Add a new entry:
 
-```tsx
+```json
 {
-  title: "Blog Post Title",
-  excerpt: "Brief description...",
-  date: "Jan 15, 2024",
-  readTime: "5 min read",
-  link: "/blog/post-slug"
+  "title": "Blog Post Title",
+  "excerpt": "Brief description...",
+  "date": "Jan 15, 2024",
+  "readTime": "5 min read",
+  "category": "Learning",
+  "slug": "blog-post-slug",
+  "content": "# Your markdown content here..."
 }
 ```
+
+### Setting Up Email Integration
+
+1. Create a Resend account at [resend.com](https://resend.com)
+2. Get your API key from the Resend dashboard
+3. Create `.env.local` file in the project root:
+
+```bash
+RESEND_API_KEY=re_your_api_key_here
+CONTACT_EMAIL=your-email@example.com
+RESEND_FROM_EMAIL=onboarding@resend.dev  # Or your verified domain
+```
+
+4. Restart your dev server: `npm run dev`
+
+The contact form will automatically use Resend when `RESEND_API_KEY` is set, otherwise it logs to console for development.
 
 ## 📚 Documentation
 
 - **[Style Guide](./doc/STYLE_GUIDE.md)** - Comprehensive coding style, patterns, and conventions
 - **[AI Training Guide](./doc/AI_TRAINING_GUIDE.md)** - Quick reference for AI assistants
+- **[Blog Topics](./doc/BLOG_TOPICS.md)** - Comprehensive list of blog topics for beginners
+
+## 🎯 Key Features Explained
+
+### Interactive Effects
+
+- **Target Cursor** - GSAP-powered cursor with rotating corner brackets
+- **Scroll Progress Indicator** - Top progress bar showing scroll position
+- **Magnetic Buttons** - Buttons that subtly follow cursor movement
+- **Glassmorphism Panels** - Frosted glass effect with backdrop blur
+- **Animated Stats Counter** - Numbers that count up when scrolled into view
+
+### Blog Features
+
+- **Category Filtering** - Filter articles by category (YouTube-style)
+- **JSON-Based Content** - Blog posts stored in `src/data/blogPosts.json`
+- **Markdown Support** - Full markdown rendering with syntax highlighting
+- **SEO Optimized** - Structured data and metadata for search engines
+
+### Contact Form
+
+- **Email Integration** - Resend API integration for sending emails
+- **Form Validation** - Client-side validation with error handling
+- **Success/Error States** - Visual feedback for form submissions
+- **Development Mode** - Console logging when API key is not set
 
 ## 🤝 Contributing
 

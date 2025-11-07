@@ -118,7 +118,7 @@ export function BlogSection() {
 
                     {/* Content */}
                     <div className="flex-1 space-y-3 mb-4">
-                      <h3 className="text-slate-100 group-hover:text-theme-primary transition-colors duration-300 font-mono text-xl">
+                      <h3 className="text-slate-100 group-hover:text-theme-primary transition-colors duration-300 font-semibold text-xl tracking-tight">
                         {post.title}
                       </h3>
                       <p className="text-slate-400 text-sm leading-relaxed">

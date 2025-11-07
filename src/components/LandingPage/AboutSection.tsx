@@ -3,7 +3,6 @@ import { useRef } from "react";
 import { TechStackProps } from "../types/TechStackProps";
 import Image from "next/image";
 import { generateProfessionalServiceSchema } from "@/lib/seo";
-import { AnimatedStatsCounter } from "../effects/AnimatedStatsCounter";
 import { GlassmorphismPanel } from "../effects/GlassmorphismPanel";
 
 const techStack: TechStackProps[] = [
@@ -143,28 +142,6 @@ export function AboutSection() {
                   code that solves real-world problems.
                 </p>
               </GlassmorphismPanel>
-
-              {/* Stats Section */}
-              <div className="grid grid-cols-3 gap-4">
-                <AnimatedStatsCounter
-                  end={50}
-                  suffix="+"
-                  label="Projects"
-                  className="col-span-1"
-                />
-                <AnimatedStatsCounter
-                  end={3}
-                  suffix="+"
-                  label="Years"
-                  className="col-span-1"
-                />
-                <AnimatedStatsCounter
-                  end={100}
-                  suffix="%"
-                  label="Satisfaction"
-                  className="col-span-1"
-                />
-              </div>
 
               <div className="flex items-center gap-3 px-4 py-2 bg-slate-900/50 rounded border border-slate-700/50 w-fit">
                 <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />

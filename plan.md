@@ -1,9 +1,5 @@
 # Plan
 
-1. **Optional Visual Polish for Projects (pending)**
-   - Make project screenshots open in a modal/lightbox using an accessible pattern (e.g., dialog via Framer Motion) so viewers can inspect details without leaving the page.
-   - Reuse existing design tokens to ensure the lightbox matches the current theme and remains keyboard navigable.
-
 2. **Surface Latest Blog Content (pending)**
    - Create a “Latest Article” preview for the homepage (likely near HeroSection or BlogSection) with thumbnail, title, excerpt, and CTA.
    - Ensure data pulls from existing blog data and remains performant via memoization or static props.

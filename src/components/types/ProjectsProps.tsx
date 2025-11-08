@@ -9,4 +9,10 @@ export interface ProjectsProps {
   codeUrl?: string;
   role?: string;
   highlights?: string[];
+  gallery?: {
+    src: string;
+    width: number;
+    height: number;
+    alt?: string;
+  }[];
 }

@@ -24,9 +24,11 @@ export const metadata: Metadata = generateSEOMetadata({
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen bg-[#0a0e1a]">
+    <div className="relative flex min-h-screen flex-col gap-16">
       <Navigation />
-      <BlogIndexPage />
+      <main className="flex-1">
+        <BlogIndexPage />
+      </main>
       <Footer />
     </div>
   );

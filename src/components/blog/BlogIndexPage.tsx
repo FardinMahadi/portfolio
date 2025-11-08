@@ -120,6 +120,7 @@ export function BlogIndexPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
                 className="group"
+                data-blog-category={post.category}
               >
                 <Link
                   href={`/blog/${post.slug}`}

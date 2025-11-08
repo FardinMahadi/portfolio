@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Suspense } from "react";
 import { Analytics } from "./analytics";
-import { TargetCursor } from "@/components/effects/TargetCursor";
 import { ScrollProgressIndicator } from "@/components/effects/ScrollProgressIndicator";
 import { ColorPaletteProvider } from "@/contexts/ColorPaletteContext";
+import { AppCursorLayer } from "@/components/effects/AppCursorLayer";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -355,7 +355,7 @@ export default function RootLayout({
       >
         <ColorPaletteProvider>
           <ScrollProgressIndicator />
-          <TargetCursor targetSelector="a, button, [role='button'], [class*='cursor-pointer']" />
+          <AppCursorLayer />
           {children}
           <Suspense fallback={null}>
             <Analytics />

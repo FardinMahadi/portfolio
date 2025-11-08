@@ -33,16 +33,20 @@
    - Ensure it’s theme-aware and mobile-responsive.
 
 10. **CTA Microinteractions (pending)**
-    - Audit key buttons (hero CTAs, project cards) and apply subtle hover/active states—e.g., animated borders or gradient shifts.
-    - Consolidate reusable variants in ui/button.tsx if beneficial.
+
+- Audit key buttons (hero CTAs, project cards) and apply subtle hover/active states—e.g., animated borders or gradient shifts.
+- Consolidate reusable variants in ui/button.tsx if beneficial.
 
 11. **Mobile Usability QA (pending)**
-    - Test across breakpoints; adjust spacing, typography, and tap targets in key sections (hero, navigation, contact, projects).
-    - Address any discovered issues iteratively.
+
+- Test across breakpoints; adjust spacing, typography, and tap targets in key sections (hero, navigation, contact, projects).
+- Address any discovered issues iteratively.
 
 12. **Internationalization Readiness (pending)**
-    - Outline locale support (e.g., using Next.js i18n). Add language switcher placeholder and structure content for future translations.
+
+- Outline locale support (e.g., using Next.js i18n). Add language switcher placeholder and structure content for future translations.
 
 13. Analytics & Feedback (pending)
-    - Integrate a lightweight feedback widget (e.g., custom modal or third-party) allowing visitors to rate experience or leave comments.
-    - Ensure consent/compliance considerations are covered.
+
+- Integrate a lightweight feedback widget (e.g., custom modal or third-party) allowing visitors to rate experience or leave comments.
+- Ensure consent/compliance considerations are covered.

@@ -26,10 +26,16 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden py-16"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-(--color-background) py-16 text-theme-text"
     >
       {/* Animated background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0e1a] via-[#111827] to-[#1e1b4b] opacity-90" />
+      <div
+        className="absolute inset-0 opacity-90"
+        style={{
+          background:
+            "linear-gradient(to bottom right, color-mix(in srgb, var(--color-background) 92%, transparent), color-mix(in srgb, var(--color-surface) 85%, transparent) 45%, color-mix(in srgb, var(--color-accent) 28%, transparent))",
+        }}
+      />
 
       {/* Floating orbs */}
       <motion.div
@@ -62,7 +68,7 @@ export function HeroSection() {
       {/* Grid overlay */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-40" />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
         {/* Code editor window */}
         <motion.header
           initial={{ opacity: 0, y: 20 }}
@@ -72,16 +78,16 @@ export function HeroSection() {
         >
           {/* Window chrome */}
           <div
-            className="bg-[#1e293b] rounded-t-lg border border-slate-700 p-3 flex items-center gap-2"
+            className="flex items-center gap-2 rounded-t-lg border border-theme-border/70 bg-theme-surface/90 p-3 backdrop-blur"
             role="presentation"
           >
             <div className="flex gap-1.5" aria-hidden="true">
-              <div className="w-3 h-3 rounded-full bg-red-500" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500" />
-              <div className="w-3 h-3 rounded-full bg-green-500" />
+              <div className="h-3 w-3 rounded-full bg-theme-primary/70" />
+              <div className="h-3 w-3 rounded-full bg-theme-accent/70" />
+              <div className="h-3 w-3 rounded-full bg-theme-secondary/70" />
             </div>
             <div
-              className="ml-4 text-slate-400 text-sm font-mono"
+              className="ml-4 text-sm font-mono text-theme-text/60"
               aria-label="File path"
             >
               ~/portfolio/dev.ts
@@ -89,10 +95,10 @@ export function HeroSection() {
           </div>
 
           {/* Code content */}
-          <div className="bg-[#0f172a] rounded-b-lg border-x border-b border-slate-700 p-8 text-left">
+          <div className="rounded-b-lg border-x border-b border-theme-border/70 bg-theme-surface/80 p-8 text-left backdrop-blur">
             <div className="flex gap-4">
               <div
-                className="text-slate-600 select-none font-mono text-sm"
+                className="select-none font-mono text-sm text-theme-text/50"
                 aria-hidden="true"
               >
                 1
@@ -113,7 +119,7 @@ export function HeroSection() {
                     </span>
                     &apos;
                   </span>
-                  <span className="text-slate-400" aria-hidden="true">
+                  <span className="text-theme-text/60" aria-hidden="true">
                     ;
                   </span>
                 </h1>
@@ -142,7 +148,13 @@ export function HeroSection() {
               priority
               className="object-cover"
             />
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-500/20 via-transparent to-violet-500/20 blur-3xl" />
+            <div
+              className="absolute inset-0 rounded-full blur-3xl"
+              style={{
+                background:
+                  "linear-gradient(to bottom right, rgba(34,211,238,0.2), transparent 50%, rgba(139,92,246,0.2))",
+              }}
+            />
           </motion.div>
 
           <motion.div
@@ -151,10 +163,10 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.45 }}
             className="space-y-6 max-w-2xl"
           >
-            <h2 className="text-slate-100 text-2xl sm:text-3xl font-semibold">
+            <h2 className="text-2xl font-semibold text-theme-text sm:text-3xl">
               Shipping purposeful digital products with empathy and code.
             </h2>
-            <p className="text-slate-400 text-base">
+            <p className="text-base text-theme-text/75">
               Full-stack engineer focused on thoughtful UX and performant React
               & Next.js applications. I lean on calm interfaces, inclusive
               accessibility, and fast feedback loops to help teams move from
@@ -192,7 +204,7 @@ export function HeroSection() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-slate-600 text-slate-200 hover:bg-slate-800/50 transition-all duration-300 min-h-[44px] hover:border-theme-accent hover:text-theme-accent"
+                  className="min-h-[44px] border-theme-border/70 text-theme-text/85 transition-all duration-300 hover:border-theme-accent hover:bg-theme-surface/60 hover:text-theme-accent"
                   onClick={() =>
                     document
                       .getElementById("contact")
@@ -209,16 +221,15 @@ export function HeroSection() {
 
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          animate={{ y: [0, 10, 0], opacity: 1 }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            delay: 1.5,
+          }}
+          className="absolute -bottom-10 left-1/2 -translate-x-1/2"
         >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <ChevronDown className="w-6 h-6 text-theme-primary" />
-          </motion.div>
+          <ChevronDown className="w-6 h-6 text-theme-primary" />
         </motion.div>
       </div>
     </section>

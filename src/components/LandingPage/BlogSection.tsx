@@ -22,12 +22,19 @@ export function BlogSection() {
   return (
     <section
       id="blog"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0a0e1a] to-[#111827] relative overflow-hidden"
+      className="relative overflow-hidden bg-(--color-background) py-20 px-4 text-theme-text sm:px-6 lg:px-8"
+      style={{
+        background:
+          "linear-gradient(to bottom, color-mix(in srgb, var(--color-background) 92%, transparent), var(--color-background))",
+      }}
     >
       {/* Background accent */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl opacity-10"
-        style={{ backgroundColor: "var(--color-secondary)" }}
+        className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl opacity-20"
+        style={{
+          background:
+            "radial-gradient(circle at center, color-mix(in srgb, var(--color-secondary) 30%, transparent), transparent 70%)",
+        }}
       />
 
       <div ref={ref} className="max-w-7xl mx-auto relative z-10">
@@ -56,18 +63,16 @@ export function BlogSection() {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-theme-secondary font-mono" aria-hidden="true">
+          <div className="mb-6 flex items-center gap-3 text-theme-accent">
+            <span className="font-mono" aria-hidden="true">
               {"</"}
             </span>
-            <h2 className="text-theme-secondary text-3xl font-bold">
-              Latest Articles
-            </h2>
-            <span className="text-theme-secondary font-mono" aria-hidden="true">
+            <h2 className="text-3xl font-bold">Latest Articles</h2>
+            <span className="font-mono" aria-hidden="true">
               {">"}
             </span>
           </div>
-          <p className="text-slate-400 max-w-2xl text-lg">
+          <p className="max-w-2xl text-lg text-theme-text/75">
             Discover articles about web development, programming tips, career
             insights, and practical lessons from real-world projects.
           </p>
@@ -98,7 +103,7 @@ export function BlogSection() {
                       <span className="px-3 py-1 text-xs font-mono bg-theme-primary/10 text-theme-primary rounded-full border border-theme-primary/20">
                         {post.category}
                       </span>
-                      <div className="flex items-center gap-4 text-slate-500 text-xs">
+                      <div className="flex items-center gap-4 text-xs text-theme-text/60">
                         <time
                           dateTime={post.date}
                           className="flex items-center gap-1"
@@ -118,10 +123,10 @@ export function BlogSection() {
 
                     {/* Content */}
                     <div className="flex-1 space-y-3 mb-4">
-                      <h3 className="text-slate-100 group-hover:text-theme-primary transition-colors duration-300 font-semibold text-xl tracking-tight">
+                      <h3 className="text-xl font-semibold tracking-tight text-theme-text transition-colors duration-300 group-hover:text-theme-primary">
                         {post.title}
                       </h3>
-                      <p className="text-slate-400 text-sm leading-relaxed">
+                      <p className="text-sm leading-relaxed text-theme-text/70">
                         {post.excerpt}
                       </p>
                     </div>
@@ -129,7 +134,7 @@ export function BlogSection() {
                     {/* Read more */}
                     <Button
                       variant="ghost"
-                      className="w-full justify-between text-slate-400 hover:text-theme-primary hover:bg-theme-primary/5 transition-all duration-300 group/btn min-h-[44px]"
+                      className="group/btn min-h-[44px] w-full justify-between text-theme-text/70 transition-all duration-300 hover:bg-theme-primary/5 hover:text-theme-primary"
                       asChild
                     >
                       <Link
@@ -157,7 +162,7 @@ export function BlogSection() {
           <Button
             variant="outline"
             size="lg"
-            className="border-slate-600 text-slate-300 hover:bg-theme-primary/10 hover:border-theme-primary hover:text-theme-primary transition-all duration-300"
+            className="border-theme-border/70 text-theme-text/80 transition-all duration-300 hover:border-theme-primary hover:bg-theme-primary/10 hover:text-theme-primary"
             asChild
           >
             <Link href="/blog" aria-label="View all blog articles">

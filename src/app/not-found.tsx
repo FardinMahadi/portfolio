@@ -10,50 +10,62 @@ import { motion } from "framer-motion";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-[#0a0e1a] text-slate-100 flex items-center justify-center px-4">
-      <div className="max-w-2xl mx-auto text-center">
+    <div
+      className="flex min-h-screen items-center justify-center bg-(--color-background) px-4 text-theme-text"
+      style={{
+        background:
+          "radial-gradient(circle at top left, color-mix(in srgb, var(--color-primary) 22%, transparent), transparent 55%), radial-gradient(circle at bottom right, color-mix(in srgb, var(--color-accent) 20%, transparent), transparent 60%), var(--color-background)",
+      }}
+    >
+      <div className="mx-auto max-w-2xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           {/* Terminal-style error display */}
-          <div className="bg-[#0f172a] rounded-lg border border-slate-700 p-8 mb-8">
-            <div className="bg-[#1e293b] rounded-t-lg border border-slate-700 p-3 flex items-center gap-2 mb-4">
+          <div
+            className="mb-8 rounded-lg border border-theme-border/60 p-8 shadow-lg shadow-theme-primary/10 backdrop-blur"
+            style={{
+              background:
+                "linear-gradient(to bottom right, color-mix(in srgb, var(--color-surface) 92%, transparent), color-mix(in srgb, var(--color-background) 88%, transparent))",
+            }}
+          >
+            <div className="mb-4 flex items-center gap-2 rounded-t-lg border border-theme-border/60 bg-theme-surface/80 p-3 backdrop-blur">
               <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-red-500" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                <div className="w-3 h-3 rounded-full bg-green-500" />
+                <div className="h-3 w-3 rounded-full bg-theme-primary/70" />
+                <div className="h-3 w-3 rounded-full bg-theme-accent/70" />
+                <div className="h-3 w-3 rounded-full bg-theme-secondary/70" />
               </div>
               <div className="ml-4 text-slate-400 text-sm font-mono">
                 ~/error/404.ts
               </div>
             </div>
 
-            <div className="space-y-4 text-left font-mono">
+            <div className="space-y-4 text-left font-mono text-theme-text/80">
               <div className="flex gap-4">
-                <div className="text-slate-600 select-none text-sm">1</div>
+                <div className="select-none text-sm text-theme-text/45">1</div>
                 <div className="flex-1">
-                  <span className="text-red-400">console</span>
-                  <span className="text-slate-400">.</span>
-                  <span className="text-yellow-400">error</span>
-                  <span className="text-slate-400">(</span>
-                  <span className="text-green-400">
+                  <span className="text-theme-accent">console</span>
+                  <span className="text-theme-text/60">.</span>
+                  <span className="text-theme-secondary">error</span>
+                  <span className="text-theme-text/60">(</span>
+                  <span className="text-theme-primary">
                     &apos;404: Page Not Found&apos;
                   </span>
-                  <span className="text-slate-400">);</span>
+                  <span className="text-theme-text/60">);</span>
                 </div>
               </div>
               <div className="flex gap-4">
-                <div className="text-slate-600 select-none text-sm">2</div>
+                <div className="select-none text-sm text-theme-text/45">2</div>
                 <div className="flex-1">
-                  <span className="text-purple-400">const</span>{" "}
-                  <span className="text-cyan-400">error</span>{" "}
-                  <span className="text-pink-400">=</span>{" "}
-                  <span className="text-green-400">
+                  <span className="text-theme-secondary">const</span>{" "}
+                  <span className="text-theme-primary/90">error</span>{" "}
+                  <span className="text-theme-accent/80">=</span>{" "}
+                  <span className="text-theme-primary">
                     &apos;Page does not exist&apos;
                   </span>
-                  <span className="text-slate-400">;</span>
+                  <span className="text-theme-text/60">;</span>
                 </div>
               </div>
             </div>
@@ -66,13 +78,13 @@ export default function NotFound() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mb-8"
           >
-            <h1 className="text-6xl font-mono font-bold text-cyan-400 mb-4">
+            <h1 className="mb-4 font-mono text-6xl font-bold text-theme-primary">
               404
             </h1>
-            <h2 className="text-2xl font-mono text-slate-300 mb-4">
+            <h2 className="mb-4 font-mono text-2xl text-theme-text">
               Page Not Found
             </h2>
-            <p className="text-slate-400 max-w-md mx-auto">
+            <p className="mx-auto max-w-md text-theme-text/70">
               The page you&apos;re looking for doesn&apos;t exist or has been
               moved. Let&apos;s get you back on track.
             </p>
@@ -88,10 +100,16 @@ export default function NotFound() {
             <Button
               asChild
               size="lg"
-              className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white shadow-lg shadow-cyan-500/50 min-h-[44px]"
+              className="min-h-[44px] text-theme-primary-foreground shadow-lg transition-all duration-300 hover:shadow-xl"
+              style={{
+                background:
+                  "linear-gradient(to right, var(--color-primary), var(--color-secondary))",
+                boxShadow:
+                  "0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.12), 0 0 25px -8px var(--color-primary)",
+              }}
             >
               <Link href="/">
-                <Home className="w-4 h-4 mr-2" />
+                <Home className="mr-2 h-4 w-4" />
                 Go Home
               </Link>
             </Button>
@@ -99,7 +117,7 @@ export default function NotFound() {
               asChild
               size="lg"
               variant="outline"
-              className="border-slate-600 text-slate-200 hover:bg-slate-800/50 hover:border-violet-500 hover:text-violet-400 min-h-[44px]"
+              className="min-h-[44px] border-theme-border/70 text-theme-text/80 transition-all duration-300 hover:border-theme-accent hover:bg-theme-surface/70 hover:text-theme-accent"
             >
               <Link
                 href="#"
@@ -119,15 +137,15 @@ export default function NotFound() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="mt-12 p-4 bg-slate-900/50 rounded-lg border border-slate-700/50 font-mono text-sm max-w-md mx-auto"
+            className="mx-auto mt-12 max-w-md rounded-lg border border-theme-border/60 bg-theme-surface/80 p-4 font-mono text-sm backdrop-blur"
           >
             <div className="flex gap-2">
-              <span className="text-green-400">$</span>
-              <span className="text-slate-400">cd /home</span>
+              <span className="text-theme-primary">$</span>
+              <span className="text-theme-text/70">cd /home</span>
             </div>
-            <div className="flex gap-2 mt-2">
-              <span className="text-green-400">$</span>
-              <span className="text-slate-400 animate-pulse">_</span>
+            <div className="mt-2 flex gap-2">
+              <span className="text-theme-primary">$</span>
+              <span className="animate-pulse text-theme-text/60">_</span>
             </div>
           </motion.div>
         </motion.div>

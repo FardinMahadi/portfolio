@@ -93,11 +93,27 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0a0e1a] to-[#111827] relative overflow-hidden"
+      className="relative overflow-hidden bg-(--color-background) py-20 px-4 text-theme-text sm:px-6 lg:px-8"
+      style={{
+        background:
+          "linear-gradient(to bottom, color-mix(in srgb, var(--color-background) 92%, transparent), var(--color-background))",
+      }}
     >
       {/* Background accents */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
+      <div
+        className="absolute right-0 top-0 h-96 w-96 rounded-full blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle at center, color-mix(in srgb, var(--color-accent) 24%, transparent), transparent 70%)",
+        }}
+      />
+      <div
+        className="absolute bottom-0 left-0 h-96 w-96 rounded-full blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle at center, color-mix(in srgb, var(--color-primary) 26%, transparent), transparent 70%)",
+        }}
+      />
 
       <div ref={ref} className="max-w-7xl mx-auto relative z-10">
         <script
@@ -128,14 +144,14 @@ export function AboutSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="space-y-4"
             >
-              <GlassmorphismPanel className="p-6">
-                <p className="text-slate-300 leading-relaxed">
+              <GlassmorphismPanel className="p-6 text-theme-text/80">
+                <p className="leading-relaxed">
                   I&apos;m a Full Stack Developer passionate about creating
                   seamless web experiences. With expertise in the MERN stack
                   (MongoDB, Express, React, Node.js) and modern frameworks like
                   Next.js, I transform ideas into robust, scalable applications.
                 </p>
-                <p className="text-slate-300 leading-relaxed mt-4">
+                <p className="mt-4 leading-relaxed">
                   My approach combines clean code architecture with cutting-edge
                   technologies, ensuring every project is performant,
                   maintainable, and user-focused. I focus on writing quality
@@ -143,9 +159,9 @@ export function AboutSection() {
                 </p>
               </GlassmorphismPanel>
 
-              <div className="flex items-center gap-3 px-4 py-2 bg-slate-900/50 rounded border border-slate-700/50 w-fit">
-                <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                <span className="text-slate-400 font-mono text-sm">
+              <div className="flex w-fit items-center gap-3 rounded border border-theme-border/60 bg-theme-surface/70 px-4 py-2 backdrop-blur">
+                <div className="h-2 w-2 animate-pulse rounded-full bg-theme-primary" />
+                <span className="font-mono text-sm text-theme-text/70">
                   Available for new projects
                 </span>
               </div>
@@ -156,7 +172,7 @@ export function AboutSection() {
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <h3 className="text-slate-200 mb-6 font-mono text-xl">
+              <h3 className="mb-6 font-mono text-xl text-theme-text">
                 Tech Stack
               </h3>
               <div className="grid grid-cols-3 sm:grid-cols-4 gap-4">
@@ -169,7 +185,13 @@ export function AboutSection() {
                     whileHover={{ scale: 1.1, y: -5 }}
                     className="group relative"
                   >
-                    <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 p-4 rounded-lg border border-slate-700/50 backdrop-blur-sm flex flex-col items-center justify-center aspect-square transition-all duration-300 hover:border-theme-primary/50">
+                    <div
+                      className="flex aspect-square flex-col items-center justify-center rounded-lg border border-theme-border/60 bg-theme-surface/80 p-4 backdrop-blur-sm transition-all duration-300 hover:border-theme-primary/50"
+                      style={{
+                        background:
+                          "linear-gradient(to bottom right, color-mix(in srgb, var(--color-surface) 92%, transparent), color-mix(in srgb, var(--color-background) 88%, transparent))",
+                      }}
+                    >
                       <div className="text-3xl mb-2">
                         <Image
                           src={tech.icon.link}
@@ -181,13 +203,13 @@ export function AboutSection() {
                           quality={90}
                         />
                       </div>
-                      <div className="text-xs text-slate-400 text-center font-mono">
+                      <div className="text-center text-xs font-mono text-theme-text/70">
                         {tech.name}
                       </div>
 
                       {/* Glow effect on hover */}
                       <div
-                        className={`absolute inset-0 rounded-lg bg-gradient-to-br ${tech.color} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300`}
+                        className={`absolute inset-0 rounded-lg bg-linear-to-br ${tech.color} opacity-0 transition-opacity duration-300 blur-xl group-hover:opacity-20`}
                       />
                     </div>
                   </motion.div>

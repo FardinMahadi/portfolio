@@ -26,10 +26,20 @@ export function BlogIndexPage() {
   return (
     <section
       id="blog-index"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0a0e1a] to-[#111827] relative overflow-hidden min-h-screen scroll-mt-28 md:scroll-mt-32"
+      className="relative min-h-screen overflow-hidden bg-(--color-background) py-20 px-4 text-theme-text sm:px-6 lg:px-8 scroll-mt-28 md:scroll-mt-32"
+      style={{
+        background:
+          "linear-gradient(to bottom, color-mix(in srgb, var(--color-background) 94%, transparent), var(--color-background))",
+      }}
     >
       {/* Background accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-3xl" />
+      <div
+        className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[200px] opacity-20"
+        style={{
+          background:
+            "radial-gradient(circle at center, color-mix(in srgb, var(--color-accent) 22%, transparent), transparent 70%)",
+        }}
+      />
 
       <div ref={ref} className="max-w-7xl mx-auto relative z-10">
         {blogPosts.map((post, index) => {
@@ -57,18 +67,18 @@ export function BlogIndexPage() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <span className="text-theme-primary font-mono" aria-hidden="true">
+          <div className="mb-6 flex items-center justify-center gap-3 text-theme-primary">
+            <span className="font-mono" aria-hidden="true">
               {"</"}
             </span>
-            <h1 className="text-theme-primary text-4xl font-bold">
+            <h1 className="text-4xl font-bold text-theme-accent">
               Blog Articles
             </h1>
-            <span className="text-theme-primary font-mono" aria-hidden="true">
+            <span className="font-mono" aria-hidden="true">
               {">"}
             </span>
           </div>
-          <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+          <p className="mx-auto max-w-2xl text-lg text-theme-text/75">
             Explore articles about web development, programming tips, career
             insights, and learning resources. Written to help developers grow
             and succeed in their journey.
@@ -104,14 +114,14 @@ export function BlogIndexPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center py-12"
+            className="py-12 text-center"
           >
-            <p className="text-slate-400 text-lg">
+            <p className="text-lg text-theme-text/70">
               No articles found in this category.
             </p>
           </motion.div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filteredPosts.map((post, index) => (
               <motion.article
                 key={post.title}
@@ -127,13 +137,19 @@ export function BlogIndexPage() {
                   className="block h-full"
                   aria-label={`Read article: ${post.title}`}
                 >
-                  <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-lg border border-slate-700/50 p-6 backdrop-blur-sm hover:border-theme-primary/50 transition-all duration-300 h-full flex flex-col cursor-pointer">
+                  <div
+                    className="flex h-full cursor-pointer flex-col rounded-lg border border-theme-border/60 p-6 transition-all duration-300 backdrop-blur-sm hover:border-theme-primary/60"
+                    style={{
+                      background:
+                        "linear-gradient(to bottom right, color-mix(in srgb, var(--color-surface) 90%, transparent), color-mix(in srgb, var(--color-background) 88%, transparent))",
+                    }}
+                  >
                     {/* Category badge */}
                     <header className="flex items-center justify-between mb-4">
                       <span className="px-3 py-1 text-xs font-mono bg-theme-primary/10 text-theme-primary rounded-full border border-theme-primary/20">
                         {post.category}
                       </span>
-                      <div className="flex items-center gap-4 text-slate-500 text-xs">
+                      <div className="flex items-center gap-4 text-theme-text/60 text-xs">
                         <time
                           dateTime={post.date}
                           className="flex items-center gap-1"
@@ -153,10 +169,10 @@ export function BlogIndexPage() {
 
                     {/* Content */}
                     <div className="flex-1 space-y-3 mb-4">
-                      <h3 className="text-slate-100 group-hover:text-theme-primary transition-colors duration-300 font-semibold text-xl tracking-tight">
+                      <h3 className="text-xl font-semibold tracking-tight text-theme-text transition-colors duration-300 group-hover:text-theme-primary">
                         {post.title}
                       </h3>
-                      <p className="text-slate-400 text-sm leading-relaxed">
+                      <p className="text-sm leading-relaxed text-theme-text/70">
                         {post.excerpt}
                       </p>
                     </div>
@@ -164,7 +180,7 @@ export function BlogIndexPage() {
                     {/* Read more */}
                     <Button
                       variant="ghost"
-                      className="w-full justify-between text-slate-400 hover:text-theme-primary hover:bg-theme-primary/5 transition-all duration-300 group/btn min-h-[44px]"
+                      className="group/btn min-h-[44px] w-full justify-between text-theme-text/70 transition-all duration-300 hover:bg-theme-primary/5 hover:text-theme-primary"
                       asChild
                     >
                       <Link

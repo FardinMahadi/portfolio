@@ -1,54 +1,24 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import {
-  Github,
-  Linkedin,
-  Mail,
-  MessageCircle,
-  Send,
-  CheckCircle2,
-  AlertCircle,
-  Loader2,
-} from "lucide-react";
+import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { Github, Linkedin, Mail, MessageCircle } from "lucide-react";
+import socialLinksData from "@/data/socialLinks.json";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { SocialLinksProps } from "../types/SocialLinksProps";
 
-const socialLinks: SocialLinksProps[] = [
-  {
-    name: "GitHub",
-    username: "FardinMahadi",
-    icon: Github,
-    url: "https://github.com/FardinMahadi/",
-    color: "hover:text-slate-300",
-    glow: "group-hover:shadow-slate-500/50",
-  },
-  {
-    name: "LinkedIn",
-    username: "mahadi-hasan-fardin",
-    icon: Linkedin,
-    url: "https://www.linkedin.com/in/mahadi-hasan-fardin",
-    color: "hover:text-blue-400",
-    glow: "group-hover:shadow-blue-500/50",
-  },
-  {
-    name: "Email",
-    icon: Mail,
-    username: "mahadihasanfardin",
-    url: "mailto:mahadihasanfardin2015@gmail.com",
-    color: "hover:text-cyan-400",
-    glow: "group-hover:shadow-cyan-500/50",
-  },
-  {
-    name: "Discord",
-    username: "fardinmahadi",
-    icon: MessageCircle,
-    url: "https://discord.com/users/fardinmahadi",
-    color: "hover:text-indigo-400",
-    glow: "group-hover:shadow-indigo-500/50",
-  },
-];
+const iconMap = {
+  Github,
+  Linkedin,
+  Mail,
+  MessageCircle,
+} as const;
+
+const socialLinks: SocialLinksProps[] = socialLinksData.map((item) => ({
+  ...item,
+  icon: iconMap[item.icon as keyof typeof iconMap],
+}));
 
 export function ContactSection() {
   const ref = useRef(null);
@@ -145,31 +115,49 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0a0e1a] to-[#111827] relative overflow-hidden"
+      className="relative bg-(--color-background) py-20 px-4 text-theme-text sm:px-6 lg:px-8"
+      style={{
+        background:
+          "linear-gradient(to bottom, color-mix(in srgb, var(--color-background) 92%, transparent), var(--color-background))",
+      }}
     >
       {/* Background effects */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl" />
+      <div
+        className="absolute left-0 top-0 h-96 w-96 rounded-full blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle at center, color-mix(in srgb, var(--color-primary) 26%, transparent), transparent 70%)",
+        }}
+      />
+      <div
+        className="absolute bottom-0 right-0 h-96 w-96 rounded-full blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle at center, color-mix(in srgb, var(--color-accent) 26%, transparent), transparent 70%)",
+        }}
+      />
 
-      <div ref={ref} className="max-w-4xl mx-auto relative z-10">
+      <div ref={ref} className="relative z-10 mx-auto max-w-4xl">
         <motion.header
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="mb-12 text-center"
         >
-          <div className="flex items-center justify-center gap-3 mb-6">
+          <div className="mb-6 flex items-center justify-center gap-3 text-theme-primary">
             <span
-              className="text-green-400 font-mono text-xl"
+              className="font-mono text-xl text-theme-primary"
               aria-hidden="true"
             >
               {">"}_
             </span>
-            <h2 className="text-green-400 text-3xl font-bold">Get In Touch</h2>
+            <h2 className="text-3xl font-bold text-theme-accent">
+              Get In Touch
+            </h2>
           </div>
-          <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-            Have a project idea or want to collaborate? I&apos;m always open 
-            to discussing new opportunities, freelance work, and exciting 
+          <p className="mx-auto max-w-2xl text-lg text-theme-text/75">
+            Have a project idea or want to collaborate? I&apos;m always open to
+            discussing new opportunities, freelance work, and exciting
             challenges in web development.
           </p>
         </motion.header>
@@ -188,26 +176,32 @@ export function ContactSection() {
             >
               {/* Terminal-style form header */}
               <div
-                className="bg-slate-900/50 rounded-t-lg border border-slate-700/50 px-4 py-2"
+                className="rounded-t-lg border border-theme-border/60 bg-theme-surface/70 px-4 py-2 backdrop-blur"
                 role="presentation"
               >
                 <div className="flex items-center gap-2">
                   <div className="flex gap-1.5" aria-hidden="true">
-                    <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                    <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                    <div className="h-3 w-3 rounded-full bg-theme-primary/70" />
+                    <div className="h-3 w-3 rounded-full bg-theme-accent/70" />
+                    <div className="h-3 w-3 rounded-full bg-theme-secondary/70" />
                   </div>
-                  <span className="text-slate-500 text-xs font-mono ml-2">
+                  <span className="ml-2 text-xs font-mono text-theme-text/60">
                     contact-form.tsx
                   </span>
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-b-lg border-x border-b border-slate-700/50 p-6 space-y-4 backdrop-blur-sm">
+              <div
+                className="space-y-4 rounded-b-lg border-x border-b border-theme-border/60 bg-theme-surface/80 p-6 backdrop-blur-sm"
+                style={{
+                  background:
+                    "linear-gradient(to bottom right, color-mix(in srgb, var(--color-surface) 90%, transparent), color-mix(in srgb, var(--color-background) 88%, transparent))",
+                }}
+              >
                 <div>
                   <label
                     htmlFor="contact-name"
-                    className="text-slate-300 text-sm font-mono mb-2 flex items-center gap-2"
+                    className="mb-2 flex items-center gap-2 font-mono text-sm text-theme-text/75"
                   >
                     <span className="text-purple-400">const</span>
                     <span className="text-cyan-400">name</span>
@@ -223,7 +217,7 @@ export function ContactSection() {
                       if (errors.name)
                         setErrors({ ...errors, name: undefined });
                     }}
-                    className={`bg-slate-900/50 border-slate-700 focus:border-cyan-500 text-slate-200 placeholder:text-slate-600 min-h-[44px] ${
+                    className={`min-h-[44px] border-theme-border/70 bg-theme-surface/70 text-theme-text placeholder:text-theme-text/50 focus:border-theme-primary ${
                       errors.name ? "border-red-500" : ""
                     }`}
                     aria-required="true"
@@ -245,7 +239,7 @@ export function ContactSection() {
                 <div>
                   <label
                     htmlFor="contact-email"
-                    className="text-slate-300 text-sm font-mono mb-2 flex items-center gap-2"
+                    className="mb-2 flex items-center gap-2 font-mono text-sm text-theme-text/75"
                   >
                     <span className="text-purple-400">const</span>
                     <span className="text-cyan-400">email</span>
@@ -261,7 +255,7 @@ export function ContactSection() {
                       if (errors.email)
                         setErrors({ ...errors, email: undefined });
                     }}
-                    className={`bg-slate-900/50 border-slate-700 focus:border-cyan-500 text-slate-200 placeholder:text-slate-600 min-h-[44px] ${
+                    className={`min-h-[44px] border-theme-border/70 bg-theme-surface/70 text-theme-text placeholder:text-theme-text/50 focus:border-theme-primary ${
                       errors.email ? "border-red-500" : ""
                     }`}
                     aria-required="true"
@@ -283,7 +277,7 @@ export function ContactSection() {
                 <div>
                   <label
                     htmlFor="contact-message"
-                    className="text-slate-300 text-sm font-mono mb-2 flex items-center gap-2"
+                    className="mb-2 flex items-center gap-2 font-mono text-sm text-theme-text/75"
                   >
                     <span className="text-purple-400">const</span>
                     <span className="text-cyan-400">message</span>
@@ -299,7 +293,7 @@ export function ContactSection() {
                       if (errors.message)
                         setErrors({ ...errors, message: undefined });
                     }}
-                    className={`bg-slate-900/50 border-slate-700 focus:border-cyan-500 text-slate-200 placeholder:text-slate-600 resize-none min-h-[44px] ${
+                    className={`min-h-[44px] resize-none border-theme-border/70 bg-theme-surface/70 text-theme-text placeholder:text-theme-text/50 focus:border-theme-primary ${
                       errors.message ? "border-red-500" : ""
                     }`}
                     aria-required="true"
@@ -348,7 +342,13 @@ export function ContactSection() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white shadow-lg shadow-cyan-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/70 min-h-[44px] disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="min-h-[44px] w-full text-theme-primary-foreground shadow-lg transition-all duration-300 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
+                  style={{
+                    background:
+                      "linear-gradient(to right, var(--color-primary), var(--color-secondary))",
+                    boxShadow:
+                      "0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.12), 0 0 25px -8px var(--color-primary)",
+                  }}
                   aria-label="Submit contact form"
                 >
                   {isSubmitting ? (
@@ -376,7 +376,7 @@ export function ContactSection() {
           >
             {/* Social links */}
             <aside>
-              <h3 className="text-slate-200 mb-6 font-mono text-xl">
+              <h3 className="mb-6 font-mono text-xl text-theme-text">
                 Connect With Me
               </h3>
               <div className="space-y-4">
@@ -390,21 +390,21 @@ export function ContactSection() {
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
                     whileHover={{ x: 10 }}
-                    className="group flex items-center gap-4 p-4 bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-lg border border-slate-700/50 backdrop-blur-sm hover:border-green-500/50 transition-all duration-300 min-h-[44px]"
+                    className="group flex min-h-[44px] items-center gap-4 rounded-lg border border-theme-border/60 bg-theme-surface/80 p-4 transition-all duration-300 backdrop-blur-sm hover:border-theme-primary/60"
                     aria-label={`Visit ${social.name} profile for ${social.username}`}
                   >
                     <div
-                      className={`p-3 rounded-lg bg-slate-900/50 border border-slate-700/50 group-hover:border-green-500/50 transition-all duration-300 shadow-lg ${social.glow}`}
+                      className={`rounded-lg border border-theme-border/60 bg-theme-surface/80 p-3 shadow-lg transition-all duration-300 group-hover:border-theme-primary/50 ${social.glow}`}
                     >
                       <social.icon
-                        className={`w-5 h-5 text-slate-400 ${social.color} transition-colors duration-300`}
+                        className={`h-5 w-5 text-theme-text/70 ${social.color} transition-colors duration-300`}
                       />
                     </div>
                     <div className="flex-1">
-                      <div className="text-slate-200 group-hover:text-green-400 transition-colors duration-300">
+                      <div className="transition-colors duration-300 group-hover:text-theme-primary">
                         {social.name}
                       </div>
-                      <div className="text-slate-500 text-sm font-mono">
+                      <div className="text-sm font-mono text-theme-text/60">
                         @{social.username}
                       </div>
                     </div>
@@ -418,32 +418,50 @@ export function ContactSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.8 }}
-              className="bg-slate-900/50 rounded-lg border border-slate-700/50 p-6 font-mono text-sm backdrop-blur-sm"
+              className="overflow-hidden rounded-lg border border-theme-border/60 bg-theme-surface/80 shadow-lg shadow-theme-primary/10 backdrop-blur"
+              style={{
+                boxShadow:
+                  "inset 0 0 0 1px color-mix(in srgb, var(--color-border) 60%, transparent)",
+              }}
             >
-              <div className="space-y-2">
-                <div className="flex gap-2">
-                  <span className="text-green-400">$</span>
-                  <span className="text-slate-400">cat status.txt</span>
+              <header className="flex items-center gap-2 border-b border-theme-border/50 bg-theme-surface/80 px-4 py-3">
+                <div className="flex gap-1.5" aria-hidden="true">
+                  <span className="h-2.5 w-2.5 rounded-full bg-theme-primary/70" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-theme-accent/70" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-theme-secondary/70" />
                 </div>
-                <div className="pl-4 space-y-1">
-                  <address className="text-slate-500 not-italic">
+                <span className="font-mono text-xs uppercase tracking-[0.3em] text-theme-text/60">
+                  status.txt
+                </span>
+              </header>
+              <div className="space-y-2 px-4 pb-4 pt-3 font-mono text-sm">
+                <div className="flex gap-2">
+                  <span className="text-theme-primary">$</span>
+                  <span className="text-theme-text/70">cat status.txt</span>
+                </div>
+                <div className="space-y-1 pl-4">
+                  <address className="not-italic text-theme-text/65">
                     <div>
-                      <span className="text-cyan-400">Location:</span> Remote /
-                      Dhaka / Cumilla
+                      <span className="text-theme-primary/80">Location:</span>{" "}
+                      Remote / Dhaka / Cumilla
                     </div>
                     <div>
-                      <span className="text-violet-400">Availability:</span>{" "}
+                      <span className="text-theme-accent/80">
+                        Availability:
+                      </span>{" "}
                       Open to opportunities
                     </div>
                     <div>
-                      <span className="text-pink-400">Response Time:</span>{" "}
+                      <span className="text-theme-secondary/80">
+                        Response Time:
+                      </span>{" "}
                       {"<"} 24 hours
                     </div>
                   </address>
                 </div>
-                <div className="flex gap-2 mt-4">
-                  <span className="text-green-400">$</span>
-                  <span className="text-slate-400 animate-pulse">_</span>
+                <div className="mt-4 flex gap-2">
+                  <span className="text-theme-primary">$</span>
+                  <span className="animate-pulse text-theme-text/60">_</span>
                 </div>
               </div>
             </motion.div>

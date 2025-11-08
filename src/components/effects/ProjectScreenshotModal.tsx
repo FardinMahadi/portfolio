@@ -157,7 +157,11 @@ export function ProjectScreenshotModal({
           data-project-modal
         >
           <motion.div
-            className="absolute inset-0 bg-slate-950/80 backdrop-blur-md"
+            className="absolute inset-0 backdrop-blur-md"
+            style={{
+              background:
+                "color-mix(in srgb, var(--color-background) 88%, rgba(6, 5, 17, 0.9))",
+            }}
             initial="hidden"
             animate="visible"
             exit="hidden"
@@ -171,14 +175,18 @@ export function ProjectScreenshotModal({
             aria-labelledby={`${modalId}-title`}
             aria-describedby={`${modalId}-description`}
             id={modalId}
-            className="relative z-1 mx-4 flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl border border-theme-primary/20 bg-slate-900/90 shadow-2xl"
+            className="relative z-1 mx-4 flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl border border-theme-border/60 text-theme-text shadow-2xl"
+            style={{
+              background:
+                "linear-gradient(to bottom right, color-mix(in srgb, var(--color-surface) 94%, transparent), color-mix(in srgb, var(--color-background) 88%, transparent))",
+            }}
             ref={dialogRef}
             variants={dialogVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
           >
-            <div className="flex items-start justify-between border-b border-slate-700/50 bg-slate-900/80 px-6 py-4">
+            <div className="flex items-start justify-between border-b border-theme-border/50 bg-theme-surface/80 px-6 py-4 backdrop-blur">
               <div>
                 <h2
                   id={`${modalId}-title`}
@@ -188,12 +196,12 @@ export function ProjectScreenshotModal({
                 </h2>
                 <p
                   id={`${modalId}-description`}
-                  className="mt-1 text-sm text-slate-400"
+                  className="mt-1 text-sm text-theme-text/70"
                 >
                   {project.description}
                 </p>
                 {project.role && (
-                  <p className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                  <p className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-theme-text/60">
                     {project.role}
                   </p>
                 )}
@@ -203,7 +211,7 @@ export function ProjectScreenshotModal({
                 ref={closeButtonRef}
                 type="button"
                 onClick={onClose}
-                className="rounded-full border border-slate-700/60 bg-slate-800/70 p-2 text-slate-300 transition hover:border-theme-primary/50 hover:text-theme-primary focus-visible:outline-none focus-visible:ring focus-visible:ring-theme-primary/60"
+                className="rounded-full border border-theme-border/60 bg-theme-surface/80 p-2 text-theme-text/70 transition hover:border-theme-primary/60 hover:text-theme-primary focus-visible:outline-none focus-visible:ring focus-visible:ring-theme-primary/60"
                 aria-label="Close screenshot preview"
               >
                 <X className="h-4 w-4" aria-hidden="true" />
@@ -211,11 +219,17 @@ export function ProjectScreenshotModal({
             </div>
 
             <motion.div
-              className="relative flex-1 overflow-auto bg-slate-950/70 p-4 sm:p-6"
+              className="relative flex-1 overflow-auto bg-(--color-background) p-4 sm:p-6"
               layout
             >
               <div className="relative mx-auto w-full max-w-4xl">
-                <div className="relative rounded-xl border border-slate-800/70 bg-slate-900/80 p-3 shadow-inner">
+                <div
+                  className="relative rounded-xl border border-theme-border/60 bg-theme-surface/80 p-3 shadow-inner"
+                  style={{
+                    background:
+                      "linear-gradient(to bottom right, color-mix(in srgb, var(--color-surface) 94%, transparent), color-mix(in srgb, var(--color-background) 88%, transparent))",
+                  }}
+                >
                   <ImageWithFallback
                     src={gallery[activeIndex]?.src ?? project.image}
                     alt={
@@ -239,7 +253,7 @@ export function ProjectScreenshotModal({
                                 (current - 1 + gallery.length) % gallery.length
                             )
                           }
-                          className="pointer-events-auto rounded-full border border-slate-700/50 bg-slate-900/80 p-2 text-slate-200 transition hover:border-theme-primary/60 hover:text-theme-primary focus-visible:outline-none focus-visible:ring focus-visible:ring-theme-primary/60"
+                          className="pointer-events-auto rounded-full border border-theme-border/60 bg-theme-surface/80 p-2 text-theme-text/70 transition hover:border-theme-primary/60 hover:text-theme-primary focus-visible:outline-none focus-visible:ring focus-visible:ring-theme-primary/60"
                           aria-label="View previous screenshot"
                         >
                           <ChevronLeft className="h-4 w-4" aria-hidden="true" />
@@ -251,7 +265,7 @@ export function ProjectScreenshotModal({
                               (current) => (current + 1) % gallery.length
                             )
                           }
-                          className="pointer-events-auto rounded-full border border-slate-700/50 bg-slate-900/80 p-2 text-slate-200 transition hover:border-theme-primary/60 hover:text-theme-primary focus-visible:outline-none focus-visible:ring focus-visible:ring-theme-primary/60"
+                          className="pointer-events-auto rounded-full border border-theme-border/60 bg-theme-surface/80 p-2 text-theme-text/70 transition hover:border-theme-primary/60 hover:text-theme-primary focus-visible:outline-none focus-visible:ring focus-visible:ring-theme-primary/60"
                           aria-label="View next screenshot"
                         >
                           <ChevronRight
@@ -273,7 +287,7 @@ export function ProjectScreenshotModal({
                               className={`relative overflow-hidden rounded-lg border transition focus-visible:outline-none focus-visible:ring focus-visible:ring-theme-primary/60 ${
                                 isActive
                                   ? "border-theme-primary shadow-[0_0_0_2px_rgba(56,189,248,0.35)]"
-                                  : "border-slate-700/60 hover:border-theme-primary/50"
+                                  : "border-theme-border/60 hover:border-theme-primary/50"
                               }`}
                             >
                               <ImageWithFallback
@@ -298,7 +312,7 @@ export function ProjectScreenshotModal({
             </motion.div>
 
             {footerSlot && (
-              <div className="border-t border-slate-700/50 bg-slate-900/80 px-6 py-4 text-sm text-slate-400">
+              <div className="border-t border-theme-border/60 bg-theme-surface/80 px-6 py-4 text-sm text-theme-text/75 backdrop-blur">
                 {footerSlot}
               </div>
             )}

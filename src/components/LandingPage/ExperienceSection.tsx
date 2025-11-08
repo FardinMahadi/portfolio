@@ -71,11 +71,27 @@ export function ExperienceSection() {
   return (
     <section
       id="experience"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0a0e1a] to-[#111827] relative overflow-hidden"
+      className="relative overflow-hidden bg-(--color-background) py-20 px-4 text-theme-text sm:px-6 lg:px-8"
+      style={{
+        background:
+          "linear-gradient(to bottom, color-mix(in srgb, var(--color-background) 92%, transparent), var(--color-background))",
+      }}
     >
       {/* Background accents */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
+      <div
+        className="absolute left-0 top-0 h-96 w-96 rounded-full blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle at center, color-mix(in srgb, var(--color-primary) 25%, transparent), transparent 70%)",
+        }}
+      />
+      <div
+        className="absolute bottom-0 right-0 h-96 w-96 rounded-full blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle at center, color-mix(in srgb, var(--color-accent) 22%, transparent), transparent 70%)",
+        }}
+      />
 
       <div ref={ref} className="max-w-7xl mx-auto relative z-10">
         <script
@@ -90,16 +106,13 @@ export function ExperienceSection() {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <div className="flex items-center gap-3 mb-6">
-            <Briefcase
-              className="w-6 h-6 text-theme-secondary"
-              aria-hidden="true"
-            />
-            <h2 className="text-theme-secondary text-3xl font-bold">
+          <div className="mb-6 flex items-center gap-3 text-theme-primary">
+            <Briefcase className="h-6 w-6" aria-hidden="true" />
+            <h2 className="text-3xl font-bold text-theme-accent">
               Work Experience
             </h2>
           </div>
-          <p className="text-slate-400 max-w-2xl text-lg">
+          <p className="max-w-2xl text-lg text-theme-text/75">
             A timeline of my professional journey, showcasing my growth and
             contributions in web development and software engineering.
           </p>
@@ -115,26 +128,38 @@ export function ExperienceSection() {
               className="relative"
             >
               {/* Timeline line */}
-              <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/50 via-cyan-500/30 to-transparent hidden md:block" />
+              <div
+                className="absolute left-6 top-0 hidden w-0.5 md:block"
+                style={{
+                  background:
+                    "linear-gradient(to bottom, color-mix(in srgb, var(--color-primary) 35%, transparent), color-mix(in srgb, var(--color-secondary) 18%, transparent) 55%, transparent)",
+                }}
+              />
 
               {/* Content card */}
-              <div className="relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-lg backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 p-6 md:pl-12 group">
+              <div
+                className="group relative rounded-lg border border-theme-border/60 bg-theme-surface/80 p-6 transition-all duration-300 backdrop-blur-sm hover:border-theme-primary/50 hover:shadow-lg hover:shadow-theme-primary/20 md:pl-12"
+                style={{
+                  background:
+                    "linear-gradient(to bottom right, color-mix(in srgb, var(--color-surface) 92%, transparent), color-mix(in srgb, var(--color-background) 88%, transparent))",
+                }}
+              >
                 {/* Timeline dot */}
-                <div className="absolute left-6 top-8 w-3 h-3 rounded-full bg-theme-primary border-2 border-slate-900 hidden md:block" />
+                <div className="absolute left-6 top-8 hidden h-3 w-3 rounded-full border-2 border-theme-border/80 bg-theme-primary md:block" />
 
                 <header className="mb-4">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-3">
                     <div>
-                      <h3 className="text-xl font-bold text-slate-100 mb-1">
+                      <h3 className="mb-1 text-xl font-bold text-theme-text">
                         {experience.position}
                       </h3>
-                      <div className="flex flex-wrap items-center gap-3 text-slate-300">
+                      <div className="flex flex-wrap items-center gap-3 text-theme-text/80">
                         {experience.companyUrl ? (
                           <a
                             href={experience.companyUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-1 hover:text-blue-400 transition-colors group"
+                            className="group flex items-center gap-1 transition-colors hover:text-theme-primary"
                             aria-label={`Visit ${experience.company} website`}
                           >
                             <span className="font-semibold">
@@ -152,10 +177,13 @@ export function ExperienceSection() {
                         )}
                         {experience.type && (
                           <>
-                            <span className="text-slate-500" aria-hidden="true">
+                            <span
+                              className="text-theme-text/50"
+                              aria-hidden="true"
+                            >
                               •
                             </span>
-                            <span className="text-sm bg-slate-700/50 px-2 py-1 rounded border border-slate-600/50">
+                            <span className="rounded border border-theme-border/60 bg-theme-surface/70 px-2 py-1 text-sm text-theme-text/75">
                               {experience.type}
                             </span>
                           </>
@@ -164,7 +192,7 @@ export function ExperienceSection() {
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400">
+                  <div className="flex flex-wrap items-center gap-4 text-sm text-theme-text/70">
                     <div className="flex items-center gap-2">
                       <MapPin className="w-4 h-4" aria-hidden="true" />
                       <span>{experience.location}</span>
@@ -182,7 +210,7 @@ export function ExperienceSection() {
                       ) : (
                         <>
                           <span aria-hidden="true"> - </span>
-                          <span className="bg-green-500/20 text-green-400 px-2 py-0.5 rounded border border-green-500/30">
+                          <span className="rounded border border-theme-primary/40 bg-theme-primary/15 px-2 py-0.5 text-theme-primary">
                             {experience.current ? "Present" : "Ongoing"}
                           </span>
                         </>
@@ -192,13 +220,13 @@ export function ExperienceSection() {
                 </header>
 
                 <div className="space-y-4">
-                  <p className="text-slate-300 leading-relaxed">
+                  <p className="leading-relaxed text-theme-text/80">
                     {experience.description}
                   </p>
 
                   {experience.responsibilities.length > 0 && (
                     <div>
-                      <h4 className="text-slate-200 font-semibold mb-3 text-sm uppercase tracking-wide">
+                      <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide text-theme-text/75">
                         Key Responsibilities
                       </h4>
                       <ul className="space-y-2" role="list">
@@ -206,7 +234,7 @@ export function ExperienceSection() {
                           (responsibility, idx) => (
                             <li
                               key={idx}
-                              className="flex items-start gap-3 text-slate-300"
+                              className="flex items-start gap-3 text-theme-text/80"
                               role="listitem"
                             >
                               <span
@@ -227,14 +255,14 @@ export function ExperienceSection() {
 
                   {experience.technologies.length > 0 && (
                     <div>
-                      <h4 className="text-slate-200 font-semibold mb-3 text-sm uppercase tracking-wide">
+                      <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide text-theme-text/75">
                         Technologies
                       </h4>
                       <div className="flex flex-wrap gap-2" role="list">
                         {experience.technologies.map((tech) => (
                           <span
                             key={tech}
-                            className="px-3 py-1 bg-slate-700/50 border border-slate-600/50 rounded text-sm text-slate-300 hover:border-blue-500/50 hover:text-blue-400 transition-colors"
+                            className="rounded border border-theme-border/60 bg-theme-surface/70 px-3 py-1 text-sm text-theme-text/80 transition-colors hover:border-theme-primary/50 hover:text-theme-primary"
                             role="listitem"
                           >
                             {tech}

@@ -1,4 +1,4 @@
-name: Deploy to Vercel
+name: Test and Deploy to Vercel
 
 on:
   push:
@@ -20,8 +20,25 @@ jobs:
       - run: pnpm run lint
       - run: pnpm run build
 
-  deploy:
+  docker-build:
     needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: false
+          tags: my-portfolio:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy:
+    needs: [test, docker-build]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

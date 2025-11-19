@@ -25,52 +25,62 @@ const ColorPaletteContext = createContext<ColorPaletteContextType | undefined>(
 
 export function ColorPaletteProvider({ children }: { children: ReactNode }) {
   const [currentPaletteKey, setCurrentPaletteKey] = useState<string>("default");
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Load saved palette from localStorage
-    const savedPalette = localStorage.getItem("colorPalette");
-    if (savedPalette && colorPalettes[savedPalette]) {
-      setCurrentPaletteKey(savedPalette);
-    } else {
-      // Apply default palette on first load
-      const palette = colorPalettes.default;
-      const cssVars = getPaletteCSSVariables(palette);
-      const root = document.documentElement;
+    // Mark as mounted to prevent hydration mismatch
+    setMounted(true);
 
-      Object.entries(cssVars).forEach(([key, value]) => {
-        root.style.setProperty(key, value);
-      });
+    // Load saved palette from localStorage (client-side only)
+    if (typeof window !== "undefined") {
+      const savedPalette = localStorage.getItem("colorPalette");
+      if (savedPalette && colorPalettes[savedPalette]) {
+        setCurrentPaletteKey(savedPalette);
+      } else {
+        // Apply default palette on first load
+        const palette = colorPalettes.default;
+        const cssVars = getPaletteCSSVariables(palette);
+        const root = document.documentElement;
+
+        Object.entries(cssVars).forEach(([key, value]) => {
+          root.style.setProperty(key, value);
+        });
+      }
     }
   }, []);
 
   const setPalette = (paletteKey: string) => {
-    if (colorPalettes[paletteKey]) {
-      setCurrentPaletteKey(paletteKey);
+    if (!mounted || !colorPalettes[paletteKey]) return;
+
+    setCurrentPaletteKey(paletteKey);
+
+    // Only access localStorage on client side
+    if (typeof window !== "undefined") {
       localStorage.setItem("colorPalette", paletteKey);
-
-      // Apply CSS variables to document root
-      const palette = colorPalettes[paletteKey];
-      const cssVars = getPaletteCSSVariables(palette);
-      const root = document.documentElement;
-
-      Object.entries(cssVars).forEach(([key, value]) => {
-        root.style.setProperty(key, value);
-      });
     }
+
+    // Apply CSS variables to document root
+    const palette = colorPalettes[paletteKey];
+    const cssVars = getPaletteCSSVariables(palette);
+    const root = document.documentElement;
+
+    Object.entries(cssVars).forEach(([key, value]) => {
+      root.style.setProperty(key, value);
+    });
   };
 
   useEffect(() => {
-    // Apply palette when currentPaletteKey changes
-    if (currentPaletteKey) {
-      const palette = colorPalettes[currentPaletteKey];
-      const cssVars = getPaletteCSSVariables(palette);
-      const root = document.documentElement;
+    // Apply palette when currentPaletteKey changes (only after mounted)
+    if (!mounted || !currentPaletteKey) return;
 
-      Object.entries(cssVars).forEach(([key, value]) => {
-        root.style.setProperty(key, value);
-      });
-    }
-  }, [currentPaletteKey]);
+    const palette = colorPalettes[currentPaletteKey];
+    const cssVars = getPaletteCSSVariables(palette);
+    const root = document.documentElement;
+
+    Object.entries(cssVars).forEach(([key, value]) => {
+      root.style.setProperty(key, value);
+    });
+  }, [mounted, currentPaletteKey]);
 
   const value = {
     currentPalette: colorPalettes[currentPaletteKey],

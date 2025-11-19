@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { ImageWithFallback } from "@/components/figma/ImageWithFallback";
 import type { ProjectScreenshotModalProps } from "@/components/types/ProjectScreenshotModalProps";
 
@@ -153,7 +153,7 @@ export function ProjectScreenshotModal({
     <AnimatePresence>
       {isOpen && project ? (
         <motion.div
-          className="fixed inset-0 z-9999 flex items-center justify-center"
+          className="fixed inset-0 z-[9999] flex items-center justify-center"
           data-project-modal
         >
           <motion.div

@@ -6,20 +6,19 @@ import { TargetCursor } from "@/components/effects/TargetCursor";
 
 export function AppCursorLayer() {
   const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
   const [isSuspended, setIsSuspended] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    // Mark as mounted to prevent hydration mismatch
+    setMounted(true);
 
     const syncState = (value?: boolean) => {
       if (typeof value === "boolean") {
         setIsSuspended(value);
         return;
       }
-      setIsSuspended(
-        typeof document !== "undefined" &&
-          document.body.dataset.cursorSuspended === "true"
-      );
+      setIsSuspended(document.body.dataset.cursorSuspended === "true");
     };
 
     const handleSuspend = (event: Event) => {
@@ -37,7 +36,8 @@ export function AppCursorLayer() {
     };
   }, []);
 
-  if (pathname?.startsWith("/blog") || isSuspended) {
+  // Don't render anything until mounted to prevent hydration mismatch
+  if (!mounted || pathname?.startsWith("/blog") || isSuspended) {
     return null;
   }
 

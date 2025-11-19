@@ -462,3 +462,35 @@ html::-webkit-scrollbar-corner,
 body::-webkit-scrollbar-corner {
   background: transparent;
 }
+
+/* Custom cursor compatibility fixes for all browsers including Firefox */
+@layer utilities {
+  /* Ensure cursor components render properly in Firefox */
+  .cursor-firefox-fix {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+    -moz-perspective: 1000px;
+  }
+
+  /* Optimize pointer-events for Firefox */
+  .pointer-events-none {
+    pointer-events: none !important;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Better rendering for fixed position elements in Firefox */
+  .fixed-optimized {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    will-change: transform;
+  }
+}

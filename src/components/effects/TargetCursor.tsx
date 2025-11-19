@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useCallback, useMemo } from "react";
+import { useEffect, useRef, useCallback, useMemo, useState } from "react";
 import { gsap } from "gsap";
 
 interface TargetCursorProps {
@@ -19,9 +19,13 @@ export function TargetCursor({
   const spinTl = useRef<gsap.core.Timeline | null>(null);
   const dotRef = useRef<HTMLDivElement>(null);
 
-  const isMobile = useMemo(() => {
-    // Check if we're in browser environment
-    if (typeof window === "undefined") return false;
+  // Prevent hydration mismatch by checking mounted state
+  const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile devices only on client side after mount
+  useEffect(() => {
+    setMounted(true);
 
     const hasTouchScreen =
       "ontouchstart" in window || navigator.maxTouchPoints > 0;
@@ -36,7 +40,7 @@ export function TargetCursor({
       /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
     const isMobileUserAgent = mobileRegex.test(userAgent.toLowerCase());
 
-    return (hasTouchScreen && isSmallScreen) || isMobileUserAgent;
+    setIsMobile((hasTouchScreen && isSmallScreen) || isMobileUserAgent);
   }, []);
 
   const constants = useMemo(
@@ -59,7 +63,7 @@ export function TargetCursor({
   }, []);
 
   useEffect(() => {
-    if (isMobile || !cursorRef.current) return;
+    if (!mounted || isMobile || !cursorRef.current) return;
     const originalCursor = document.body.style.cursor;
     if (hideDefaultCursor) {
       document.body.style.cursor = "none";
@@ -372,6 +376,7 @@ export function TargetCursor({
       document.body.style.cursor = originalCursor;
     };
   }, [
+    mounted,
     targetSelector,
     spinDuration,
     moveCursor,
@@ -381,7 +386,7 @@ export function TargetCursor({
   ]);
 
   useEffect(() => {
-    if (isMobile || !cursorRef.current || !spinTl.current) return;
+    if (!mounted || isMobile || !cursorRef.current || !spinTl.current) return;
 
     if (spinTl.current.isActive()) {
       spinTl.current.kill();
@@ -392,17 +397,18 @@ export function TargetCursor({
         ease: "none",
       });
     }
-  }, [spinDuration, isMobile]);
+  }, [mounted, spinDuration, isMobile]);
 
-  if (isMobile) {
+  // Don't render anything until mounted to prevent hydration mismatch
+  if (!mounted || isMobile) {
     return null;
   }
 
   return (
     <div
       ref={cursorRef}
-      className="fixed top-0 left-0 w-0 h-0 pointer-events-none z-9999"
-      style={{ transform: "translate(-50%, -50%)" }}
+      className="fixed top-0 left-0 w-0 h-0 pointer-events-none z-[9999]"
+      style={{ transform: "translate(-50%, -50%)", isolation: "isolate" }}
     >
       <div
         ref={dotRef}

@@ -23,6 +23,7 @@ export function BlogCursorEffect({
 }: BlogCursorEffectProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [activeLabel, setActiveLabel] = useState(label);
+  const [mounted, setMounted] = useState(false);
   const [isMdOrLarger, setIsMdOrLarger] = useState(false);
 
   const selectorList = useMemo(
@@ -30,8 +31,11 @@ export function BlogCursorEffect({
     [targetSelector]
   );
 
-  // Check if screen is md or larger (768px+)
+  // Check if screen is md or larger (768px+) - only after mount
   useEffect(() => {
+    // Mark as mounted first
+    setMounted(true);
+
     const checkScreenSize = () => {
       setIsMdOrLarger(window.innerWidth >= 768);
     };
@@ -48,7 +52,7 @@ export function BlogCursorEffect({
   }, []);
 
   useEffect(() => {
-    if (!isMdOrLarger) return;
+    if (!mounted || !isMdOrLarger) return;
 
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
@@ -96,7 +100,7 @@ export function BlogCursorEffect({
       wrapper.removeEventListener("mousemove", handleMouseMove);
       wrapper.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [label, selectorList, isMdOrLarger]);
+  }, [mounted, label, selectorList, isMdOrLarger]);
 
   return (
     <div
@@ -108,7 +112,7 @@ export function BlogCursorEffect({
     >
       {children}
 
-      {isMdOrLarger && (
+      {mounted && isMdOrLarger && (
         <CursorProvider className="pointer-events-none absolute inset-0">
           <CursorFollow
             align="bottom-right"

@@ -1,3 +1,5 @@
+"use client";
+
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { TechStackProps } from "../types/TechStackProps";
@@ -93,11 +95,7 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden bg-(--color-background) py-20 px-4 text-theme-text sm:px-6 lg:px-8"
-      style={{
-        background:
-          "linear-gradient(to bottom, color-mix(in srgb, var(--color-background) 92%, transparent), var(--color-background))",
-      }}
+      className="relative overflow-hidden py-20 px-4 text-theme-text sm:px-6 lg:px-8"
     >
       {/* Background accents */}
       <div

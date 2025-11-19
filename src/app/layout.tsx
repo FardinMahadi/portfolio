@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import { Analytics } from "./analytics";
-import { ScrollProgressIndicator } from "@/components/effects/ScrollProgressIndicator";
-import { ColorPaletteProvider } from "@/contexts/ColorPaletteContext";
+import { Geist, Geist_Mono } from "next/font/google";
+import { FaviconUpdater } from "../components/FaviconUpdater";
 import { AppCursorLayer } from "@/components/effects/AppCursorLayer";
+import { ColorPaletteProvider } from "@/contexts/ColorPaletteContext";
 import { NavigationLoader } from "@/components/ui/loading/NavigationLoader";
-import { FaviconUpdater } from "@/components/FaviconUpdater";
 import { ViewTransitionWrapper } from "@/components/effects/ViewTransitionWrapper";
+import { ScrollProgressIndicator } from "@/components/effects/ScrollProgressIndicator";
+
 import "./globals.css";
 
 const geistSans = Geist({

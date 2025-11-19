@@ -1,8 +1,8 @@
 import { Metadata } from "next";
-import { BlogIndexPage } from "@/components/blog/BlogIndexPage";
-import { generateMetadata as generateSEOMetadata } from "@/lib/seo";
-import { Navigation } from "@/components/LandingPage/Navigation";
 import { Footer } from "@/components/LandingPage/Footer";
+import { BlogIndexPage } from "@/components/blog/BlogIndexPage";
+import { Navigation } from "@/components/LandingPage/Navigation";
+import { generateMetadata as generateSEOMetadata } from "@/lib/seo";
 import { PageTransition } from "@/components/effects/PageTransition";
 
 const siteUrl =

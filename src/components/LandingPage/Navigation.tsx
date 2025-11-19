@@ -12,9 +12,27 @@ import { ColorPaletteSwitcher } from "../ui/ColorPaletteSwitcher";
 const navItems: NavItemsProps[] = [
   { name: "Home", href: "/", icon: "~/", isRoute: true },
   {
+    name: "About",
+    href: "/about",
+    icon: "<>",
+    isRoute: true,
+  },
+  {
+    name: "Experience",
+    href: "/experience",
+    icon: "::",
+    isRoute: true,
+  },
+  {
     name: "Blog",
     href: "/blog",
     icon: "//",
+    isRoute: true,
+  },
+  {
+    name: "Resume",
+    href: "/resume",
+    icon: "cv",
     isRoute: true,
   },
 ];
@@ -30,6 +48,10 @@ export function Navigation() {
     // Set active section based on route
     if (pathname === "/blog" || pathname?.startsWith("/blog/")) {
       setActiveSection("blog");
+    } else if (pathname === "/about") {
+      setActiveSection("about");
+    } else if (pathname === "/experience") {
+      setActiveSection("experience");
     } else if (pathname === "/") {
       setActiveSection("home");
     }
@@ -98,7 +120,7 @@ export function Navigation() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "backdrop-blur-xl border-b border-slate-800/50 shadow-lg"
+            ? "backdrop-blur-3xl border-b border-slate-800/50 shadow-lg"
             : "bg-transparent"
         }`}
         style={

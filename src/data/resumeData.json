@@ -1,0 +1,176 @@
+{
+  "personalInfo": {
+    "name": "Mahadi Hasan Fardin",
+    "title": "Frontend Engineer · MERN Stack Developer",
+    "location": "Dhaka, Bangladesh",
+    "email": "mahadihasanfardin2015@gmail.com",
+    "phone": "+8801540159331",
+    "portfolio": "https://fardinmahadi.vercel.app",
+    "image": "/Images/me.jpg"
+  },
+  "summary": "Full-Stack Developer specializing in React/Next.js ecosystems with a proven ability to ship production features independently and collaboratively. Focused on crafting pixel-perfect, performant experiences with clean architecture, rapid iteration, and measurable SEO gains.",
+  "links": [
+    {
+      "label": "Portfolio",
+      "url": "https://fardinmahadi.vercel.app"
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/FardinMahadi"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/mahadi-hasan-fardin"
+    },
+    {
+      "label": "Email",
+      "url": "mailto:mahadihasanfardin2015@gmail.com"
+    },
+    {
+      "label": "Discord",
+      "url": "https://discord.com/users/fardinmahadi"
+    }
+  ],
+  "coreCompetencies": {
+    "frontend": [
+      "Next.js",
+      "React.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "ShadCN UI",
+      "Framer Motion",
+      "Material UI"
+    ],
+    "backend": [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Firebase",
+      "REST API Design",
+      "JWT Authentication"
+    ],
+    "tools": [
+      "Git",
+      "GitHub",
+      "Postman",
+      "Figma",
+      "Vercel",
+      "Cursor AI",
+      "CI/CD"
+    ],
+    "strengths": [
+      "Performance Optimization",
+      "SEO",
+      "Component Architecture",
+      "Rapid Prototyping",
+      "Problem Solving"
+    ]
+  },
+  "experience": [
+    {
+      "company": "DevGenit",
+      "role": "Frontend Engineer",
+      "type": "Contract",
+      "location": "Remote",
+      "startDate": "2025-07",
+      "current": true,
+      "summary": "Lead frontend engineer delivering high-visibility conference and product experiences with React/Next.js.",
+      "achievements": [
+        "Collaborated with designers and backend engineers to ship features on tight sprint cycles.",
+        "Implemented performance optimizations to reduce load times and improve Core Web Vitals.",
+        "Ensured accessibility and responsiveness across high-traffic marketing surfaces.",
+        "Integrated REST APIs and CMS data sources into reusable UI modules.",
+        "Established clean component structures, prop contracts, and design token usage.",
+        "Built and deployed the ACS Bangladesh Youth Summit (ICESGE-2025) website that ranked #1 on Google within days."
+      ],
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Framer Motion",
+        "MUI",
+        "Vercel"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "ACS Youth Summit 2025",
+      "role": "Lead Frontend Engineer · DevGenit",
+      "description": "Developed and deployed the official conference platform for the ACS Bangladesh Youth Summit, supporting schedules, submissions, and partner showcases.",
+      "outcomes": [
+        "Achieved #1 Google ranking for the event’s primary keyword within days of launch.",
+        "Coordinated sponsor, speaker, and attendee journeys with CMS-driven sections.",
+        "Optimized imagery, accessibility, and SEO for hybrid conference audiences."
+      ],
+      "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      "links": {
+        "live": "https://acsduyouthsummit2025.org/"
+      }
+    },
+    {
+      "name": "Skill Up Learning Platform",
+      "role": "Core Frontend Developer",
+      "description": "Shipped highly polished marketing and onboarding flows for an ed-tech landing page experience.",
+      "outcomes": [
+        "Crafted visually rich pages using Tailwind, ShadCN, and Framer Motion.",
+        "Established reusable layout primitives and animation tokens for rapid iteration."
+      ],
+      "tech": ["Next.js", "Tailwind CSS", "ShadCN", "Framer Motion"],
+      "links": {
+        "live": "https://skill-up-alpha1.vercel.app/"
+      }
+    },
+    {
+      "name": "Lern Beta Platform",
+      "role": "Product Designer & Engineer",
+      "description": "AI-powered learning platform landing page focused on accessible education.",
+      "outcomes": [
+        "Crafted messaging and visuals describing the AI assistant storyline.",
+        "Architected responsive layout and CTA flow optimized for conversions.",
+        "Deployed with performance budgets to maintain sub-second interactions."
+      ],
+      "tech": ["Next.js", "Tailwind CSS", "Vercel", "AI"],
+      "links": {
+        "live": "https://lern-beta.vercel.app/",
+        "code": "https://github.com/FardinMahadi/Lern-AI-Powered-Study-Assistant-Uni-project-showcase"
+      }
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Sc. in Information and Communication Technology",
+      "institution": "Comilla University",
+      "location": "Cumilla, Bangladesh",
+      "startDate": "2024",
+      "endDate": "2028",
+      "details": [
+        "Expected graduation 2028.",
+        "2nd Prize – Intra-Department Programming Contest (ICT Week 2025, Junior Segment)."
+      ]
+    },
+    {
+      "degree": "Higher Secondary Certificate (HSC)",
+      "institution": "Dhaka College",
+      "location": "Dhaka, Bangladesh",
+      "endDate": "2023-08"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Intra-Department Programming Contest (ICT Week 2025)",
+      "issuer": "Comilla University",
+      "achievement": "2nd Prize · Junior Segment"
+    }
+  ],
+  "languages": [
+    {
+      "name": "English",
+      "proficiency": "Professional working proficiency"
+    },
+    {
+      "name": "Bangla",
+      "proficiency": "Native"
+    }
+  ]
+}

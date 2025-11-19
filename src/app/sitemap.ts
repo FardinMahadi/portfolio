@@ -26,13 +26,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     {
-      url: `${siteUrl}/#about`,
+      url: `${siteUrl}/about`,
       lastModified: baseDate,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
-      url: `${siteUrl}/#experience`,
+      url: `${siteUrl}/experience`,
       lastModified: baseDate,
       changeFrequency: "monthly",
       priority: 0.9,

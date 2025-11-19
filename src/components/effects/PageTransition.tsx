@@ -1,8 +1,8 @@
 "use client";
 
 import { ReactNode } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 import { TRANSITION_PRESETS } from "@/lib/transitions";
 
 interface PageTransitionProps {
@@ -39,6 +39,20 @@ export function PageTransition({
     },
   };
 
+  // Convert CSS cubic-bezier string to Framer Motion array format
+  const parseEasing = (easing: string): [number, number, number, number] => {
+    // Extract numbers from cubic-bezier string
+    const match = easing.match(/cubic-bezier\(([^)]+)\)/);
+    if (match) {
+      const values = match[1].split(",").map((v) => parseFloat(v.trim()));
+      if (values.length === 4) {
+        return values as [number, number, number, number];
+      }
+    }
+    // Fallback to default easing
+    return [0.4, 0, 0.2, 1];
+  };
+
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -48,7 +62,7 @@ export function PageTransition({
         exit={variants[variant].exit}
         transition={{
           duration: preset.duration / 1000,
-          ease: preset.easing,
+          ease: parseEasing(preset.easing),
         }}
       >
         {children}

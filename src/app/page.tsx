@@ -9,14 +9,19 @@ import { IntroSummary } from "@/components/LandingPage/IntroSummary";
 import { Navigation } from "@/components/LandingPage/Navigation";
 import { ProjectsSection } from "@/components/LandingPage/ProjectsSection";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
-import { PageLoader } from "@/components/ui/loading";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // Mark component as mounted to prevent hydration mismatch
+    setMounted(true);
+
+    // Only run client-side code after mount
+    if (typeof window === "undefined") return;
+
     document.documentElement.classList.add("dark");
 
     // Check if device supports touch
@@ -29,28 +34,15 @@ export default function Home() {
       );
     };
     checkTouchDevice();
-
-    // Simulate initial page load
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 800);
-
-    return () => clearTimeout(timer);
   }, []);
 
-  if (isLoading) {
-    return (
-      <ErrorBoundary>
-        <PageLoader message="Loading portfolio..." />
-      </ErrorBoundary>
-    );
-  }
-
+  // Prevent hydration mismatch by using consistent initial render
+  // Only apply cursor-none class after mount to avoid SSR/client mismatch
   return (
     <ErrorBoundary>
       <div
         className={`min-h-screen bg-[#0a0e1a] text-slate-100 overflow-x-hidden ${
-          isTouchDevice ? "" : "cursor-none"
+          mounted && !isTouchDevice ? "cursor-none" : ""
         }`}
       >
         {/* Skip to main content link for accessibility */}

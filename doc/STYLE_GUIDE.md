@@ -14,6 +14,11 @@ This document outlines the coding style, patterns, and conventions used througho
 8. [Animation Patterns](#animation-patterns)
 9. [Accessibility Patterns](#accessibility-patterns)
 10. [File Organization](#file-organization)
+11. [Cursor Effects](#cursor-effects)
+12. [API Routes](#api-routes)
+13. [Middleware](#middleware)
+14. [Color Palette System](#color-palette-system)
+15. [Blog System](#blog-system)
 
 ---
 
@@ -1285,6 +1290,268 @@ describe("Component", () => {
 - Fast: `0.2-0.3s`
 - Standard: `0.6-0.8s`
 - Slow: `1-2s`
+
+---
+
+## Cursor Effects
+
+### TargetCursor Component
+
+The `TargetCursor` component provides an animated cursor that responds to interactive elements marked with the `.cursor-target` class.
+
+```typescript
+// Elements that should trigger cursor effects
+<button className="cursor-target">
+  Interactive Button
+</button>
+
+// TargetCursor is automatically included in the root layout
+// It's disabled on mobile devices automatically
+```
+
+### BlogCursorEffect Component
+
+Used specifically for blog routes, provides a label-following cursor effect.
+
+```typescript
+import { BlogCursorEffect } from "@/components/effects/BlogCursorEffect";
+
+<BlogCursorEffect label="Creative Reading" targetSelector="[data-blog-category]">
+  {/* Blog content */}
+</BlogCursorEffect>
+```
+
+### Mobile Detection
+
+All cursor effects automatically detect and disable on mobile devices:
+
+```typescript
+const isMobile = useMemo(() => {
+  if (typeof window === "undefined") return false;
+  const hasTouchScreen =
+    "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  const isSmallScreen = window.innerWidth <= 768;
+  return hasTouchScreen && isSmallScreen;
+}, []);
+```
+
+### Cursor Effect Best Practices
+
+- Always disable on mobile devices
+- Use `.cursor-target` class for interactive elements
+- Cursor effects are automatically disabled on blog routes (uses BlogCursorEffect instead)
+- GSAP is used for smooth animations
+- Cursor effects use `mix-blend-difference` for visibility
+
+---
+
+## API Routes
+
+### Route Handler Pattern
+
+API routes follow Next.js 15 App Router conventions:
+
+```typescript
+// app/api/endpoint/route.ts
+import { NextRequest, NextResponse } from "next/server";
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+
+    // Validate input
+    if (!body.field) {
+      return NextResponse.json({ error: "Field is required" }, { status: 400 });
+    }
+
+    // Process request
+    const result = await processRequest(body);
+
+    return NextResponse.json(
+      { message: "Success", data: result },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("API Error:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
+  }
+}
+```
+
+### Contact API Route
+
+The contact form API route (`/api/contact/route.ts`) handles form submissions:
+
+- Validates required fields (name, email, message)
+- Validates email format
+- Enforces message length limits (5000 chars)
+- Integrates with Resend for email sending
+- Falls back to console logging in development
+- Returns appropriate HTTP status codes
+
+### Error Handling
+
+Always return proper HTTP status codes:
+
+- `200` - Success
+- `400` - Bad Request (validation errors)
+- `500` - Internal Server Error
+
+---
+
+## Middleware
+
+The middleware (`src/middleware.ts`) handles:
+
+### Security Headers
+
+- `X-DNS-Prefetch-Control` - DNS prefetching
+- `Strict-Transport-Security` - HSTS
+- `X-Frame-Options` - Clickjacking protection
+- `X-Content-Type-Options` - MIME type sniffing protection
+- `X-XSS-Protection` - XSS protection
+- `Referrer-Policy` - Referrer information
+- `Permissions-Policy` - Feature permissions
+
+### Cache Control
+
+- Static assets (images, fonts): `max-age=31536000, immutable`
+- JavaScript/CSS: `max-age=31536000, immutable`
+- HTML pages: `s-maxage=60, stale-while-revalidate=300`
+
+### Middleware Configuration
+
+```typescript
+export const config = {
+  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+};
+```
+
+---
+
+## Color Palette System
+
+### Using Color Palettes
+
+The project uses a dynamic color palette system with CSS variables:
+
+```typescript
+// Access palette in components
+import { useColorPalette } from "@/contexts/ColorPaletteContext";
+
+export function Component() {
+  const { currentPalette, setPalette, availablePalettes } = useColorPalette();
+
+  return (
+    <div className="bg-[var(--color-background)] text-[var(--color-text)]">
+      <button onClick={() => setPalette("purple")}>
+        Switch to Purple
+      </button>
+    </div>
+  );
+}
+```
+
+### CSS Variables
+
+Available CSS variables:
+
+- `--color-primary` - Primary accent color
+- `--color-secondary` - Secondary accent color
+- `--color-accent` - Tertiary accent color
+- `--color-background` - Background color
+- `--color-surface` - Surface/card background
+- `--color-text` - Primary text color
+- `--color-border` - Border color
+
+### Theme Utility Classes
+
+Use theme utility classes for consistent styling:
+
+- `bg-theme-background` - Background color
+- `text-theme-primary` - Primary text color
+- `border-theme-border` - Border color
+- `bg-theme-surface` - Surface background
+
+### Available Palettes
+
+- `default` - Cyan Blue (default)
+- `purple` - Purple Dream
+- `green` - Emerald Forest
+- `orange` - Sunset Orange
+- `red` - Crimson Red
+- `blue` - Ocean Blue
+
+### Palette Persistence
+
+Palette selection is persisted in `localStorage` and restored on page load.
+
+---
+
+## Blog System
+
+### Blog Post Structure
+
+Blog posts are stored in `src/data/blogPosts.json`:
+
+```typescript
+interface BlogPostsProps {
+  title: string;
+  excerpt: string;
+  date: string;
+  readTime: string;
+  category: string;
+  slug: string;
+  image?: string;
+  content: string; // Markdown content
+  link?: string;
+}
+```
+
+### Accessing Blog Posts
+
+```typescript
+import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/blogData";
+
+// Get all posts
+const posts = getAllBlogPosts();
+
+// Get single post
+const post = getBlogPostBySlug("slug-name");
+
+// Filter by category
+const filtered = posts.filter((p) => p.category === "Beginners");
+```
+
+### Markdown Rendering
+
+Blog content is rendered using `MarkdownRenderer`:
+
+```typescript
+import { MarkdownRenderer } from "@/components/blog/MarkdownRenderer";
+
+<MarkdownRenderer content={post.content} />
+```
+
+### Blog Categories
+
+Categories are used for filtering:
+
+- `Beginners` - Beginner-friendly content
+- `Learning` - Learning resources
+- `Motivation` - Motivational content
+
+### Blog SEO
+
+Each blog post includes:
+
+- Structured data (JSON-LD)
+- Meta tags
+- Open Graph tags
+- Twitter Card tags
 
 ---
 

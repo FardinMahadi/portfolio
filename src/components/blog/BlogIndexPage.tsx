@@ -1,14 +1,19 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import Link from "next/link";
 import Image from "next/image";
+
+import { blogPosts } from "@/lib/blogData";
+import { Button } from "@/components/ui/button";
+import { motion, useInView } from "framer-motion";
+import { CategoryFilter } from "./CategoryFilter";
+import { generateArticleSchema } from "@/lib/seo";
 import { useRef, useState, useMemo } from "react";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { generateArticleSchema } from "@/lib/seo";
-import { blogPosts } from "@/lib/blogData";
-import { CategoryFilter } from "./CategoryFilter";
+import {
+  getBlogImageTransitionName,
+  getBlogCardTransitionName,
+} from "@/lib/transitions";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://fardinmahadi.vercel.app";
@@ -144,10 +149,18 @@ export function BlogIndexPage() {
                     style={{
                       background:
                         "linear-gradient(to bottom right, color-mix(in srgb, var(--color-surface) 90%, transparent), color-mix(in srgb, var(--color-background) 88%, transparent))",
+                      viewTransitionName: getBlogCardTransitionName(post.slug),
                     }}
                   >
                     {post.image && (
-                      <div className="relative mb-4 h-44 overflow-hidden rounded-lg border border-theme-border/50">
+                      <div
+                        className="relative mb-4 h-44 overflow-hidden rounded-lg border border-theme-border/50"
+                        style={{
+                          viewTransitionName: getBlogImageTransitionName(
+                            post.slug
+                          ),
+                        }}
+                      >
                         <Image
                           src={post.image}
                           alt={post.title}

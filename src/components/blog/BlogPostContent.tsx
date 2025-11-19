@@ -1,13 +1,18 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Image from "next/image";
-import { Calendar, Clock, ArrowLeft, Home } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { BlogPostsProps } from "@/components/types/BlogPostsProps";
 import { generateArticleSchema } from "@/lib/seo";
 import { MarkdownRenderer } from "./MarkdownRenderer";
+import { Calendar, Clock, ArrowLeft, Home } from "lucide-react";
+import { BlogPostsProps } from "@/components/types/BlogPostsProps";
+import {
+  getBlogImageTransitionName,
+  getBlogCardTransitionName,
+} from "@/lib/transitions";
 
 interface BlogPostContentProps {
   post: BlogPostsProps;
@@ -118,8 +123,16 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
             className="mb-10 overflow-hidden rounded-2xl border border-theme-border/60 shadow-lg shadow-theme-primary/10"
+            style={{
+              viewTransitionName: getBlogCardTransitionName(post.slug),
+            }}
           >
-            <div className="relative h-72 w-full sm:h-56 lg:h-80">
+            <div
+              className="relative h-72 w-full sm:h-56 lg:h-80"
+              style={{
+                viewTransitionName: getBlogImageTransitionName(post.slug),
+              }}
+            >
               <Image
                 src={post.image}
                 alt={post.title}

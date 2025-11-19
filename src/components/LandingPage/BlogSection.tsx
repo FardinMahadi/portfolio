@@ -8,6 +8,10 @@ import Link from "next/link";
 import { generateArticleSchema } from "@/lib/seo";
 import { blogPosts } from "@/lib/blogData";
 import { GlassmorphismPanel } from "../effects/GlassmorphismPanel";
+import {
+  getBlogImageTransitionName,
+  getBlogCardTransitionName,
+} from "@/lib/transitions";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://fardinmahadi.vercel.app";
@@ -96,6 +100,11 @@ export function BlogSection() {
                 <GlassmorphismPanel
                   className="h-full flex flex-col p-6"
                   hover={true}
+                  style={{
+                    viewTransitionName: post.slug
+                      ? getBlogCardTransitionName(post.slug)
+                      : undefined,
+                  }}
                 >
                   <div className="h-full flex flex-col cursor-pointer">
                     {/* Category badge */}

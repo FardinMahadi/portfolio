@@ -144,11 +144,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family:
-      "Inter",
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
       sans-serif;
   }
 
@@ -347,16 +343,12 @@ html {
 
   /* Shadow with theme colors */
   .shadow-theme-primary {
-    box-shadow:
-      0 10px 15px -3px rgba(0, 0, 0, 0.1),
-      0 4px 6px -2px rgba(0, 0, 0, 0.05),
-      0 0 0 1px var(--color-primary);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 0 1px var(--color-primary);
   }
   .shadow-theme-primary\/50 {
-    box-shadow:
-      0 10px 15px -3px rgba(0, 0, 0, 0.1),
-      0 4px 6px -2px rgba(0, 0, 0, 0.05),
-      0 0 20px -5px var(--color-primary);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 20px -5px var(--color-primary);
   }
 
   /* Hide scrollbar */
@@ -407,8 +399,7 @@ body::-webkit-scrollbar-track:vertical {
   border-radius: 9999px;
   border: 1px solid rgba(148, 163, 184, 0.25);
   backdrop-filter: blur(6px);
-  box-shadow:
-    inset 0 6px 16px rgba(15, 23, 42, 0.32),
+  box-shadow: inset 0 6px 16px rgba(15, 23, 42, 0.32),
     inset 0 -6px 16px rgba(17, 24, 39, 0.25);
 }
 
@@ -422,10 +413,8 @@ body::-webkit-scrollbar-thumb {
     border-box;
   border-radius: 9999px;
   border: 1.5px solid rgba(148, 163, 184, 0.25);
-  box-shadow:
-    inset 0 2px 6px rgba(255, 255, 255, 0.3),
-    inset 0 -2px 6px rgba(15, 23, 42, 0.25),
-    0 6px 18px rgba(6, 182, 212, 0.25);
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 6px rgba(15, 23, 42, 0.25), 0 6px 18px rgba(6, 182, 212, 0.25);
 }
 
 html::-webkit-scrollbar-thumb:vertical,
@@ -437,10 +426,8 @@ body::-webkit-scrollbar-thumb:vertical {
     )
     border-box;
   border-radius: 9999px;
-  box-shadow:
-    inset 0 3px 8px rgba(255, 255, 255, 0.28),
-    inset 0 -3px 8px rgba(15, 23, 42, 0.28),
-    0 6px 18px rgba(6, 182, 212, 0.25);
+  box-shadow: inset 0 3px 8px rgba(255, 255, 255, 0.28),
+    inset 0 -3px 8px rgba(15, 23, 42, 0.28), 0 6px 18px rgba(6, 182, 212, 0.25);
 }
 
 html::-webkit-scrollbar-thumb:hover,
@@ -452,10 +439,8 @@ body::-webkit-scrollbar-thumb:hover {
     )
     border-box;
   border: 1.5px solid rgba(148, 163, 184, 0.35);
-  box-shadow:
-    inset 0 3px 9px rgba(255, 255, 255, 0.35),
-    inset 0 -3px 9px rgba(15, 23, 42, 0.32),
-    0 8px 20px rgba(6, 182, 212, 0.3);
+  box-shadow: inset 0 3px 9px rgba(255, 255, 255, 0.35),
+    inset 0 -3px 9px rgba(15, 23, 42, 0.32), 0 8px 20px rgba(6, 182, 212, 0.3);
 }
 
 html::-webkit-scrollbar-corner,
@@ -492,5 +477,82 @@ body::-webkit-scrollbar-corner {
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
     will-change: transform;
+  }
+}
+
+/* View Transitions API Styles */
+@view-transition {
+  navigation: auto;
+}
+
+/* Default page transition */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Fade transition for page changes */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Slide transition */
+@keyframes slide-in {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+}
+
+/* Blog image shared element transitions */
+::view-transition-old(blog-image),
+::view-transition-new(blog-image) {
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Blog card shared element transitions */
+::view-transition-old(blog-card),
+::view-transition-new(blog-card) {
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0.01ms !important;
   }
 }

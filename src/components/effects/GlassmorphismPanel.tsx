@@ -10,6 +10,7 @@ interface GlassmorphismPanelProps {
   opacity?: number;
   borderOpacity?: number;
   hover?: boolean;
+  style?: React.CSSProperties;
 }
 
 export function GlassmorphismPanel({
@@ -19,6 +20,7 @@ export function GlassmorphismPanel({
   opacity = 0.1,
   borderOpacity = 0.2,
   hover = true,
+  style,
 }: GlassmorphismPanelProps) {
   return (
     <motion.div
@@ -30,6 +32,7 @@ export function GlassmorphismPanel({
         borderColor: `rgba(148, 163, 184, ${borderOpacity})`,
         backdropFilter: `blur(${blur})`,
         WebkitBackdropFilter: `blur(${blur})`,
+        ...style,
       }}
       whileHover={hover ? { scale: 1.02, y: -2 } : {}}
     >
@@ -37,4 +40,3 @@ export function GlassmorphismPanel({
     </motion.div>
   );
 }
-

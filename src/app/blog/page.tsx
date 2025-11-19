@@ -3,6 +3,7 @@ import { BlogIndexPage } from "@/components/blog/BlogIndexPage";
 import { generateMetadata as generateSEOMetadata } from "@/lib/seo";
 import { Navigation } from "@/components/LandingPage/Navigation";
 import { Footer } from "@/components/LandingPage/Footer";
+import { PageTransition } from "@/components/effects/PageTransition";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://fardinmahadi.vercel.app";
@@ -24,12 +25,14 @@ export const metadata: Metadata = generateSEOMetadata({
 
 export default function BlogPage() {
   return (
-    <div className="relative flex min-h-screen flex-col bg-(--color-background)">
-      <Navigation />
-      <main className="flex-1 relative pt-16" style={{ zIndex: 1 }}>
-        <BlogIndexPage />
-      </main>
-      <Footer />
-    </div>
+    <PageTransition variant="fade">
+      <div className="relative flex min-h-screen flex-col bg-(--color-background)">
+        <Navigation />
+        <main className="flex-1 relative pt-16" style={{ zIndex: 1 }}>
+          <BlogIndexPage />
+        </main>
+        <Footer />
+      </div>
+    </PageTransition>
   );
 }

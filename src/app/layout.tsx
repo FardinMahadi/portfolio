@@ -6,6 +6,8 @@ import { ScrollProgressIndicator } from "@/components/effects/ScrollProgressIndi
 import { ColorPaletteProvider } from "@/contexts/ColorPaletteContext";
 import { AppCursorLayer } from "@/components/effects/AppCursorLayer";
 import { NavigationLoader } from "@/components/ui/loading/NavigationLoader";
+import { FaviconUpdater } from "@/components/FaviconUpdater";
+import { ViewTransitionWrapper } from "@/components/effects/ViewTransitionWrapper";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -273,7 +275,7 @@ export default function RootLayout({
         "@type": "ListItem",
         position: 2,
         name: "About",
-        item: `${siteUrl}/#about`,
+        item: `${siteUrl}/about`,
       },
       {
         "@type": "ListItem",
@@ -355,13 +357,16 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
         <ColorPaletteProvider>
-          <ScrollProgressIndicator />
-          <AppCursorLayer />
-          <NavigationLoader />
-          {children}
-          <Suspense fallback={null}>
-            <Analytics />
-          </Suspense>
+          <ViewTransitionWrapper>
+            <FaviconUpdater />
+            <ScrollProgressIndicator />
+            <AppCursorLayer />
+            <NavigationLoader />
+            {children}
+            <Suspense fallback={null}>
+              <Analytics />
+            </Suspense>
+          </ViewTransitionWrapper>
         </ColorPaletteProvider>
       </body>
     </html>

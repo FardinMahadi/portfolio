@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { Palette } from "lucide-react";
-import { useColorPalette } from "@/contexts/ColorPaletteContext";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import { useColorPalette } from "@/contexts/ColorPaletteContext";
 
 export function ColorPaletteSwitcher() {
   const { currentPalette, setPalette, availablePalettes } = useColorPalette();

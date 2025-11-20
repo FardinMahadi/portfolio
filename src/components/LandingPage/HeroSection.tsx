@@ -1,8 +1,9 @@
 import Image from "next/image";
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Button } from "../ui/button";
 import { ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
+
+import { Button } from "../ui/button";
 import { MagneticButton } from "../effects/MagneticButton";
 
 export function HeroSection() {

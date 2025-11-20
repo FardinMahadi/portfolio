@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { X, Download, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { X, Download, Loader2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
 
 interface ResumePreviewModalProps {
   isOpen: boolean;

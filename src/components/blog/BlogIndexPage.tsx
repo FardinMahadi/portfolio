@@ -2,11 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
-
 import { blogPosts } from "@/lib/blogData";
 import { Button } from "@/components/ui/button";
 import { motion, useInView } from "framer-motion";
-import { CategoryFilter } from "./CategoryFilter";
 import { generateArticleSchema } from "@/lib/seo";
 import { useRef, useState, useMemo } from "react";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
@@ -14,6 +12,8 @@ import {
   getBlogImageTransitionName,
   getBlogCardTransitionName,
 } from "@/lib/transitions";
+
+import { CategoryFilter } from "./CategoryFilter";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://fardinmahadi.vercel.app";

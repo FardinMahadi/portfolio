@@ -1,12 +1,13 @@
-import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import { projects } from "@/lib/projects";
+import { motion, useInView } from "framer-motion";
+import { generateItemListSchema } from "@/lib/seo";
 import { ExternalLink, Github, Terminal } from "lucide-react";
+
 import { Button } from "../ui/button";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
-import { generateItemListSchema } from "@/lib/seo";
 import { GlassmorphismPanel } from "../effects/GlassmorphismPanel";
 import { ProjectScreenshotModal } from "../effects/ProjectScreenshotModal";
-import { projects } from "@/lib/projects";
 
 export function ProjectsSection() {
   const ref = useRef(null);

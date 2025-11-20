@@ -1,9 +1,8 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { Loader2, Terminal } from "lucide-react";
-
-import { cn } from "@/lib/utils";
 
 import type { LoadingSpinnerProps } from "./schema";
 

@@ -1,11 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import Link from "next/link";
-import { Code2, Menu, X, Terminal, ChevronDown } from "lucide-react";
-import { Button } from "../ui/button";
 import { AnimatePresence, motion } from "framer-motion";
+import { Code2, Menu, X, Terminal, ChevronDown } from "lucide-react";
+
+import { Button } from "../ui/button";
 import { NavItemsProps } from "../types/NavItemsProps";
 import { ColorPaletteSwitcher } from "../ui/ColorPaletteSwitcher";
 

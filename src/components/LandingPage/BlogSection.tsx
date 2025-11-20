@@ -1,17 +1,17 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Calendar, Clock, ArrowRight } from "lucide-react";
-import { Button } from "../ui/button";
 import Link from "next/link";
-import { generateArticleSchema } from "@/lib/seo";
+import { useRef } from "react";
 import { blogPosts } from "@/lib/blogData";
-import { GlassmorphismPanel } from "../effects/GlassmorphismPanel";
+import { motion, useInView } from "framer-motion";
+import { generateArticleSchema } from "@/lib/seo";
+import { Calendar, Clock, ArrowRight } from "lucide-react";
 import {
-  getBlogImageTransitionName,
   getBlogCardTransitionName,
 } from "@/lib/transitions";
+
+import { Button } from "../ui/button";
+import { GlassmorphismPanel } from "../effects/GlassmorphismPanel";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://fardinmahadi.vercel.app";

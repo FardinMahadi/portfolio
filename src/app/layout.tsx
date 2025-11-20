@@ -1,15 +1,27 @@
-import { Suspense } from "react";
+import "./globals.css";
+// Import mobile styles
+import "@/mobile/styles/mobile.css";
+
 import type { Metadata } from "next";
-import { Analytics } from "./analytics";
+
+import { Suspense } from "react";
+import { IonicApp } from "@/mobile";
 import { Geist, Geist_Mono } from "next/font/google";
-import { FaviconUpdater } from "../components/FaviconUpdater";
 import { AppCursorLayer } from "@/components/effects/AppCursorLayer";
 import { ColorPaletteProvider } from "@/contexts/ColorPaletteContext";
 import { NavigationLoader } from "@/components/ui/loading/NavigationLoader";
 import { ViewTransitionWrapper } from "@/components/effects/ViewTransitionWrapper";
 import { ScrollProgressIndicator } from "@/components/effects/ScrollProgressIndicator";
 
-import "./globals.css";
+// Import Ionic CSS for mobile support
+import "@ionic/react/css/core.css";
+import "@ionic/react/css/utilities.css";
+import "@ionic/react/css/normalize.css";
+import "@ionic/react/css/structure.css";
+import "@ionic/react/css/typography.css";
+
+import { Analytics } from "./analytics";
+import { FaviconUpdater } from "../components/FaviconUpdater";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -358,16 +370,18 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
         <ColorPaletteProvider>
-          <ViewTransitionWrapper>
-            <FaviconUpdater />
-            <ScrollProgressIndicator />
-            <AppCursorLayer />
-            <NavigationLoader />
-            {children}
-            <Suspense fallback={null}>
-              <Analytics />
-            </Suspense>
-          </ViewTransitionWrapper>
+          <IonicApp>
+            <ViewTransitionWrapper>
+              <FaviconUpdater />
+              <ScrollProgressIndicator />
+              <AppCursorLayer />
+              <NavigationLoader />
+              {children}
+              <Suspense fallback={null}>
+                <Analytics />
+              </Suspense>
+            </ViewTransitionWrapper>
+          </IonicApp>
         </ColorPaletteProvider>
       </body>
     </html>

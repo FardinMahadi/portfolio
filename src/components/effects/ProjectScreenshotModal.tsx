@@ -1,11 +1,12 @@
 "use client";
 
+import type { ProjectScreenshotModalProps } from "@/components/types/ProjectScreenshotModalProps";
+
 import { createPortal } from "react-dom";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { ImageWithFallback } from "@/components/figma/ImageWithFallback";
-import type { ProjectScreenshotModalProps } from "@/components/types/ProjectScreenshotModalProps";
 
 const overlayVariants: Variants = {
   hidden: { opacity: 0 },

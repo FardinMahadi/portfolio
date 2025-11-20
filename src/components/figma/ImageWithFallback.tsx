@@ -1,5 +1,6 @@
-import React, { useState } from "react";
 import Image from "next/image";
+import React, { useState } from "react";
+
 import { ImageWithFallbackProps } from "../types/ImageWithFallbackProps";
 
 const ERROR_IMG_SRC =

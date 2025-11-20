@@ -1,10 +1,11 @@
-import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
-import { Github, Linkedin, Mail, MessageCircle } from "lucide-react";
+import { motion, useInView } from "framer-motion";
 import socialLinksData from "@/data/socialLinks.json";
-import { Button } from "../ui/button";
+import { Github, Linkedin, Mail, MessageCircle } from "lucide-react";
+import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+
 import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import { SocialLinksProps } from "../types/SocialLinksProps";
 

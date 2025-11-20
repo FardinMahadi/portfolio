@@ -1,10 +1,11 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { TechStackProps } from "../types/TechStackProps";
 import Image from "next/image";
+import { motion, useInView } from "framer-motion";
 import { generateProfessionalServiceSchema } from "@/lib/seo";
+
+import { TechStackProps } from "../types/TechStackProps";
 import { GlassmorphismPanel } from "../effects/GlassmorphismPanel";
 
 const techStack: TechStackProps[] = [

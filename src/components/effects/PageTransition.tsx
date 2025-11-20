@@ -2,8 +2,8 @@
 
 import { ReactNode } from "react";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
 import { TRANSITION_PRESETS } from "@/lib/transitions";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface PageTransitionProps {
   children: ReactNode;

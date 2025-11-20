@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useCallback, useMemo, useState } from "react";
 import { gsap } from "gsap";
+import { useEffect, useRef, useCallback, useMemo, useState } from "react";
 
 interface TargetCursorProps {
   targetSelector?: string;

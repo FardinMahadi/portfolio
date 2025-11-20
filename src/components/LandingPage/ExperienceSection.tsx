@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { Briefcase, MapPin, Calendar, ExternalLink } from "lucide-react";
+
 import { ExperienceProps } from "../types/ExperienceProps";
 
 const experiences: ExperienceProps[] = [

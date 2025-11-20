@@ -1,8 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
 
 interface ResumeHeroProps {
   portfolioUrl: string;

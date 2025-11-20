@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View } from "@react-pdf/renderer";
+
+import { ResumeImage } from "../ResumeImage";
 import { ResumeLayout } from "../ResumeLayout";
 import { ResumeTemplateProps } from "../../types/ResumeProps";
-import { ResumeImage } from "../ResumeImage";
 
 const styles = StyleSheet.create({
   grid: {

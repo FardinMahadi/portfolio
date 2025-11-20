@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
+import { useEffect, useState, useRef } from "react";
+
 import { LoadingSpinner } from "./LoadingSpinner";
 
 export function NavigationLoader() {

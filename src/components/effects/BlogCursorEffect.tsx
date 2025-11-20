@@ -1,11 +1,11 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { PropsWithChildren, useEffect, useMemo, useRef, useState } from "react";
 import {
   CursorFollow,
   CursorProvider,
 } from "@/components/ui/shadcn-io/animated-cursor";
-import { cn } from "@/lib/utils";
 
 type BlogCursorEffectProps = PropsWithChildren<{
   className?: string;

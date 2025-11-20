@@ -1,7 +1,6 @@
-import React from "react";
 import path from "path";
+import React from "react";
 import fs from "fs/promises";
-
 import { NextResponse } from "next/server";
 import { renderToBuffer } from "@react-pdf/renderer";
 import { resumeData } from "@/components/resume/resumeData";

@@ -1,15 +1,15 @@
 "use client";
-import { AboutSection } from "@/components/LandingPage/AboutSection";
-import { BlogSection } from "@/components/LandingPage/BlogSection";
-import { ContactSection } from "@/components/LandingPage/ContactSection";
-import { ExperienceSection } from "@/components/LandingPage/ExperienceSection";
-import { Footer } from "@/components/LandingPage/Footer";
-import { HeroSection } from "@/components/LandingPage/HeroSection";
-import { IntroSummary } from "@/components/LandingPage/IntroSummary";
-import { Navigation } from "@/components/LandingPage/Navigation";
-import { ProjectsSection } from "@/components/LandingPage/ProjectsSection";
-import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { useEffect, useState } from "react";
+import { Footer } from "@/components/LandingPage/Footer";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { Navigation } from "@/components/LandingPage/Navigation";
+import { BlogSection } from "@/components/LandingPage/BlogSection";
+import { HeroSection } from "@/components/LandingPage/HeroSection";
+import { AboutSection } from "@/components/LandingPage/AboutSection";
+import { IntroSummary } from "@/components/LandingPage/IntroSummary";
+import { ContactSection } from "@/components/LandingPage/ContactSection";
+import { ProjectsSection } from "@/components/LandingPage/ProjectsSection";
+import { ExperienceSection } from "@/components/LandingPage/ExperienceSection";
 
 export default function Home() {
   const [isTouchDevice, setIsTouchDevice] = useState(false);

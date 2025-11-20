@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useMemo, useRef, useEffect } from "react";
 import { blogPosts } from "@/lib/blogData";
+import { useMemo, useRef, useEffect } from "react";
 
 interface CategoryFilterProps {
   selectedCategory: string | null;

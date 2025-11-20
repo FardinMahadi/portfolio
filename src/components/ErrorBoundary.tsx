@@ -1,13 +1,14 @@
 "use client";
 
-import { Component } from "react";
-import { AlertTriangle, RefreshCw } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import type {
   ErrorBoundaryProps,
   ErrorBoundaryState,
   ErrorBoundaryErrorInfo,
 } from "@/components/types/ErrorBoundaryProps";
+
+import { Component } from "react";
+import { Button } from "@/components/ui/button";
+import { AlertTriangle, RefreshCw } from "lucide-react";
 
 export class ErrorBoundary extends Component<
   ErrorBoundaryProps,

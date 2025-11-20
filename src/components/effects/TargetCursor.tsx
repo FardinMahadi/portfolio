@@ -21,26 +21,49 @@ export function TargetCursor({
 
   // Prevent hydration mismatch by checking mounted state
   const [mounted, setMounted] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [disableCursor, setDisableCursor] = useState(true);
 
-  // Detect mobile devices only on client side after mount
+  // Detect pointer capabilities (mouse/trackpad vs touch) on client side
   useEffect(() => {
     setMounted(true);
 
-    const hasTouchScreen =
-      "ontouchstart" in window || navigator.maxTouchPoints > 0;
-    const isSmallScreen = window.innerWidth <= 768;
+    const finePointerQuery = window.matchMedia("(pointer: fine)");
+    const hoverQuery = window.matchMedia("(hover: hover)");
 
-    const userAgent =
-      navigator.userAgent ||
-      navigator.vendor ||
-      (window as Window & { opera?: string }).opera ||
-      "";
-    const mobileRegex =
-      /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
-    const isMobileUserAgent = mobileRegex.test(userAgent.toLowerCase());
+    const updateFromMediaQueries = () => {
+      const hasMouseLikeInput = finePointerQuery.matches && hoverQuery.matches;
+      setDisableCursor(!hasMouseLikeInput);
+    };
 
-    setIsMobile((hasTouchScreen && isSmallScreen) || isMobileUserAgent);
+    const pointerDownHandler = (event: PointerEvent) => {
+      const mouseLikePointer =
+        event.pointerType === "mouse" || event.pointerType === "pen";
+      setDisableCursor(!mouseLikePointer);
+    };
+
+    updateFromMediaQueries();
+
+    finePointerQuery.addEventListener
+      ? finePointerQuery.addEventListener("change", updateFromMediaQueries)
+      : finePointerQuery.addListener(updateFromMediaQueries);
+
+    hoverQuery.addEventListener
+      ? hoverQuery.addEventListener("change", updateFromMediaQueries)
+      : hoverQuery.addListener(updateFromMediaQueries);
+
+    window.addEventListener("pointerdown", pointerDownHandler);
+
+    return () => {
+      finePointerQuery.removeEventListener
+        ? finePointerQuery.removeEventListener("change", updateFromMediaQueries)
+        : finePointerQuery.removeListener(updateFromMediaQueries);
+
+      hoverQuery.removeEventListener
+        ? hoverQuery.removeEventListener("change", updateFromMediaQueries)
+        : hoverQuery.removeListener(updateFromMediaQueries);
+
+      window.removeEventListener("pointerdown", pointerDownHandler);
+    };
   }, []);
 
   const constants = useMemo(
@@ -63,7 +86,7 @@ export function TargetCursor({
   }, []);
 
   useEffect(() => {
-    if (!mounted || isMobile || !cursorRef.current) return;
+    if (!mounted || disableCursor || !cursorRef.current) return;
     const originalCursor = document.body.style.cursor;
     if (hideDefaultCursor) {
       document.body.style.cursor = "none";
@@ -382,11 +405,12 @@ export function TargetCursor({
     moveCursor,
     constants,
     hideDefaultCursor,
-    isMobile,
+    disableCursor,
   ]);
 
   useEffect(() => {
-    if (!mounted || isMobile || !cursorRef.current || !spinTl.current) return;
+    if (!mounted || disableCursor || !cursorRef.current || !spinTl.current)
+      return;
 
     if (spinTl.current.isActive()) {
       spinTl.current.kill();
@@ -397,10 +421,10 @@ export function TargetCursor({
         ease: "none",
       });
     }
-  }, [mounted, spinDuration, isMobile]);
+  }, [mounted, spinDuration, disableCursor]);
 
   // Don't render anything until mounted to prevent hydration mismatch
-  if (!mounted || isMobile) {
+  if (!mounted || disableCursor) {
     return null;
   }
 

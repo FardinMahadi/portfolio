@@ -208,7 +208,7 @@ export function AboutSection() {
 
                       {/* Glow effect on hover */}
                       <div
-                        className={`absolute inset-0 rounded-lg bg-linear-to-br ${tech.color} opacity-0 transition-opacity duration-300 blur-xl group-hover:opacity-20`}
+                        className={`absolute inset-0 rounded-lg bg-gradient-to-br ${tech.color} opacity-0 transition-opacity duration-300 blur-xl group-hover:opacity-20`}
                       />
                     </div>
                   </motion.div>

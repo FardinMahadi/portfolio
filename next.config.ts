@@ -3,8 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
-  // Use static export for mobile builds, standalone for web
-  output: process.env.BUILD_MOBILE === "true" ? "export" : "standalone",
+  output: "standalone",
 
   images: {
     remotePatterns: [

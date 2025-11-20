@@ -23,11 +23,15 @@ export function PageLoader({
     // Disable cursor effects when PageLoader is shown
     if (typeof window !== "undefined") {
       document.body.dataset.cursorSuspended = "true";
-      window.dispatchEvent(new CustomEvent("target-cursor:suspend", { detail: true }));
+      window.dispatchEvent(
+        new CustomEvent("target-cursor:suspend", { detail: true })
+      );
 
       return () => {
         document.body.dataset.cursorSuspended = "false";
-        window.dispatchEvent(new CustomEvent("target-cursor:suspend", { detail: false }));
+        window.dispatchEvent(
+          new CustomEvent("target-cursor:suspend", { detail: false })
+        );
       };
     }
   }, []);
@@ -77,7 +81,7 @@ export function PageLoader({
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className="flex flex-col items-center gap-6 p-8 rounded-lg border border-slate-800/50 bg-linear-to-br from-(--color-surface) to-(--color-background) shadow-xl"
+          className="flex flex-col items-center gap-6 p-8 rounded-lg border border-slate-800/50 bg-gradient-to-br from-(--color-surface) to-(--color-background) shadow-xl"
         >
           {/* Terminal header */}
           <div className="flex items-center gap-2 font-mono text-sm text-slate-400">

@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { useMemo, useState } from "react";
 import { blogPosts } from "@/lib/blogData";
 import { Button } from "@/components/ui/button";
-import { motion, useInView } from "framer-motion";
 import { generateArticleSchema } from "@/lib/seo";
-import { useRef, useState, useMemo } from "react";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import {
   getBlogImageTransitionName,
@@ -19,8 +19,6 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://fardinmahadi.vercel.app";
 
 export function BlogIndexPage() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   // Filter blog posts based on selected category
@@ -48,7 +46,7 @@ export function BlogIndexPage() {
         }}
       />
 
-      <div ref={ref} className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
         {blogPosts.map((post, index) => {
           const articleSchema = generateArticleSchema(
             post.title,

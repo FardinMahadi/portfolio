@@ -14,7 +14,7 @@ export function ResumeHero({ portfolioUrl }: ResumeHeroProps) {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="relative mb-14 overflow-hidden rounded-3xl border border-theme-border/40 bg-linear-to-br from-[color-mix(in_srgb,var(--color-surface)_95%,transparent)] via-[color-mix(in_srgb,var(--color-background)_90%,transparent)] to-[color-mix(in_srgb,var(--color-background)_70%,transparent)] p-8 shadow-[0_40px_120px_-50px_rgba(14,165,233,0.5)]"
+      className="relative mb-14 overflow-hidden rounded-3xl border border-theme-border/40 bg-gradient-to-br from-[color-mix(in_srgb,var(--color-surface)_95%,transparent)] via-[color-mix(in_srgb,var(--color-background)_90%,transparent)] to-[color-mix(in_srgb,var(--color-background)_70%,transparent)] p-8 shadow-[0_40px_120px_-50px_rgba(14,165,233,0.5)]"
     >
       <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-theme-primary/10 blur-3xl" />
       <div className="pointer-events-none absolute bottom-0 left-8 h-40 w-40 rounded-full bg-theme-secondary/20 blur-3xl" />

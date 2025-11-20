@@ -3,6 +3,30 @@
 import { gsap } from "gsap";
 import { useEffect, useRef, useCallback, useMemo, useState } from "react";
 
+type MediaQueryListener = (event: MediaQueryListEvent) => void;
+
+const addMediaListener = (
+  query: MediaQueryList,
+  listener: MediaQueryListener
+) => {
+  if (typeof query.addEventListener === "function") {
+    query.addEventListener("change", listener);
+  } else {
+    query.addListener(listener);
+  }
+};
+
+const removeMediaListener = (
+  query: MediaQueryList,
+  listener: MediaQueryListener
+) => {
+  if (typeof query.removeEventListener === "function") {
+    query.removeEventListener("change", listener);
+  } else {
+    query.removeListener(listener);
+  }
+};
+
 interface TargetCursorProps {
   targetSelector?: string;
   spinDuration?: number;
@@ -43,24 +67,14 @@ export function TargetCursor({
 
     updateFromMediaQueries();
 
-    finePointerQuery.addEventListener
-      ? finePointerQuery.addEventListener("change", updateFromMediaQueries)
-      : finePointerQuery.addListener(updateFromMediaQueries);
-
-    hoverQuery.addEventListener
-      ? hoverQuery.addEventListener("change", updateFromMediaQueries)
-      : hoverQuery.addListener(updateFromMediaQueries);
+    addMediaListener(finePointerQuery, updateFromMediaQueries);
+    addMediaListener(hoverQuery, updateFromMediaQueries);
 
     window.addEventListener("pointerdown", pointerDownHandler);
 
     return () => {
-      finePointerQuery.removeEventListener
-        ? finePointerQuery.removeEventListener("change", updateFromMediaQueries)
-        : finePointerQuery.removeListener(updateFromMediaQueries);
-
-      hoverQuery.removeEventListener
-        ? hoverQuery.removeEventListener("change", updateFromMediaQueries)
-        : hoverQuery.removeListener(updateFromMediaQueries);
+      removeMediaListener(finePointerQuery, updateFromMediaQueries);
+      removeMediaListener(hoverQuery, updateFromMediaQueries);
 
       window.removeEventListener("pointerdown", pointerDownHandler);
     };

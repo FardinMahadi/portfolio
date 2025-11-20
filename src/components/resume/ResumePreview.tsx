@@ -167,7 +167,7 @@ export function ResumePreview() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            className="relative rounded-2xl border border-theme-border/40 bg-linear-to-br from-(--color-surface) to-[color-mix(in_srgb,var(--color-background)_80%,transparent)] p-5 shadow-lg shadow-black/10"
+            className="relative rounded-2xl border border-theme-border/40 bg-gradient-to-br from-(--color-surface) to-[color-mix(in_srgb,var(--color-background)_80%,transparent)] p-5 shadow-lg shadow-black/10"
           >
             <TemplateMock variant={template.key} />
             <div className="mb-4">

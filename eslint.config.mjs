@@ -12,6 +12,14 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
+const invalidLiteralSelector = "Literal[value=/bg" + "-linear-/]";
+const invalidGradientMessage = [
+  "Use 'bg-gradient-*' instead of '",
+  "bg",
+  "-linear-",
+  "*'. bg-linear is not a valid Tailwind CSS class.",
+].join("");
+
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
@@ -35,9 +43,8 @@ const eslintConfig = [
       "no-restricted-syntax": [
         "warn",
         {
-          selector: "Literal[value=/bg-linear-/]",
-          message:
-            "Use 'bg-gradient-*' instead of 'bg-linear-*'. bg-linear is not a valid Tailwind CSS class.",
+          selector: invalidLiteralSelector,
+          message: invalidGradientMessage,
         },
       ],
     },

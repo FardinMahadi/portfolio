@@ -62,7 +62,7 @@ export function SkeletonLoader({
       style={styles}
     >
       <motion.div
-        className="absolute inset-0 bg-linear-to-r from-transparent via-slate-700/50 to-transparent"
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-700/50 to-transparent"
         style={{
           background: `linear-gradient(90deg, transparent, var(--color-primary)/20, transparent)`,
         }}

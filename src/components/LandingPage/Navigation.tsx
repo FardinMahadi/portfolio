@@ -4,36 +4,61 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { Code2, Menu, X, Terminal, ChevronDown } from "lucide-react";
+import {
+  X,
+  Mail,
+  User,
+  Menu,
+  Home,
+  Code2,
+  BookOpen,
+  FileText,
+  Terminal,
+  Briefcase,
+  ChevronDown,
+} from "lucide-react";
 
 import { Button } from "../ui/button";
 import { NavItemsProps } from "../types/NavItemsProps";
 import { ColorPaletteSwitcher } from "../ui/ColorPaletteSwitcher";
 
+const iconClass = "h-4 w-4";
+
 const navItems: NavItemsProps[] = [
-  { name: "Home", href: "/", icon: "~/", isRoute: true },
+  {
+    name: "Home",
+    href: "/",
+    icon: <Home className={iconClass} aria-hidden="true" />,
+    isRoute: true,
+  },
   {
     name: "About",
     href: "/about",
-    icon: "<>",
+    icon: <User className={iconClass} aria-hidden="true" />,
     isRoute: true,
   },
   {
     name: "Experience",
     href: "/experience",
-    icon: "::",
+    icon: <Briefcase className={iconClass} aria-hidden="true" />,
+    isRoute: true,
+  },
+  {
+    name: "Contact",
+    href: "/contact",
+    icon: <Mail className={iconClass} aria-hidden="true" />,
     isRoute: true,
   },
   {
     name: "Blog",
     href: "/blog",
-    icon: "//",
+    icon: <BookOpen className={iconClass} aria-hidden="true" />,
     isRoute: true,
   },
   {
     name: "Resume",
     href: "/resume",
-    icon: "cv",
+    icon: <FileText className={iconClass} aria-hidden="true" />,
     isRoute: true,
   },
 ];
@@ -53,6 +78,8 @@ export function Navigation() {
       setActiveSection("about");
     } else if (pathname === "/experience") {
       setActiveSection("experience");
+    } else if (pathname === "/contact") {
+      setActiveSection("contact");
     } else if (pathname === "/") {
       setActiveSection("home");
     }
@@ -175,7 +202,7 @@ export function Navigation() {
                           onMouseLeave={() => setOpenSubmenu(null)}
                         >
                           <div className="flex items-center gap-2">
-                            <span className="text-xs font-mono text-slate-500 transition-colors group-hover/item:text-theme-primary">
+                            <span className="flex h-5 w-5 items-center justify-center text-slate-500 transition-colors group-hover/item:text-theme-primary">
                               {item.icon}
                             </span>
                             <span className="text-sm transition-colors group-hover/item:text-theme-primary">
@@ -226,7 +253,7 @@ export function Navigation() {
                         aria-current={itemIsActive ? "page" : undefined}
                       >
                         <div className="flex items-center gap-2">
-                          <span className="text-xs font-mono text-slate-500 transition-colors group-hover/item:text-theme-primary">
+                          <span className="flex h-5 w-5 items-center justify-center text-slate-500 transition-colors group-hover/item:text-theme-primary">
                             {item.icon}
                           </span>
                           <span className="text-sm transition-colors">
@@ -270,7 +297,7 @@ export function Navigation() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.2 }}
-                            className="absolute top-full left-0 mt-2 bg-gradient-to-br from-(--color-background) to-(--color-surface) border border-slate-800 rounded-lg shadow-xl min-w-[200px]"
+                            className="absolute top-full left-0 mt-2 bg-linear-to-br from-(--color-background) to-(--color-surface) border border-slate-800 rounded-lg shadow-xl min-w-[200px]"
                             onMouseEnter={() => setOpenSubmenu(item.name)}
                             onMouseLeave={() => setOpenSubmenu(null)}
                           >
@@ -318,8 +345,8 @@ export function Navigation() {
                 onClick={() => {
                   try {
                     const link = document.createElement("a");
-                    link.href = "/cv.pdf";
-                    link.download = "Mahadi Hasan Fardin.pdf";
+                    link.href = "/mahadi-hasan-fardin-cv.pdf";
+                    link.download = "mahadi-hasan-fardin-cv.pdf";
                     link.style.display = "none";
                     document.body.appendChild(link);
                     link.click();
@@ -478,7 +505,7 @@ export function Navigation() {
                             >
                               <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3">
-                                  <span className="font-mono text-sm opacity-60">
+                                  <span className="flex h-5 w-5 items-center justify-center text-theme-text/60 transition-colors group-hover:text-theme-primary">
                                     {item.icon}
                                   </span>
                                   <span>{item.name}</span>
@@ -523,7 +550,7 @@ export function Navigation() {
                             aria-current={itemIsActive ? "page" : undefined}
                           >
                             <div className="flex items-center gap-3">
-                              <span className="font-mono text-sm opacity-60">
+                              <span className="flex h-5 w-5 items-center justify-center text-theme-text/60 transition-colors group-hover:text-theme-primary">
                                 {item.icon}
                               </span>
                               <span>{item.name}</span>
@@ -620,8 +647,8 @@ export function Navigation() {
                     }}
                     onClick={() => {
                       const link = document.createElement("a");
-                      link.href = "/cv.pdf";
-                      link.download = "Mahadi Hasan Fardin.pdf";
+                      link.href = "/mahadi-hasan-fardin-cv.pdf";
+                      link.download = "mahadi-hasan-fardin-cv.pdf";
                       document.body.appendChild(link);
                       link.click();
                       document.body.removeChild(link);

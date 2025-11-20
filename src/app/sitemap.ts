@@ -50,10 +50,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${siteUrl}/#contact`,
+      url: `${siteUrl}/contact`,
       lastModified: baseDate,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.9,
     },
     ...blogUrls,
   ];

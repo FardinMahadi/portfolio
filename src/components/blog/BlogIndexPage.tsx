@@ -1,22 +1,17 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { useMemo, useState } from "react";
-import { blogPosts } from "@/lib/blogData";
-import { Button } from "@/components/ui/button";
-import { generateArticleSchema } from "@/lib/seo";
-import { Calendar, Clock, ArrowRight } from "lucide-react";
-import {
-  getBlogImageTransitionName,
-  getBlogCardTransitionName,
-} from "@/lib/transitions";
+import Link from 'next/link';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { useMemo, useState } from 'react';
+import { blogPosts } from '@/lib/blogData';
+import { generateArticleSchema } from '@/lib/seo';
+import { Calendar, Clock, ArrowRight } from 'lucide-react';
+import { getBlogImageTransitionName, getBlogCardTransitionName } from '@/lib/transitions';
 
-import { CategoryFilter } from "./CategoryFilter";
+import { CategoryFilter } from './CategoryFilter';
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://fardinmahadi.vercel.app";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://fardinmahadi.vercel.app';
 
 export function BlogIndexPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -33,7 +28,7 @@ export function BlogIndexPage() {
       className="relative min-h-screen overflow-hidden bg-(--color-background) pt-24 pb-20 px-4 text-theme-text sm:px-6 lg:px-8 scroll-mt-16 md:scroll-mt-32"
       style={{
         background:
-          "linear-gradient(to bottom, color-mix(in srgb, var(--color-background) 94%, transparent), var(--color-background))",
+          'linear-gradient(to bottom, color-mix(in srgb, var(--color-background) 94%, transparent), var(--color-background))',
         zIndex: 1,
       }}
     >
@@ -42,7 +37,7 @@ export function BlogIndexPage() {
         className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[200px] opacity-20"
         style={{
           background:
-            "radial-gradient(circle at center, color-mix(in srgb, var(--color-accent) 22%, transparent), transparent 70%)",
+            'radial-gradient(circle at center, color-mix(in srgb, var(--color-accent) 22%, transparent), transparent 70%)',
         }}
       />
 
@@ -53,8 +48,8 @@ export function BlogIndexPage() {
             post.excerpt,
             post.date,
             post.date,
-            "Mahadi Hasan Fardin",
-            `${siteUrl}/og-image.png`
+            'Mahadi Hasan Fardin',
+            `${siteUrl}/og-image.png`,
           );
           return (
             <script
@@ -74,19 +69,16 @@ export function BlogIndexPage() {
         >
           <div className="mb-6 flex items-center justify-center gap-3 text-theme-primary">
             <span className="font-mono" aria-hidden="true">
-              {"</"}
+              {'</'}
             </span>
-            <h1 className="text-4xl font-bold text-theme-accent">
-              Blog Articles
-            </h1>
+            <h1 className="text-4xl font-bold text-theme-accent">Blog Articles</h1>
             <span className="font-mono" aria-hidden="true">
-              {">"}
+              {'>'}
             </span>
           </div>
           <p className="mx-auto max-w-2xl text-lg text-theme-text/75">
-            Explore articles about web development, programming tips, career
-            insights, and learning resources. Written to help developers grow
-            and succeed in their journey.
+            Explore articles about web development, programming tips, career insights, and learning
+            resources. Written to help developers grow and succeed in their journey.
           </p>
         </motion.header>
 
@@ -109,8 +101,7 @@ export function BlogIndexPage() {
             animate={{ opacity: 1 }}
             className="mb-6 text-slate-400 text-sm font-mono"
           >
-            {filteredPosts.length}{" "}
-            {filteredPosts.length === 1 ? "article" : "articles"} in{" "}
+            {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'} in{' '}
             <span className="text-theme-primary">{selectedCategory}</span>
           </motion.div>
         )}
@@ -121,9 +112,7 @@ export function BlogIndexPage() {
             animate={{ opacity: 1, y: 0 }}
             className="py-12 text-center"
           >
-            <p className="text-lg text-theme-text/70">
-              No articles found in this category.
-            </p>
+            <p className="text-lg text-theme-text/70">No articles found in this category.</p>
           </motion.div>
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -146,7 +135,7 @@ export function BlogIndexPage() {
                     className="flex h-full cursor-pointer flex-col rounded-lg border border-theme-border/60 p-6 transition-all duration-300 backdrop-blur-sm hover:border-theme-primary/60"
                     style={{
                       background:
-                        "linear-gradient(to bottom right, color-mix(in srgb, var(--color-surface) 90%, transparent), color-mix(in srgb, var(--color-background) 88%, transparent))",
+                        'linear-gradient(to bottom right, color-mix(in srgb, var(--color-surface) 90%, transparent), color-mix(in srgb, var(--color-background) 88%, transparent))',
                       viewTransitionName: getBlogCardTransitionName(post.slug),
                     }}
                   >
@@ -154,9 +143,7 @@ export function BlogIndexPage() {
                       <div
                         className="relative mb-4 h-44 overflow-hidden rounded-lg border border-theme-border/50"
                         style={{
-                          viewTransitionName: getBlogImageTransitionName(
-                            post.slug
-                          ),
+                          viewTransitionName: getBlogImageTransitionName(post.slug),
                         }}
                       >
                         <Image
@@ -176,10 +163,7 @@ export function BlogIndexPage() {
                         {post.category}
                       </span>
                       <div className="flex items-center gap-4 text-theme-text/60 text-xs">
-                        <time
-                          dateTime={post.date}
-                          className="flex items-center gap-1"
-                        >
+                        <time dateTime={post.date} className="flex items-center gap-1">
                           <Calendar className="w-3 h-3" aria-hidden="true" />
                           <span>{post.date}</span>
                         </time>
@@ -198,25 +182,14 @@ export function BlogIndexPage() {
                       <h3 className="text-xl font-semibold tracking-tight text-theme-text transition-colors duration-300 group-hover:text-theme-primary">
                         {post.title}
                       </h3>
-                      <p className="text-sm leading-relaxed text-theme-text/70">
-                        {post.excerpt}
-                      </p>
+                      <p className="text-sm leading-relaxed text-theme-text/70">{post.excerpt}</p>
                     </div>
 
                     {/* Read more */}
-                    <Button
-                      variant="ghost"
-                      className="group/btn min-h-[44px] w-full justify-between text-theme-text/70 transition-all duration-300 hover:bg-theme-primary/5 hover:text-theme-primary"
-                      asChild
-                    >
-                      <Link
-                        href={`/blog/${post.slug}`}
-                        aria-label={`Read article: ${post.title}`}
-                      >
-                        <span>Read article</span>
-                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
-                      </Link>
-                    </Button>
+                    <div className="group/btn flex h-[44px] w-full items-center justify-between rounded border border-theme-border/40 px-4 text-theme-text/70 transition-all duration-300 group-hover:border-theme-primary/60 group-hover:text-theme-primary">
+                      <span className="text-sm font-medium">Read article</span>
+                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                    </div>
                   </div>
                 </Link>
               </motion.article>

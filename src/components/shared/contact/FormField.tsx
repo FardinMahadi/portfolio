@@ -1,6 +1,6 @@
 "use client";
 
-import type { FormFieldProps } from "@/components/types/contactFormPanelTypes";
+import type { FormFieldProps } from "@/components/types/landing/contact";
 
 import { Input } from "@/components/ui/input";
 

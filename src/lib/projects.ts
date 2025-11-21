@@ -1,4 +1,4 @@
-import type { ProjectsProps } from "@/components/types/ProjectsProps";
+import type { ProjectsProps } from "@/components/types/landing/projects";
 
 import projectsData from "@/data/projects.json";
 

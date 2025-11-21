@@ -1,13 +1,10 @@
 "use client";
 
+import type { CategoryFilterProps } from "@/components/types/blog";
+
 import { motion } from "framer-motion";
 import { blogPosts } from "@/lib/blogData";
 import { useMemo, useRef, useEffect } from "react";
-
-interface CategoryFilterProps {
-  selectedCategory: string | null;
-  onCategoryChange: (category: string | null) => void;
-}
 
 export function CategoryFilter({
   selectedCategory,

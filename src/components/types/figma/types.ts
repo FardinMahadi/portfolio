@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+
 export interface ImageWithFallbackProps {
   src: string;
   alt: string;
@@ -5,7 +7,7 @@ export interface ImageWithFallbackProps {
   height?: number;
   fill?: boolean;
   className?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   fallbackSrc?: string;
   showRetry?: boolean;
   priority?: boolean;

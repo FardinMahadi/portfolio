@@ -1,6 +1,6 @@
 "use client";
 
-import type { BlogCardProps } from "@/components/types/blogTypes";
+import type { BlogCardProps } from "@/components/types/blog";
 
 import Link from "next/link";
 import { motion } from "framer-motion";

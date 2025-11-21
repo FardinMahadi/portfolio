@@ -1,6 +1,6 @@
 "use client";
 
-import type { ExperienceProps } from "../../types/ExperienceProps";
+import type { ExperienceProps } from "@/components/types/experience";
 
 export const experiences: ExperienceProps[] = [
   {

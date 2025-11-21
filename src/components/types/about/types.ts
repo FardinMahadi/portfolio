@@ -1,8 +1,10 @@
-// export interface TechStackProps {
-//   name: string;
-//   icon: string;
-//   color: string;
-// }
+export type AboutCopyProps = {
+  isInView: boolean;
+};
+
+export type TechStackGridProps = {
+  isInView: boolean;
+};
 
 /** For updated icons */
 export interface TechStackProps {

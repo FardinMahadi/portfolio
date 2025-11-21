@@ -1,8 +1,18 @@
-"use client";
+import type { Dispatch, MouseEvent, ReactNode, SetStateAction } from "react";
 
-import type { Dispatch, MouseEvent, SetStateAction } from "react";
+export interface NavItemsProps {
+  name: string;
+  href: string;
+  icon: ReactNode;
+  isRoute?: boolean;
+  subItems?: NavSubItemProps[];
+}
 
-import type { NavItemsProps } from "./NavItemsProps";
+export interface NavSubItemProps {
+  name: string;
+  href: string;
+  icon?: string;
+}
 
 export type DesktopNavigationProps = {
   isScrolled: boolean;
@@ -30,4 +40,3 @@ export type MobileNavigationProps = {
   openSubmenu: string | null;
   setOpenSubmenu: Dispatch<SetStateAction<string | null>>;
 };
-

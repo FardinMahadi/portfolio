@@ -1,10 +1,6 @@
-import { Image, StyleSheet, View } from "@react-pdf/renderer";
+import type { ResumeImageProps } from "@/components/types/resume";
 
-interface ResumeImageProps {
-  src: string;
-  size?: number;
-  borderRadius?: number;
-}
+import { Image, StyleSheet, View } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
   wrapper: {

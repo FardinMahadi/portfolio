@@ -1,6 +1,6 @@
 "use client";
 
-import type { BlogListProps } from "@/components/types/blogTypes";
+import type { BlogListProps } from "@/components/types/blog";
 
 import { BlogCard } from "./BlogCard";
 

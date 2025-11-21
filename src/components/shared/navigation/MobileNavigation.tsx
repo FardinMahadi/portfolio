@@ -1,6 +1,6 @@
 "use client";
 
-import type { MobileNavigationProps } from "@/components/types/navigationTypes";
+import type { MobileNavigationProps } from "@/components/types/shared/navigation";
 
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";

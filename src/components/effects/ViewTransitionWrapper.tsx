@@ -1,15 +1,13 @@
 "use client";
 
-import { ReactNode, useEffect } from "react";
+import type { ViewTransitionWrapperProps } from "@/components/types/shared/effects";
+
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import {
   supportsViewTransitions,
   startViewTransition,
 } from "@/lib/transitions";
-
-interface ViewTransitionWrapperProps {
-  children: ReactNode;
-}
 
 /**
  * Wrapper component that enables View Transitions API for navigation

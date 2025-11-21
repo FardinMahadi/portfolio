@@ -1,7 +1,8 @@
+import type { ResumeTemplateProps } from "@/components/types/resume";
+
 import { StyleSheet, Text, View } from "@react-pdf/renderer";
 
 import { ResumeLayout } from "../ResumeLayout";
-import { ResumeTemplateProps } from "../../types/ResumeProps";
 
 const styles = StyleSheet.create({
   header: {

@@ -1,10 +1,11 @@
+import type { ResumeTemplateProps } from "@/components/types/resume";
+
 import path from "path";
 import React from "react";
 import fs from "fs/promises";
 import { NextResponse } from "next/server";
 import { renderToBuffer } from "@react-pdf/renderer";
 import { resumeData } from "@/components/resume/resumeData";
-import { ResumeTemplateProps } from "@/components/types/ResumeProps";
 import { ModernMinimalTemplate } from "@/components/resume/templates/ModernMinimalTemplate";
 import { ClassicElegantTemplate } from "@/components/resume/templates/ClassicElegantTemplate";
 import { CreativeProfessionalTemplate } from "@/components/resume/templates/CreativeProfessionalTemplate";
@@ -34,8 +35,8 @@ async function getImageDataUri(relativePath?: string) {
       ext === ".png"
         ? "image/png"
         : ext === ".webp"
-        ? "image/webp"
-        : "image/jpeg";
+          ? "image/webp"
+          : "image/jpeg";
     return `data:${mime};base64,${buffer.toString("base64")}`;
   } catch {
     return undefined;

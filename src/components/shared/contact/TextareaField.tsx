@@ -1,6 +1,6 @@
 "use client";
 
-import type { TextareaFieldProps } from "@/components/types/contactFormPanelTypes";
+import type { TextareaFieldProps } from "@/components/types/landing/contact";
 
 import { Textarea } from "@/components/ui/textarea";
 

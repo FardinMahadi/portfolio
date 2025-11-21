@@ -1,6 +1,6 @@
 "use client";
 
-import type { ContactFormPanelProps } from "@/components/types/contactFormPanelTypes";
+import type { ContactFormPanelProps } from "@/components/types/landing/contact";
 
 import { motion } from "framer-motion";
 import { AlertCircle, CheckCircle2 } from "lucide-react";

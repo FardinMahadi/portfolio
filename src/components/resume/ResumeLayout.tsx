@@ -1,10 +1,6 @@
-import { ReactNode } from "react";
-import { Document, Page, StyleSheet, View } from "@react-pdf/renderer";
+import type { ResumeLayoutProps } from "@/components/types/resume";
 
-interface ResumeLayoutProps {
-  children: ReactNode;
-  backgroundColor?: string;
-}
+import { Document, Page, StyleSheet, View } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
   page: {

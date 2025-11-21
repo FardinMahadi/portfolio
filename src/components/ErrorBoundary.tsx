@@ -4,7 +4,7 @@ import type {
   ErrorBoundaryProps,
   ErrorBoundaryState,
   ErrorBoundaryErrorInfo,
-} from "@/components/types/ErrorBoundaryProps";
+} from "@/components/types/shared/error";
 
 import { Component } from "react";
 import { Button } from "@/components/ui/button";

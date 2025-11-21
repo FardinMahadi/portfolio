@@ -1,16 +1,13 @@
 "use client";
 
 import type { Components } from "react-markdown";
+import type { MarkdownRendererProps } from "@/components/types/blog";
 
 import React from "react";
 import remarkGfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
-
-interface MarkdownRendererProps {
-  content: string;
-}
 
 export function MarkdownRenderer({ content }: MarkdownRendererProps) {
   const components: Partial<Components> = {

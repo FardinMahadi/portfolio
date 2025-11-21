@@ -1,4 +1,4 @@
-import type { ReactNode, ErrorInfo } from "react";
+import type { ErrorInfo, ReactNode } from "react";
 
 export interface ErrorBoundaryProps {
   children: ReactNode;

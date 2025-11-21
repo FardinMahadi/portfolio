@@ -1,15 +1,9 @@
 "use client";
 
+import type { ExperienceCardProps } from "@/components/types/experience";
+
 import { motion } from "framer-motion";
 import { Calendar, ExternalLink, MapPin } from "lucide-react";
-
-import type { ExperienceProps } from "../../types/ExperienceProps";
-
-type ExperienceCardProps = {
-  experience: ExperienceProps;
-  isInView: boolean;
-  index: number;
-};
 
 export function ExperienceCard({
   experience,

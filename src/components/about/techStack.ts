@@ -1,6 +1,6 @@
 "use client";
 
-import type { TechStackProps } from "../types/TechStackProps";
+import type { TechStackProps } from "@/components/types/about";
 
 export const techStack: TechStackProps[] = [
   {

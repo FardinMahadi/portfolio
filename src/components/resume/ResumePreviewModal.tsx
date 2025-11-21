@@ -1,17 +1,12 @@
 "use client";
 
+import type { ResumePreviewModalProps } from "@/components/types/resume";
+
 import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { X, Download, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useCallback } from "react";
-
-interface ResumePreviewModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  templateKey: string;
-  templateName: string;
-}
 
 export function ResumePreviewModal({
   isOpen,

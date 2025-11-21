@@ -1,10 +1,10 @@
 "use client";
 
+import type { ProjectModalFooterProps } from "@/components/types/landing/projects";
+
 import { ExternalLink, Github } from "lucide-react";
 
 import { Button } from "../../ui/button";
-
-import type { ProjectModalFooterProps } from "../../types/ProjectHelperProps";
 
 export function ProjectModalFooter({ project }: ProjectModalFooterProps) {
   return (

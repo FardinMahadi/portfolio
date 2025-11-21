@@ -1,14 +1,10 @@
 "use client";
 
-import { ReactNode } from "react";
+import type { PageTransitionProps } from "@/components/types/shared/effects";
+
 import { usePathname } from "next/navigation";
 import { TRANSITION_PRESETS } from "@/lib/transitions";
 import { motion, AnimatePresence } from "framer-motion";
-
-interface PageTransitionProps {
-  children: ReactNode;
-  variant?: "fade" | "slide" | "scale";
-}
 
 /**
  * Page-level transition wrapper with Framer Motion fallback

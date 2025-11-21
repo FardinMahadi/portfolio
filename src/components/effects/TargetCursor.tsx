@@ -1,5 +1,7 @@
 "use client";
 
+import type { TargetCursorProps } from "@/components/types/shared/effects";
+
 import { gsap } from "gsap";
 import { useEffect, useRef, useCallback, useMemo, useState } from "react";
 
@@ -26,12 +28,6 @@ const removeMediaListener = (
     query.removeListener(listener);
   }
 };
-
-interface TargetCursorProps {
-  targetSelector?: string;
-  spinDuration?: number;
-  hideDefaultCursor?: boolean;
-}
 
 export function TargetCursor({
   targetSelector = ".cursor-target",
@@ -445,7 +441,7 @@ export function TargetCursor({
   return (
     <div
       ref={cursorRef}
-      className="fixed top-0 left-0 w-0 h-0 pointer-events-none z-[9999]"
+      className="fixed top-0 left-0 w-0 h-0 pointer-events-none z-9999"
       style={{ transform: "translate(-50%, -50%)", isolation: "isolate" }}
     >
       <div

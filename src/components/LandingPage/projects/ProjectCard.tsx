@@ -1,13 +1,13 @@
 "use client";
 
+import type { ProjectCardProps } from "@/components/types/landing/projects";
+
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 
 import { Button } from "../../ui/button";
 import { ImageWithFallback } from "../../figma/ImageWithFallback";
 import { GlassmorphismPanel } from "../../effects/GlassmorphismPanel";
-
-import type { ProjectCardProps } from "../../types/ProjectHelperProps";
 
 export function ProjectCard({
   project,

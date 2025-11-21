@@ -1,6 +1,6 @@
 "use client";
 
-import type { ProjectScreenshotModalProps } from "@/components/types/ProjectScreenshotModalProps";
+import type { ProjectScreenshotModalProps } from "@/components/types/shared/effects";
 
 import { createPortal } from "react-dom";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";

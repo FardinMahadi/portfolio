@@ -1,12 +1,10 @@
 "use client";
 
+import type { AboutCopyProps } from "@/components/types/about";
+
 import { motion } from "framer-motion";
 
 import { GlassmorphismPanel } from "../effects/GlassmorphismPanel";
-
-type AboutCopyProps = {
-  isInView: boolean;
-};
 
 export function AboutCopy({ isInView }: AboutCopyProps) {
   return (

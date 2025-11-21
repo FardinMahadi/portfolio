@@ -11,3 +11,9 @@ export interface ExperienceProps {
   technologies: string[];
   companyUrl?: string;
 }
+
+export type ExperienceCardProps = {
+  experience: ExperienceProps;
+  isInView: boolean;
+  index: number;
+};

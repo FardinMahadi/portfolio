@@ -1,6 +1,6 @@
 "use client";
 
-import type { NotificationProps } from "@/components/types/contactFormPanelTypes";
+import type { NotificationProps } from "@/components/types/landing/contact";
 
 import { motion } from "framer-motion";
 

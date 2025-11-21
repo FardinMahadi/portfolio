@@ -1,13 +1,11 @@
 "use client";
 
+import type { TechStackGridProps } from "@/components/types/about";
+
 import Image from "next/image";
 import { motion } from "framer-motion";
 
 import { techStack } from "./techStack";
-
-type TechStackGridProps = {
-  isInView: boolean;
-};
 
 export function TechStackGrid({ isInView }: TechStackGridProps) {
   return (

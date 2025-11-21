@@ -1,22 +1,19 @@
 "use client";
 
+import type { BlogPostContentProps } from "@/components/types/blog";
+
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { generateArticleSchema } from "@/lib/seo";
 import { Calendar, Clock, ArrowLeft, Home } from "lucide-react";
-import { BlogPostsProps } from "@/components/types/BlogPostsProps";
 import {
   getBlogImageTransitionName,
   getBlogCardTransitionName,
 } from "@/lib/transitions";
 
 import { MarkdownRenderer } from "./MarkdownRenderer";
-
-interface BlogPostContentProps {
-  post: BlogPostsProps;
-}
 
 export function BlogPostContent({ post }: BlogPostContentProps) {
   const siteUrl =

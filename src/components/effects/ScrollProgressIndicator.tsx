@@ -1,12 +1,8 @@
 "use client";
 
-import { motion, useScroll, useSpring } from "framer-motion";
+import type { ScrollProgressIndicatorProps } from "@/components/types/shared/effects";
 
-interface ScrollProgressIndicatorProps {
-  position?: "top" | "bottom" | "left" | "right";
-  height?: string;
-  showOnMobile?: boolean;
-}
+import { motion, useScroll, useSpring } from "framer-motion";
 
 export function ScrollProgressIndicator({
   position = "top",

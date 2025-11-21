@@ -1,14 +1,9 @@
 "use client";
 
-import { useRef, ReactNode } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import type { MagneticButtonProps } from "@/components/types/shared/effects";
 
-interface MagneticButtonProps {
-  children: ReactNode;
-  className?: string;
-  magneticStrength?: number;
-  [key: string]: unknown;
-}
+import { useRef, type MouseEvent } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 export function MagneticButton({
   children,
@@ -40,7 +35,7 @@ export function MagneticButton({
     ["-17.5deg", "17.5deg"]
   );
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
 
     const rect = ref.current.getBoundingClientRect();

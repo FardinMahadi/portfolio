@@ -1,9 +1,9 @@
 "use client";
 
+import type { ProjectsHeaderProps } from "@/components/types/landing/projects";
+
 import { motion } from "framer-motion";
 import { Terminal } from "lucide-react";
-
-import type { ProjectsHeaderProps } from "../../types/ProjectHelperProps";
 
 export function ProjectsHeader({ isInView, schemaJson }: ProjectsHeaderProps) {
   return (

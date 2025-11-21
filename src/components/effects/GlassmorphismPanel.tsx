@@ -1,17 +1,8 @@
 "use client";
 
-import { ReactNode } from "react";
-import { motion } from "framer-motion";
+import type { GlassmorphismPanelProps } from "@/components/types/shared/effects";
 
-interface GlassmorphismPanelProps {
-  children: ReactNode;
-  className?: string;
-  blur?: string;
-  opacity?: number;
-  borderOpacity?: number;
-  hover?: boolean;
-  style?: React.CSSProperties;
-}
+import { motion } from "framer-motion";
 
 export function GlassmorphismPanel({
   children,

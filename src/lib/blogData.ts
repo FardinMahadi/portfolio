@@ -1,5 +1,6 @@
+import type { BlogPostsProps } from "@/components/types/blog";
+
 import blogPostsData from "@/data/blogPosts.json";
-import { BlogPostsProps } from "@/components/types/BlogPostsProps";
 
 export const blogPosts: BlogPostsProps[] = blogPostsData as BlogPostsProps[];
 

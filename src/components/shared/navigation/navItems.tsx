@@ -1,8 +1,8 @@
 "use client";
 
-import { BookOpen, Briefcase, FileText, Home, Mail, User } from "lucide-react";
+import type { NavItemsProps } from "@/components/types/shared/navigation";
 
-import type { NavItemsProps } from "../../types/NavItemsProps";
+import { BookOpen, Briefcase, FileText, Home, Mail, User } from "lucide-react";
 
 const iconClass = "h-4 w-4";
 

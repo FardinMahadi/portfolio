@@ -57,6 +57,7 @@ export function ComponentSection() {
 10. **Always ensure minimum touch target** of 44x44px
 11. **Always use Next.js 15 App Router patterns** - Server Components by default, "use client" when needed
 12. **Always handle mobile devices** - Cursor effects should be disabled on mobile
+13. **Define any new types or interfaces inside `src/components/types/`** and import them wherever needed, so the shared folder stays authoritative for typing contracts.
 
 ## Common Patterns
 

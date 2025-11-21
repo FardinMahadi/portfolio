@@ -1,11 +1,17 @@
-"use client";
-
-import type { FormEvent } from "react";
 import type { LucideIcon } from "lucide-react";
-import type {
-  ContactFormData,
-  ContactFormStatus,
-} from "@/components/types/contactTypes";
+import type { ElementType, FormEvent } from "react";
+
+export type ContactSectionProps = {
+  variant?: "landing" | "page";
+};
+
+export type ContactFormStatus = "idle" | "loading" | "success" | "error";
+
+export type ContactFormData = {
+  name: string;
+  email: string;
+  message: string;
+};
 
 export type ContactFormPanelProps = {
   formData: ContactFormData;
@@ -39,3 +45,16 @@ export type NotificationProps = {
   message: string;
   Icon: LucideIcon;
 };
+
+export type ContactPanelProps = {
+  isInView: boolean;
+};
+
+export interface SocialLinksProps {
+  name: string;
+  username: string;
+  icon: ElementType;
+  url: string;
+  color: string;
+  glow: string;
+}

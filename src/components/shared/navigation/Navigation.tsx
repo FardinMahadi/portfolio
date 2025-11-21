@@ -1,13 +1,13 @@
 "use client";
 
+import type { NavItemsProps } from "@/components/types/shared/navigation";
+
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 import { navItems } from "./navItems";
 import { MobileNavigation } from "./MobileNavigation";
 import { DesktopNavigation } from "./DesktopNavigation";
-
-import type { NavItemsProps } from "../../types/NavItemsProps";
 
 export function Navigation() {
   const pathname = usePathname();

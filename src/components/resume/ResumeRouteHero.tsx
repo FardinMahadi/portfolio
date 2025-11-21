@@ -1,12 +1,10 @@
 "use client";
 
+import type { ResumeHeroProps } from "@/components/types/resume";
+
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-
-interface ResumeHeroProps {
-  portfolioUrl: string;
-}
 
 export function ResumeHero({ portfolioUrl }: ResumeHeroProps) {
   return (

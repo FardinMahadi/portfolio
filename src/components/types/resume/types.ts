@@ -1,3 +1,27 @@
+import type { ReactNode } from "react";
+
+export interface ResumeHeroProps {
+  portfolioUrl: string;
+}
+
+export interface ResumeImageProps {
+  src: string;
+  size?: number;
+  borderRadius?: number;
+}
+
+export interface ResumeLayoutProps {
+  children: ReactNode;
+  backgroundColor?: string;
+}
+
+export interface ResumePreviewModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  templateKey: string;
+  templateName: string;
+}
+
 export interface ResumeLink {
   label: string;
   url: string;

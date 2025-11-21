@@ -71,6 +71,12 @@ CONTACT_EMAIL=your-email@example.com
 RESEND_FROM_EMAIL=onboarding@resend.dev
 ```
 
+### Formatting
+
+- `pnpm format` rewrites the repo using the shared Prettier rules (`.prettierrc.cjs` plus `.prettierignore`).
+- `pnpm format:check` reports any formatting drift before linting or committing.
+- The config mirrors the ESLint/perfectionist style (two spaces, single quotes, trailing commas, `arrowParens: "always"`), so styling stays consistent without clashing with automated import ordering.
+
 ---
 
 ## 🗂️ Project Structure (simplified)

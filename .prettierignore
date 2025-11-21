@@ -1,0 +1,12 @@
+node_modules
+.next
+out
+build
+.turbo
+public/manifest.json
+public/Icons
+public/Projects
+public/Images
+pnpm-lock.yaml
+.DS_Store
+

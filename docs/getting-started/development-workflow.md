@@ -69,6 +69,12 @@ pnpm start
 
 # Run linter
 pnpm lint
+
+# Format code
+pnpm format
+
+# Check formatting
+pnpm format:check
 ```
 
 ---
@@ -223,6 +229,12 @@ components/
   blog/
     BlogIndexPage.tsx
 ```
+
+### Formatting
+
+- Follow the shared `.prettierrc.cjs` rules (two-space indent, single quotes, trailing commas, `arrowParens: "always"`, `printWidth: 100`) so markup, JS/TS, and Markdown stay consistent across docs and code.
+- `pnpm format` rewrites files, while `pnpm format:check` reports misalignment before linting or committing.
+- ESLint/perfectionist still governs import ordering, unused imports, and restricted class names; keep formatting separate and run the format command before or after lint runs as needed.
 
 ---
 

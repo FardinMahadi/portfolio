@@ -1,14 +1,14 @@
-import Image from "next/image";
-import React, { useState } from "react";
+import Image from 'next/image';
+import React, { useState } from 'react';
 
-import { ImageWithFallbackProps } from "../types/ImageWithFallbackProps";
+import { ImageWithFallbackProps } from '../types/figma';
 
 const ERROR_IMG_SRC =
-  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODgiIGhlaWdodD0iODgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBvcGFjaXR5PSIuMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIzLjciPjxyZWN0IHg9IjE2IiB5PSIxNiIgd2lkdGg9IjU2IiBoZWlnaHQ9IjU2IiByeD0iNiIvPjxwYXRoIGQ9Im0xNiA1OCAxNi0xOCAzMiAzMiIvPjxjaXJjbGUgY3g9IjUzIiBjeT0iMzUiIHI9IjciLz48L3N2Zz4KCg==";
+  'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODgiIGhlaWdodD0iODgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBvcGFjaXR5PSIuMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIzLjciPjxyZWN0IHg9IjE2IiB5PSIxNiIgd2lkdGg9IjU2IiBoZWlnaHQ9IjU2IiByeD0iNiIvPjxwYXRoIGQ9Im0xNiA1OCAxNi0xOCAzMiAzMiIvPjxjaXJjbGUgY3g9IjUzIiBjeT0iMzUiIHI9IjciLz48L3N2Zz4KCg==';
 
 export function ImageWithFallback({
   src,
-  alt = "",
+  alt = '',
   width,
   height,
   loading,
@@ -26,11 +26,10 @@ export function ImageWithFallback({
   const [retryCount, setRetryCount] = useState(0);
 
   // Default sizes based on common responsive breakpoints
-  const defaultSizes =
-    sizes || "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw";
+  const defaultSizes = sizes || '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw';
 
   // Determine loading strategy - lazy by default unless priority is true
-  const loadingStrategy = loading || (priority ? "eager" : "lazy");
+  const loadingStrategy = loading || (priority ? 'eager' : 'lazy');
 
   const handleError = () => {
     setDidError(true);
@@ -43,12 +42,10 @@ export function ImageWithFallback({
 
   return didError ? (
     <div
-      className={`inline-block bg-gray-100 text-center align-middle ${
-        className ?? ""
-      }`}
+      className={`inline-block bg-gray-100 text-center align-middle ${className ?? ''}`}
       style={style}
       role="img"
-      aria-label={alt || "Image failed to load"}
+      aria-label={alt || 'Image failed to load'}
     >
       <div className="flex flex-col items-center justify-center w-full h-full gap-2 p-2">
         <Image
@@ -59,7 +56,7 @@ export function ImageWithFallback({
           className="max-w-full max-h-full"
           onError={(e) => {
             // Prevent infinite loop if fallback also fails
-            e.currentTarget.style.display = "none";
+            e.currentTarget.style.display = 'none';
           }}
           data-original-url={src}
           unoptimized // data URLs don't need optimization

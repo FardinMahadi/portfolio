@@ -2,10 +2,10 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/LandingPage/Footer";
-import { Navigation } from "@/components/LandingPage/Navigation";
 import { generateMetadata as generateSEOMetadata } from "@/lib/seo";
 import { PageTransition } from "@/components/effects/PageTransition";
-import { ExperienceSection } from "@/components/LandingPage/ExperienceSection";
+import { Navigation } from "@/components/shared/navigation/Navigation";
+import { ExperienceSection } from "@/components/experience/ExperienceSection";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://fardinmahadi.vercel.app";

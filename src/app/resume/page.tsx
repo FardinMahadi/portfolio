@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import { Footer } from "@/components/LandingPage/Footer";
 import { resumeData } from "@/components/resume/resumeData";
-import { Navigation } from "@/components/LandingPage/Navigation";
 import { ResumeHero } from "@/components/resume/ResumeRouteHero";
 import { ResumePreview } from "@/components/resume/ResumePreview";
+import { Navigation } from "@/components/shared/navigation/Navigation";
 
 export const metadata: Metadata = {
   title: "Resume | Mahadi Hasan Fardin",

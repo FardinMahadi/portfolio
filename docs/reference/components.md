@@ -74,7 +74,7 @@ import { Navigation } from "@/components/LandingPage/Navigation";
 
 ### AboutSection
 
-**Location**: `src/components/LandingPage/AboutSection.tsx`
+**Location**: `src/components/LandingPage/about/AboutSection.tsx`
 
 **Description**: About section displaying personal information and skills.
 
@@ -90,7 +90,7 @@ import { Navigation } from "@/components/LandingPage/Navigation";
 **Usage**:
 
 ```typescript
-import { AboutSection } from "@/components/LandingPage/AboutSection";
+import { AboutSection } from "@/components/LandingPage/about/AboutSection";
 
 <AboutSection />
 ```
@@ -131,7 +131,7 @@ import { ProjectsSection } from "@/components/LandingPage/ProjectsSection";
 
 ### ExperienceSection
 
-**Location**: `src/components/LandingPage/ExperienceSection.tsx`
+**Location**: `src/components/LandingPage/experience/ExperienceSection.tsx`
 
 **Description**: Displays work experience timeline.
 
@@ -149,7 +149,7 @@ import { ProjectsSection } from "@/components/LandingPage/ProjectsSection";
 **Usage**:
 
 ```typescript
-import { ExperienceSection } from "@/components/LandingPage/ExperienceSection";
+import { ExperienceSection } from "@/components/LandingPage/experience/ExperienceSection";
 
 <ExperienceSection />
 ```

@@ -2,14 +2,17 @@
 
 import Link from "next/link";
 import { useRef, useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { motion, useInView } from "framer-motion";
+import { Textarea } from "@/components/ui/textarea";
 import socialLinksData from "@/data/socialLinks.json";
+import { SocialLinksProps } from "@/components/types/SocialLinksProps";
 import {
   Mail,
   Send,
   Github,
   Loader2,
-  Calendar,
   FileText,
   Linkedin,
   ArrowLeft,
@@ -17,11 +20,6 @@ import {
   CheckCircle2,
   MessageCircle,
 } from "lucide-react";
-
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { Textarea } from "../ui/textarea";
-import { SocialLinksProps } from "../types/SocialLinksProps";
 
 const iconMap = {
   Mail,

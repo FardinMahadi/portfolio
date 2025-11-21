@@ -1,6 +1,6 @@
 "use client";
 
-import type { Dispatch, MouseEvent, SetStateAction } from "react";
+import type { DesktopNavigationProps } from "@/components/types/navigationTypes";
 
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
@@ -8,22 +8,6 @@ import { ChevronDown, Menu, Terminal, X } from "lucide-react";
 
 import { Button } from "../../ui/button";
 import { ColorPaletteSwitcher } from "../../ui/ColorPaletteSwitcher";
-
-import type { NavItemsProps } from "../../types/NavItemsProps";
-
-type DesktopNavigationProps = {
-  isScrolled: boolean;
-  navItems: NavItemsProps[];
-  handleNavClick: (
-    item: NavItemsProps,
-    e?: MouseEvent<HTMLButtonElement>
-  ) => void;
-  isActive: (item: NavItemsProps) => boolean;
-  openSubmenu: string | null;
-  setOpenSubmenu: Dispatch<SetStateAction<string | null>>;
-  isMobileMenuOpen: boolean;
-  toggleMobileMenu: () => void;
-};
 
 export function DesktopNavigation({
   isScrolled,

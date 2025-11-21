@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import { Footer } from "@/components/LandingPage/Footer";
-import { Navigation } from "@/components/LandingPage/Navigation";
 import { generateMetadata as generateSEOMetadata } from "@/lib/seo";
 import { PageTransition } from "@/components/effects/PageTransition";
-import { ContactSection } from "@/components/LandingPage/ContactSection";
+import { Navigation } from "@/components/shared/navigation/Navigation";
+import { ContactSection } from "@/components/LandingPage/contact/ContactSection";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://fardinmahadi.vercel.app";
